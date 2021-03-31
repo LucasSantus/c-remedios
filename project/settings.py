@@ -28,8 +28,9 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
+    'home',
     'cadastro',
-    'gerenciamento',
+    'administracao',
 ]
 
 MIDDLEWARE = [
