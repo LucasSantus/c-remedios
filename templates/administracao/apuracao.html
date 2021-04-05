@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container center">
+        <h2 class="text-theme truncate" >
+            Apuração
+        </h2>
+    </div>
+
+    {% if votos %}
+        <div class="container">
+            <table class="responsive-table centered highlight striped z-depth-3">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Código</th>
+                        <th>Quantidade de Votos</th>
+                        <th>Mais Informações</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-index">
+                    {% for voto in votos %}
+                        <tr>
+                            <td>{{voto.nome}}</td>
+                            <td class="truncate">{{voto.codigo}}</td>
+                            <td>{{voto.numero_votos}}</td>
+                            <td>informaçoes</td>
+                            <td><a href="{% url 'detalhe_apuracao' voto.id %}" class="purple lighten-1 btn"><span class='color-button-table'>Apuração</span></a></td>
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="alert card z-depth-5">
+                <div class="card-content">
+                    <p><i class="material-icons">info</i><span>No momento, não existem apurações disponíveis!</span></p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}
