@@ -3,40 +3,8 @@
 {% block content %}
     <div class="container center">
         <h2 class="text-theme truncate">
-            Home
+            Tela Principal
         </h2>
     </div>
 
-    {% if votacoes %}
-        <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-3">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Horário Ínicio</th>
-                        <th>Horário Término</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="divider">
-                    {% for votacao in votacoes %}
-                        <tr>
-                            <td>{{votacao.nome}}</td>
-                            <td>{{votacao.data_inicio}}</td>
-                            <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'validacao' votacao.id %}" class="purple btn"><span class='color-button-table'>Votar</span></a></td>
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="container">
-            <div class="alert card z-depth-5">
-                <div class="card-content">
-                    <p><i class="material-icons">info</i><span>No momento, não existem votações disponíveis!</span></p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
 {% endblock content %}
