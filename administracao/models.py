@@ -79,4 +79,4 @@ class Horario_Agendamento(models.Model):
         db_table = "horario_agendamento"
 
     def __str__(self):
-        return self.nome
+        return self.horario
