@@ -59,7 +59,7 @@ class Agendamento(models.Model):
         return self.nome
 
 class Horario_Agendamento(models.Model):
-    agendamento = models.ForeignKey(Agenda, on_delete=models.CASCADE, verbose_name = "Agendamento:")
+    agendamento = models.ForeignKey(Agendamento, on_delete=models.CASCADE, verbose_name = "Agendamento:")
     
     horario = models.DateTimeField(
         verbose_name = "Horário:",
