@@ -55,6 +55,28 @@ class Agendamento(models.Model):
         verbose_name_plural = "Agendamentos"
         db_table = "agendamento"
 
-    #def __str__(self):
-    #    return self.remedio
+    def __str__(self):
+        return self.nome
 
+class Horario_Agendamento(models.Model):
+    agendamento = models.ForeignKey(Agenda, on_delete=models.CASCADE, verbose_name = "Agendamento:")
+    
+    horario = models.DateTimeField(
+        verbose_name = "Horário:",
+        auto_now=False,
+        blank=True,
+        null=True,
+    )
+
+    concluido = models.BooleanField(
+        verbose_name = "Concluído:",
+        max_length=194,
+    )
+       
+    class Meta:
+        verbose_name = "Horário do Agendamento"
+        verbose_name_plural = "Horários dos Agendamentos"
+        db_table = "horario_agendamento"
+
+    def __str__(self):
+        return self.nome
