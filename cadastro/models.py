@@ -29,12 +29,12 @@ class Pessoa(models.Model):
 class Remedio(models.Model):
     
     nome = models.CharField(
-        verbose_name = "Nome:",
+        verbose_name = "Nome do Remédio:",
         max_length=194,
     )
 
     descricao = models.TextField(
-        verbose_name = "Descrição:",
+        verbose_name = "Descrição do Remédio:",
         max_length=340,
     )
     
