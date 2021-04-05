@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from .models import *
 from django.contrib import messages
 
@@ -25,7 +24,7 @@ def cadastrar_pessoa(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_pessoa.html", context)
+    return render(request, "cadastro/cadastrar_pessoa.html", context)
 
 def listar_pessoas(request):
 

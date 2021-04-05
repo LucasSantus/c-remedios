@@ -51,15 +51,21 @@
         <div class="container">
             <div class="alert card z-depth-5">
                 <div class="card-content">
-                    <p><i class="material-icons">info</i><span>No momento, não existem pessoas cadastradas!</span></p>
+                    <p>
+                        <i class="material-icons">info</i>
+                        <span>
+                            No momento, não existem pessoas cadastradas!
+                        </span>
+                        <a href="{% url 'cadastrar_pessoa' %}" style="float: right;">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                        
+                            </button>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     {% endif %}
-
-    <div class="fixed-action-btn">
-        <a href="{% url 'registrar_pessoa' %}" class="btn-floating purple lighten-2 btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
-    </div>
 </main>
 
 {% endblock content %}
