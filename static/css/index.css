@@ -11,16 +11,16 @@ main {
 
 /* HEADER */
 .nav-wrapper{
-    background-color: blueviolet;
+    background-color: #32BF84;
 }
 
 /* FOOTER */
 .page-footer{
-    padding-top: 20px;
-    background-color: blueviolet;
-    margin: auto;
-    width: 100%;
-    bottom: 0;
+    background-color: #32BF84;
+}
+
+.page-footer .footer-copyright{
+    padding: 0px;
 }
 
 /* CARD's */
@@ -46,8 +46,16 @@ main {
     margin-right: 0.5em;
 }
 
+.brand-logo{
+    margin-left: 1%;
+}
+
 /* Texto de ínicio */
 .text-theme{
     width: 100%;
     font-size: 60px;
+} 
+
+.icones-sociais li {
+    display: inline-block;
 }

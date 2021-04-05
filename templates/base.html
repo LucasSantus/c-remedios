@@ -5,6 +5,10 @@
         <!-- Import Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <!--Import Font Awesome-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
         <!--Import CSS Materialize-->
         <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
         
@@ -33,7 +37,9 @@
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="{% url 'index' %}" class="brand-logo truncate">Sistema de Controle de Remédios</a>
+                    <div class="container hide-on-med-and-down">
+                        <a href="{% url 'index' %}" class="brand-logo"><span class='truncate'>Controle de Remédios</span></a>
+                    </div>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                         </ul>
@@ -49,10 +55,34 @@
         
         <footer class="page-footer">
             <div class="footer-copyright">
-                <div class="container">
-                    Copyright © 2021 Sistema de Controle de Remédios
-                    <a class="white-text text-lighten-3 right" href="#!">More Links</a>
-                </div>
+                
+                    <div class="row" style="width: 90%;">
+                        <div class="col l6 s12">
+                            <span>&copy; 2020-2021 Copyright Controle de Remédios, All rights reserved.</span>
+                        </div>
+
+                        <div class="col l4 offset-l2 s12">
+                            <ul class="icones-sociais">
+                                <li>
+                                    <a href="#" class="btn-floating btn-small green" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn-floating btn-small green" target="_blank">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn-floating btn-small green" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+               
+            </div>
         </footer>
     </body>
 </html>
