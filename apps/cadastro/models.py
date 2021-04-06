@@ -1,4 +1,39 @@
 from django.db import models
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+
+class UsuarioManager(BaseUserManager):
+
+    def create_user(self,cpf,password=None):
+        usuario = self.model(
+            cpf = cpf
+        )
+
+        usuario.is_active = True
+        usuario.is_staff = False
+        usuario.is_superuser = False
+
+        if password:
+            usuario.set_password(password)
+        
+        usuario.save()
+        
+        return usuario
+    
+    def create_superuser(self,cpf,password):
+        usuario = self.create_user(
+            cpf = cpf,
+            password = password,
+        )
+
+        usuario.is_active = True
+        usuario.is_staff = True
+        usuario.is_superuser = True
+
+        usuario.set_password(password)
+
+        usuario.save()
+
+        return usuario
 
 class Pessoa(models.Model):
 
@@ -25,6 +60,24 @@ class Pessoa(models.Model):
         auto_now_add=True,
     )
       
+    is_active = models.BooleanField(
+        verbose_name="Usuário está ativo",
+        default=True, 
+    )
+    is_staff  = models.BooleanField(
+        verbose_name="Usuário é da equipe de desenvolvimento",
+        default= False,
+    )
+
+    is_superuser = models.BooleanField(
+        verbose_name= "Usuário é um superusuario",
+        default=False,
+    )
+
+    USERNAME_FIELD = "cpf"
+
+    objects = UsuarioManager()
+
     class Meta:
         verbose_name = "Pessoa"
         verbose_name_plural = "Pessoas"
