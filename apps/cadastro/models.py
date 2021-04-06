@@ -3,7 +3,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 
 class UsuarioManager(BaseUserManager):
 
-    def create_user(self,cpf,password=None):
+    def create_user(self, cpf, password=None):
         usuario = self.model(
             cpf = cpf
         )
@@ -19,7 +19,7 @@ class UsuarioManager(BaseUserManager):
         
         return usuario
     
-    def create_superuser(self,cpf,password):
+    def create_superuser(self, cpf, password):
         usuario = self.create_user(
             cpf = cpf,
             password = password,
@@ -35,7 +35,7 @@ class UsuarioManager(BaseUserManager):
 
         return usuario
 
-class Pessoa(models.Model):
+class Pessoa(AbstractBaseUser,PermissionsMixin):
 
     nome = models.CharField(
         verbose_name = "Nome Completo:",

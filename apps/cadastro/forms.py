@@ -2,9 +2,17 @@ from django import forms
 from .models import Pessoa, Remedio
 
 class PessoaForm(forms.ModelForm):
+
+    def save(self, commit=True):
+        user = super(PessoaForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+
     class Meta:
         model = Pessoa
-        fields = ('nome', 'cpf', 'data_nascimento')
+        fields = ('nome', 'cpf', 'data_nascimento', 'password')
 
         error_messages = {
             "nome":{

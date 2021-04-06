@@ -38,6 +38,8 @@ INSTALLED_APPS += [
     'administracao',
 ]
 
+AUTH_USER_MODEL = "cadastro.Pessoa"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

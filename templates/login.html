@@ -3,7 +3,6 @@
 {% load materializecss %}
 
 <html>
-
     <head>
         <!-- Import Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,47 +32,32 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
     </head>
 
-    <body class="bg-gradient-primary">
+    <body>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-12 col-md-9">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <div class="row">
-                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-    
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="text-left mb-5">
-                                            <h1 class="h4 text-gray-900 mb-1">Seja bem-vindo!</h1>
-    
-                                            <p>Faça login para continuar</p>
-                                        </div>
-
-                                        <form method="post" class="user">
-                                            <div class="form-row">
-                                                {% csrf_token %}
-                                                
-                                                {{ form|materializecss }}
-                                            </div>
-    
-                                            <button class="btn btn-primary btn-user btn-block" type="submit">
-                                                <span class="text">Acessar dashboard</span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+            <div class="container">
+                <h1 class="center">Seja bem-vindo!</h1>
+                <div class="container">
+                    <div class="card-panel z-depth-5 grey lighten-3">
+                        <div class="container">
+                            <div class="text-left mb-5">
+                                <p>Faça login para continuar</p>
                             </div>
+    
+                            <form method="post" class="user">
+                                <div class="form-row">
+                                    {% csrf_token %}
+                                    
+                                    {{ form|materializecss }}
+                                </div>
+    
+                                <button class="btn btn-primary" type="submit">
+                                    <span class="text">Acessar dashboard</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    
                 </div>
-                
             </div>
         </div>
-        
-        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
     </body>
 </html>
