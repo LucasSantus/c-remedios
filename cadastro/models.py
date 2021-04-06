@@ -13,6 +13,13 @@ class Pessoa(models.Model):
         unique=True,
     )
 
+    data_nascimento = models.DateField(
+        verbose_name = "Data de Nascimento:",
+        auto_now_add=False,
+        auto_now=False,
+        null=True,
+    )
+
     horario_criacao = models.DateTimeField(
         verbose_name = "Horário do Cadastro no Sistema:",
         auto_now_add=True,

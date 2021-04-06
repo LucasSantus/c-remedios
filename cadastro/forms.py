@@ -1,65 +1,37 @@
 from django import forms
-from cadastro.models import *
+from .models import Pessoa, Remedio
 
 class PessoaForm(forms.ModelForm):
     class Meta:
         model = Pessoa
-        fields = ('__all__')
+        fields = ('nome', 'cpf', 'data_nascimento')
 
         error_messages = {
             "nome":{
-                "required": "O nome completo da pessoa é obrigatório para o registro",
+                "required": "É obrigatório o Nome Completo do individuo para a realização do registro",
             },
 
             "cpf":{
-                "required": "O  cpf da pessoa é obrigatório para o registro",
-                "invalid": "Por favor, insira um CPF válido!",
+                "required": "É obrigatório o CPF do individuo para a realização do registro",
+                "invalid": "Insira um CPF válido!",
             },
-
             "data_nascimento":{
-                "required": "A data de nascimento da pessoa é obrigatório para o registro",
-                "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
-            },
-
-            "email":{
-                "required": "Por favor, informe o número da casa a ser visitada",
-                "invalid": "Por favor, informe um formato válido para o email",
+                "required": "É obrigatório a Data de Nascimento do individuo para a realização do registro",
+                "invalid": "Insira uma Data de Nascimento válida!",
             },
         }
 
-class VotacaoForm(forms.ModelForm):
+class RemedioForm(forms.ModelForm):
     class Meta:
-        model = Votacao
-        fields = ('nome', 'descricao','anonimo', 'voto_unico', 'data_inicio', 'data_fim', )
+        model = Remedio
+        fields = ('nome', 'descricao')
 
         error_messages = {
             "nome":{
-                "required": "O nome é obrigatório para o registro",
+                "required": "É obrigatório o Nome do individuo para a realização do registro",
             },
 
             "descricao":{
-                "required": "a descrição é obrigatório para o registro",
-            },
-
-            "anonimo":{
-                "required": "A data de nascimento da pessoa é obrigatório para o registro",
-            },
-
-            "voto_unico":{
-                "required": "Por favor, informe o número da casa a ser visitada",
-            },
-            "data_inicio":{
-                "required": "O  cpf da pessoa é obrigatório para o registro",
-                "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
-            },
-
-            "data_fim":{
-                "required": "A data de nascimento da pessoa é obrigatório para o registro",
-                "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
+                "required": "É obrigatório o CPF do individuo para a realização do registro",
             },
         }
-
-class OpcaoVotoForm(forms.ModelForm):
-    class Meta:
-        model = OpcaoVoto
-        fields = ('__all__')
