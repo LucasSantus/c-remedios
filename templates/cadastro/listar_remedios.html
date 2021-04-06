@@ -34,6 +34,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <a href="{% url 'cadastrar_remedio' %}" style="float: right;">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
+                    </a>
                     {% for remedio in list_remedios %}
                         <tr>
                             <td>{{remedio.nome}}</td>
@@ -53,9 +56,7 @@
                             No momento, não existem remédios cadastrados!
                         </span>
                         <a href="{% url 'cadastrar_remedio' %}" style="float: right;">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                        
-                            </button>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
                         </a>
                     </p>
                 </div>

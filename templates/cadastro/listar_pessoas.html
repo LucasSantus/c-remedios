@@ -37,6 +37,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <a href="{% url 'cadastrar_pessoa' %}" style="float: right;">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                        </button>
+                    </a>
                     {% for pessoa in list_pessoas %}
                         <tr>
                             <td>{{pessoa.nome}}</td>
@@ -47,10 +51,7 @@
                     {% endfor %} 
                 </tbody>
             </table>
-            <a href="{% url 'cadastrar_pessoa' %}" style="float: right;">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                </button>
-            </a>
+            
         </div>
     {% else %}
         <div class="container">

@@ -36,12 +36,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for pessoa in list_pessoas %}
+                    <a href="{% url 'cadastrar_receita' %}" style="float: right;">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                        </button>
+                    </a>
+                    {% for receita in list_receitas %}
                         <tr>
-                            <td>{{pessoa.nome}}</td>
-                            <td>{{pessoa.cpf}}</td>
-                            <td>{{pessoa.data_nascimento}}</td>
-                            
+                            <td>{{receita.nome}}</td>
+                            <td>{{receita.cpf}}</td>
+                            <td>{{receita.data_nascimento}}</td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -56,10 +59,8 @@
                         <span>
                             No momento, não existem receitas cadastradas!
                         </span>
-                        <a href="{% url 'cadastrar_pessoa' %}" style="float: right;">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                        
-                            </button>
+                        <a href="{% url 'cadastrar_receita' %}" style="float: right;">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
                         </a>
                     </p>
                 </div>
