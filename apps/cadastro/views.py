@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import PessoaForm, RemedioForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def cadastrar_pessoa(request):
 
@@ -27,6 +28,7 @@ def cadastrar_pessoa(request):
 
     return render(request, "cadastro/cadastrar_pessoa.html", context)
 
+@login_required
 def listar_pessoas(request):
 
     list_pessoas = Pessoa.objects.all()
@@ -38,6 +40,7 @@ def listar_pessoas(request):
 
     return render(request, "cadastro/listar_pessoas.html", context)
 
+@login_required
 def cadastrar_remedio(request):
 
     form = RemedioForm()
@@ -62,6 +65,7 @@ def cadastrar_remedio(request):
 
     return render(request, "cadastro/cadastrar_remedio.html", context)
 
+@login_required
 def listar_remedios(request):
 
     list_remedios = Remedio.objects.all()
