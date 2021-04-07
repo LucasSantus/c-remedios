@@ -41,7 +41,9 @@
                         <ul class="right hide-on-med-and-down">
                             <li><a data-target="modal1" class="modal-trigger">Sair</a></li>
                         </ul>
-                    
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{% url 'listar_pessoas' %}">Pessoa</a></li>
+                        </ul>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_remedios' %}">Remédio</a></li>
                         </ul>
@@ -73,8 +75,10 @@
                 <p>A bunch of text</p>
             </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a>
+                    <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    
+                        <button href="{% url 'logout' %}" style="margin-left: 2px; margin-bottom: 1px; background-color:#32BF84" class="btn btn-secondary modal-close" type="button">Confirmar</button>
+                   
             </div>
         </div>
     </body>
