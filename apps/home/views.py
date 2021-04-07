@@ -13,4 +13,4 @@ def index(request):
         "list_receitas": list_receitas,
     }
 
-    return render(request, "home/index.html")
+    return render(request, "home/index.html", context)

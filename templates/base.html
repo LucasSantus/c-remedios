@@ -36,7 +36,7 @@
                 <nav>
                     <div class="nav-wrapper">
                     
-                        <a href="{% url 'index' %}" class="brand-logo"><span class='truncate'>Controle de Remédios</span></a>
+                        <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">dashboard</i><span class='truncate'>CRemédios</span></a>
                    
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
@@ -46,12 +46,6 @@
                         </ul>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_receitas' %}">Receita</a></li>
-                        </ul>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="{% url 'cadastrar_agendamento' %}">Agendamento</a></li>
-                        </ul>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="{% url 'cadastrar_horario' %}">Horário</a></li>
                         </ul>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'logout' %}">Sair</a></li>
@@ -70,7 +64,7 @@
         <footer class="page-footer">
             <div class="row" style="width: 90%;">
                 <div class="col l6 s12">
-                    <span>&copy; 2020-2021 Copyright Controle de Remédios, All rights reserved.</span>
+                    <span style="color: #32BF84;">&copy; 2020-2021 Copyright CRemédios, All rights reserved.</span>
                 </div>
             </div>
         </footer>
