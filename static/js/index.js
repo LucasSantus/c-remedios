@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $('select').formSelect();
+    $('.modal').modal();
     $('.datepicker').datepicker({
         i18n: {
             months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
