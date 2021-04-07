@@ -1,22 +1,73 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-    <div class="container center">
-        <h2 class="text-theme truncate">
-            Tela Principal
-        </h2>
-        <!--
-        <a href="#">
-            <div class="container">
-                <div class="col s12 m6">
-                    <div class="card-panel card-shaper center teal">
-                        <span class="white-text">
-                            teste
-                        </span>
+
+<main>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="container">
+                    <div class="alert alert-success card z-depth-5">
+                        <div class="card-content">
+                            <li{% if message.tags %} class="{{ message.tags }} text-purple"{% endif %}>{{ message }}</li>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if list_receitas %}
+        <div class="col s12 m6 l10 center">
+            <h2 class="text-theme truncate" >
+                {{nome_pagina}}
+            </h2>
+        </div>
+        
+        <div class="container">
+            <table class="responsive-table centered highlight striped z-depth-3">
+                <thead>
+                    <tr>
+                        <th>Remédio</th>
+                        <th>Intervalo</th>
+                        <th>Data de Ínicio</th>
+                        <th>Dosagem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <a href="{% url 'cadastrar_receita' %}" style="float: right;">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                        </button>
+                    </a>
+                    {% for receita in list_receitas %}
+                        <tr>
+                            <td>{{receita.remedio.nome}}</td>
+                            <td>{{receita.intervalo}}</td>
+                            <td>{{receita.data_inicio}}</td>
+                            <td>{{receita.dosagem}}</td>
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="alert card z-depth-5">
+                <div class="card-content">
+                    <p>
+                        <i class="material-icons">info</i>
+                        <span>
+                            No momento, não existem receitas cadastradas!
+                        </span>
+                        <a href="{% url 'cadastrar_receita' %}" style="float: right;">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
+                        </a>
+                    </p>
+                </div>
             </div>
-        </a>
-    -->
-    </div>
+        </div>
+    {% endif %}
+</main>
+
 {% endblock content %}
