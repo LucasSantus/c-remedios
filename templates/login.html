@@ -49,10 +49,17 @@
                                     
                                     {{ form|materializecss }}
                                 </div>
-    
-                                <button class="btn btn-primary" type="submit">
-                                    <span class="text">Acessar dashboard</span>
-                                </button>
+
+                                
+                                    <div class="col s4">
+                                        <a href="{% url 'cadastrar_pessoa' %}">
+                                            cadastrar
+                                        </a>
+                                        <button class="btn btn-primary" type="submit">
+                                            <span class="text">Logar</span>
+                                        </button>
+                                    </div>
+                                
                             </form>
                         </div>
                     </div>

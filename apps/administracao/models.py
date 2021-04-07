@@ -19,7 +19,7 @@ class Receita(models.Model):
         db_table = "receita"
 
     def __str__(self):
-        return self.remedio
+        return str("{} - {}".format(self.pessoa.nome, self.remedio.nome))
     
 class Agendamento(models.Model):
     nome = models.CharField(
@@ -79,4 +79,4 @@ class Horario_Agendamento(models.Model):
         db_table = "horario_agendamento"
 
     def __str__(self):
-        return self.horario
+        return str(self.horario)

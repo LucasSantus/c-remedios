@@ -27,6 +27,9 @@ class PessoaForm(forms.ModelForm):
                 "required": "É obrigatório a Data de Nascimento do individuo para a realização do registro",
                 "invalid": "Insira uma Data de Nascimento válida!",
             },
+            "password":{
+                "required": "É obrigatório a Senha do individuo para a realização do registro",
+            },
         }
 
 class RemedioForm(forms.ModelForm):

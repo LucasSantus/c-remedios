@@ -4,6 +4,16 @@
 
 {% block content %}
 
+<script>
+    $(document).ready(function(){
+        $("#id_horario").attr("type","text"); 
+
+        M.AutoInit();
+
+        var DateField = MaterialDateTimePicker.create($('#id_horario'));
+    }); 
+</script>
+
 {% if form.errors %}
     {% for error in form.non_field_errors %}
         <div class="alert alert-danger">

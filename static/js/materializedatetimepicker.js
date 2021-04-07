@@ -27,7 +27,7 @@ var MaterialDateTimePicker = {
                     selectMonths: true,
                     selectYears: 15,
                     },
-                format:  'yyyy-mm-dd',
+                format:'yyyy-mm-dd',
                 yearRange:80,
                 selectMonths: true,
                 dismissable: false,
