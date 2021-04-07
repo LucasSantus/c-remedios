@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pessoa, Remedio
+from .models import Pessoa, Remedio, Receita
 
 class PessoaForm(forms.ModelForm):
 
@@ -44,5 +44,30 @@ class RemedioForm(forms.ModelForm):
 
             "descricao":{
                 "required": "É obrigatório o CPF do individuo para a realização do registro",
+            },
+        }
+
+class ReceitaForm(forms.ModelForm):
+    class Meta:
+        model = Receita
+        fields = ('pessoa', 'remedio', 'intervalo', 'data_inicio', 'dosagem')
+
+        error_messages = {
+            "pessoa":{
+                "required": "Selecione uma pessoa!",
+            },
+
+            "remedio":{
+                "required": "Selecione um remédio!",
+            },
+            "intervalo":{
+                "required": "Insira um intervalo!",
+            },
+            "data_inicio":{
+                "required": "Selecione uma data!",
+                "invalid": "Insira uma Data válida!",
+            },
+            "dosagem":{
+                "required": "Insira uma dosagem!",
             },
         }

@@ -105,3 +105,29 @@ class Remedio(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Receita(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name = "Pessoa:")
+    remedio = models.ForeignKey(Remedio, on_delete=models.CASCADE , verbose_name = "Remédio:")
+    intervalo = models.FloatField(verbose_name = "Intervalo:")
+    quantidade_dias = models.IntegerField(
+        verbose_name = "Total de dias",
+        help_text = "total de dias que será consumido o remédio",
+        default = 0,
+    )
+    data_inicio = models.DateTimeField(
+        verbose_name = "Data de Ínicio:",
+        auto_now=False,
+        blank=True,
+        null=True,
+    )
+    dosagem = models.IntegerField(verbose_name = "Dosagem:")#a dosagem do remedio
+
+    class Meta:
+        verbose_name = "Receita"
+        verbose_name_plural = "Receitas"
+        db_table = "receita"
+
+    def __str__(self):
+        return str("{} - {}".format(self.pessoa.nome, self.remedio.nome))
+   

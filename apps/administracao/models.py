@@ -1,26 +1,6 @@
 from django.db import models
 from cadastro.models import *
-
-class Receita(models.Model):
-    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name = "Pessoa:")
-    remedio = models.ForeignKey(Remedio, on_delete=models.CASCADE , verbose_name = "Remédio:")
-    intervalo = models.FloatField(verbose_name = "Intervalo:")
-    data_inicio = models.DateTimeField(
-        verbose_name = "Data de Ínicio:",
-        auto_now=False,
-        blank=True,
-        null=True,
-    )
-    dosagem = models.IntegerField(verbose_name = "Dosagem:")#a dosagem do remedio
-
-    class Meta:
-        verbose_name = "Receita"
-        verbose_name_plural = "Receitas"
-        db_table = "receita"
-
-    def __str__(self):
-        return str("{} - {}".format(self.pessoa.nome, self.remedio.nome))
-    
+ 
 class Agendamento(models.Model):
     nome = models.CharField(
         verbose_name = "Nome do Agendamento:",

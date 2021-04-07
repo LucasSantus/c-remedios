@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import *
-from .forms import PessoaForm, RemedioForm
+
+from .models import Pessoa, Remedio, Receita
+from .forms import PessoaForm, RemedioForm, ReceitaForm
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -76,3 +78,37 @@ def listar_remedios(request):
     }
 
     return render(request, "cadastro/listar_remedios.html", context)
+
+def cadastrar_receita(request):
+    form = ReceitaForm()
+
+    if request.method == "POST":
+        form = ReceitaForm(request.POST)
+
+        if form.is_valid():
+            receita = form.save()
+            receita.save()
+            
+            messages.success(
+                request, "Receita registrada com sucesso!"
+            )
+            
+            return redirect("listar_receitas")
+
+    context = {
+        "nome_pagina": "Cadastrar Receita",
+        "form": form,
+    }
+
+    return render(request, "administracao/cadastrar_receita.html", context)
+
+def listar_receitas(request):
+
+    list_receitas = Receita.objects.all()
+
+    context = {
+        "nome_pagina": "Listar Receitas",
+        "list_receitas": list_receitas,
+    }
+
+    return render(request, "administracao/listar_receitas.html", context)
