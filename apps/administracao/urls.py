@@ -4,6 +4,6 @@ from .views import *
 
 urlpatterns = [
     #cadastrar
-    path("cadastrar-agendamento/", cadastrar_agendamento, name="cadastrar_agendamento"),
-    path("cadastrar-horario/", cadastrar_horario_agendamento, name="cadastrar_horario"),
+    path('dosagens-usuario/<int:id_receita>/', dosagem_usuario, name="dosagem_usuario"),
+    path('configurar-horarios-dosagens/<int:id_receita>', configura_horario_dosagem, name="configura_horario_dosagem"),
 ]

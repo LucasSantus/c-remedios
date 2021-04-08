@@ -110,7 +110,7 @@ class Receita(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name = "Pessoa:")
     remedio = models.ForeignKey(Remedio, on_delete=models.CASCADE , verbose_name = "Remédio:")
     intervalo = models.FloatField(verbose_name = "Intervalo:")
-    quantidade_dias = models.IntegerField(
+    quantidade_dias = models.PositiveIntegerField(
         verbose_name = "Total de dias",
         help_text = "total de dias que será consumido o remédio",
         default = 0,

@@ -72,12 +72,11 @@
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h5 class="modal-title" id="ModalLabel">Você realmente deseja sair?</h5>
-                <p>A bunch of text</p>
+                <p>Para confirmar essa ação selecione "CONFIRMAR".</p>
             </div>
                 <div class="modal-footer">
-                    <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-                    
-                        <button href="{% url 'logout' %}" style="margin-left: 2px; margin-bottom: 1px; background-color:#32BF84" class="btn btn-secondary modal-close" type="button">Confirmar</button>
+                    <a class="modal-close waves-effect waves-green btn-flat" style="color:#32BF84">CANCELAR</a>
+                    <button href="{% url 'logout' %}" style="margin-left: 2px; background-color:#32BF84" class="btn btn-secondary modal-close" type="button">CONFIRMAR</button>
                    
             </div>
         </div>

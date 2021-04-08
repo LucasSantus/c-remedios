@@ -50,13 +50,12 @@ class RemedioForm(forms.ModelForm):
 class ReceitaForm(forms.ModelForm):
     class Meta:
         model = Receita
-        fields = ('pessoa', 'remedio', 'intervalo', 'data_inicio', 'dosagem')
+        fields = ('pessoa', 'remedio', 'intervalo', 'data_inicio', 'quantidade_dias','dosagem')
 
         error_messages = {
             "pessoa":{
                 "required": "Selecione uma pessoa!",
             },
-
             "remedio":{
                 "required": "Selecione um remédio!",
             },
@@ -66,6 +65,9 @@ class ReceitaForm(forms.ModelForm):
             "data_inicio":{
                 "required": "Selecione uma data!",
                 "invalid": "Insira uma Data válida!",
+            },
+            "quantidade_dias":{
+                "required": "Insira a quantidade de dias para tomar o remédio!",
             },
             "dosagem":{
                 "required": "Insira uma dosagem!",

@@ -19,6 +19,14 @@
     {% endif %}
 
     {% if list_remedios %}
+
+        
+        <div class="fixed-action-btn">
+            <a href="{% url 'cadastrar_remedio' %}" class="btn-floating btn-large" style="background-color:#32BF84">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
+
         <div class="col s12 m6 l10 center">
             <h2 class="text-theme truncate" >
                 {{nome_pagina}}
@@ -26,7 +34,7 @@
         </div>
         
         <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-3">
+            <table class="responsive-table centered highlight striped z-depth-5">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -34,17 +42,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <a href="{% url 'cadastrar_remedio' %}" style="float: right;">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
-                    </a>
                     {% for remedio in list_remedios %}
                         <tr>
                             <td>{{remedio.nome}}</td>
                             <td>{{remedio.descricao}}</td>
                         </tr>
-                    {% endfor %} 
+                    {% endfor %}
                 </tbody>
             </table>
+            
         </div>
     {% else %}
         <div class="container">
