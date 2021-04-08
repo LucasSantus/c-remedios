@@ -100,7 +100,7 @@ def cadastrar_receita(request):
         "form": form,
     }
 
-    return render(request, "administracao/cadastrar_receita.html", context)
+    return render(request, "cadastro/cadastrar_receita.html", context)
 
 def listar_receitas(request):
 
@@ -111,4 +111,4 @@ def listar_receitas(request):
         "list_receitas": list_receitas,
     }
 
-    return render(request, "administracao/listar_receitas.html", context)
+    return render(request, "cadastro/listar_receitas.html", context)

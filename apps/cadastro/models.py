@@ -121,7 +121,7 @@ class Receita(models.Model):
         blank=True,
         null=True,
     )
-    dosagem = models.IntegerField(verbose_name = "Dosagem:")#a dosagem do remedio
+    dosagem = models.PositiveIntegerField(verbose_name = "Dosagem:")#a dosagem do remedio
 
     class Meta:
         verbose_name = "Receita"

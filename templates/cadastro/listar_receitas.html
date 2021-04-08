@@ -25,8 +25,7 @@
             </h2>
         </div>
         
-        <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-3">
+            <table class="responsive-table highlight striped z-depth-3">
                 <thead>
                     <tr>
                         <th>Pessoa</th>
@@ -35,6 +34,7 @@
                         <th>Data de Ínicio</th>
                         <th>Dias</th>
                         <th>Dosagem</th>
+                        <th>Cronograma</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +50,12 @@
                             <td>{{receita.data_inicio}}</td>
                             <td>{{receita.quantidade_dias}}</td>
                             <td>{{receita.dosagem}}</td>
+                            <td>Ver</td>
                         </tr>
                     {% endfor %} 
                 </tbody>
             </table>
-        </div>
+       
     {% else %}
         <div class="container">
             <div class="alert card z-depth-5">

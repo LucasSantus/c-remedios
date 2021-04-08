@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import Agendamento, Horario_Agendamento
-from .forms import AgendamentoForm, HorarioAgendamentoForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 

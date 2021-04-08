@@ -20,7 +20,6 @@
 
     {% if list_remedios %}
 
-        
         <div class="fixed-action-btn">
             <a href="{% url 'cadastrar_remedio' %}" class="btn-floating btn-large" style="background-color:#32BF84">
                 <i class="large material-icons">add</i>
@@ -50,8 +49,8 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
         </div>
+        
     {% else %}
         <div class="container">
             <div class="alert card z-depth-5">
