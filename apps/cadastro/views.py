@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 
+from administracao.models import Agendamento
+
 from .models import Pessoa, Remedio, Receita
 from .forms import PessoaForm, RemedioForm, ReceitaForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
+from django.utils import timezone
+from datetime import date
 
 def cadastrar_pessoa(request):
 
@@ -51,8 +56,8 @@ def cadastrar_remedio(request):
         form = RemedioForm(request.POST)
 
         if form.is_valid():
-            pessoa = form.save()
-            pessoa.save()
+            remedio = form.save()
+            remedio.save()
             
             messages.success(
                 request, "Remédio registrado com sucesso!"
@@ -79,36 +84,69 @@ def listar_remedios(request):
 
     return render(request, "cadastro/listar_remedios.html", context)
 
+@login_required
 def cadastrar_receita(request):
+
     form = ReceitaForm()
 
     if request.method == "POST":
         form = ReceitaForm(request.POST)
 
         if form.is_valid():
-            receita = form.save()
+            receita = form.save(commit = False)
+            receita.pessoa = objPessoa
             receita.save()
             
             messages.success(
-                request, "Receita registrada com sucesso!"
+                request, "Receita registrado com sucesso!"
             )
             
             return redirect("listar_receitas")
 
     context = {
-        "nome_pagina": "Cadastrar Receita",
+        "nome_pagina": "Cadastrar Remédio",
         "form": form,
     }
 
     return render(request, "cadastro/cadastrar_receita.html", context)
 
+@login_required
 def listar_receitas(request):
 
-    list_receitas = Receita.objects.all()
+    horario_atual = timezone.now()
+    data_atual = horario_atual.date()
+
+    print(horario_atual)
+    print(data_atual)
+
+    objPessoa = Pessoa.objects.get(pk=request.user.id)
+    
+    list_receitas = Receita.objects.filter(pessoa=objPessoa).order_by("-pk")
+    listReceitas = []
+
+    for q in list_receitas:
+        try:
+            objAgenda = Agendamento.objects.filter(receita=q)
+        
+        except Agendamento.DoesNotExist:
+            objAgenda = None
+            
+        obj = {
+            "Receita":q,
+            "Agenda":objAgenda,
+        }
+        print(obj)
+        listReceitas.append(obj)
+
+    print(listReceitas)
+
+    
 
     context = {
-        "nome_pagina": "Listar Receitas",
-        "list_receitas": list_receitas,
+        "nome_pagina" : "Cadastro de receitas",
+        "list_receitas" : listReceitas, 
+        "usuario" : objPessoa,
+        "data_atual" : data_atual,
     }
 
     return render(request, "cadastro/listar_receitas.html", context)

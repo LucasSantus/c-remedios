@@ -50,12 +50,9 @@ class RemedioForm(forms.ModelForm):
 class ReceitaForm(forms.ModelForm):
     class Meta:
         model = Receita
-        fields = ('pessoa', 'remedio', 'intervalo', 'data_inicio', 'quantidade_dias','dosagem')
+        fields = ('remedio', 'intervalo', 'data_inicio', 'quantidade_dias','dosagem')
 
         error_messages = {
-            "pessoa":{
-                "required": "Selecione uma pessoa!",
-            },
             "remedio":{
                 "required": "Selecione um remédio!",
             },

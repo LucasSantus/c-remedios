@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from cadastro.models import Pessoa, Receita
+from .models import Agendamento, Horario_Agendamento
+
+from django.utils import timezone
+from datetime import date
+import datetime
 
 @login_required    
 def dosagem_usuario(request,id_receita):
@@ -10,16 +16,16 @@ def dosagem_usuario(request,id_receita):
     objPessoa = Pessoa.objects.get(pk=request.user.id)
     objReceita = Receita.objects.get(pk=id_receita)
 
-    objAgenda_receita = Agenda_receita.objects.get(receita=objReceita)
+    objAgendamento = Agendamento.objects.get(receita=objReceita)
 
-    listHorario = Horario_remedio.objects.filter(agenda_receita=objAgenda_receita)
+    listHorario = Horario_Agendamento.objects.filter(agendamento=objAgendamento)
         
-    objAgenda_receita.save()
+    objAgendamento.save()
 
     if request.POST:
         idObjHorario = request.POST.get('tomou_remedio', None)
         if idObjHorario:
-            objHorario = Horario_remedio.objects.get(pk=idObjHorario)
+            objHorario = Horario_Agendamento.objects.get(pk=idObjHorario)
             objHorario.concluido = True
             objHorario.save()
             return redirect("registrar_receita")
@@ -30,7 +36,7 @@ def dosagem_usuario(request,id_receita):
     context = {
         "nome_pagina":"Dosagens",
         "usuario" : objPessoa,
-        "objAgenda_receita" : objAgenda_receita,
+        "objAgenda_receita" : objAgendamento,
         'listHorario':listHorario,
         'horario_atual' : horario_atual,
     }
@@ -50,21 +56,21 @@ def configura_horario_dosagem(request,id_receita):
         data_de_inicio = request.POST.get('data_de_inicio', None)        
         horario_inicio_remedio =datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')    
         print(horario_inicio_remedio)
-        objAgenda_receita = Agenda_receita()
-        objAgenda_receita.receita = objReceita
-        objAgenda_receita.data_inicio = horario_inicio_remedio 
-        objAgenda_receita.data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
-        objAgenda_receita.save()
+        objAgendamento = Agendamento()
+        objAgendamento.receita = objReceita
+        objAgendamento.data_inicio = horario_inicio_remedio 
+        objAgendamento.data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
+        objAgendamento.save()
         
-        objHorario = Horario_remedio()
-        objHorario.agenda_receita = objAgenda_receita
+        objHorario = Horario_Agendamento()
+        objHorario.agendamento = objAgendamento
         objHorario.horario = horario_inicio_remedio
         objHorario.save()
         
         for q in range(totalDoze):
             horario_inicio_remedio += timezone.timedelta(hours=objReceita.intervalo)
-            objHorario = Horario_remedio()
-            objHorario.agenda_receita = objAgenda_receita
+            objHorario = Horario_Agendamento()
+            objHorario.agendamento = objAgendamento
             objHorario.horario = horario_inicio_remedio
             objHorario.save()
         return redirect("dosagem_usuario",id_receita )

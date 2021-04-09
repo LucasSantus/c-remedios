@@ -45,6 +45,6 @@ $(document).ready(function(){
         },
         format: 'yyyy-mm-dd',
         container: 'body',
-        minDate: new Date(),
+        //minDate: new Date(),
     });
 });

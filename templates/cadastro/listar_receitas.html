@@ -19,6 +19,13 @@
     {% endif %}
 
     {% if list_receitas %}
+
+    <div class="fixed-action-btn">
+        <a href="{% url 'cadastrar_receita' %}" class="btn-floating btn-large" style="background-color:#32BF84">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
         <div class="col s12 m6 l10 center">
             <h2 class="text-theme truncate" >
                 {{nome_pagina}}
@@ -38,21 +45,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <a href="{% url 'cadastrar_receita' %}" style="float: right;">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                        </button>
-                    </a>
-                    {% for receita in list_receitas %}
-                        <tr>
-                            <td>{{receita.pessoa.nome}}</td>
-                            <td>{{receita.remedio.nome}}</td>
-                            <td>{{receita.intervalo}}</td>
-                            <td>{{receita.data_inicio}}</td>
-                            <td>{{receita.quantidade_dias}}</td>
-                            <td>{{receita.dosagem}}</td>
-                            <td>Ver</td>
-                        </tr>
-                    {% endfor %} 
+                    {% for obj in list_receitas %}
+                    <tr>
+                        <td>{{obj.Receita.pessoa.nome}}</td>
+                        <td>{{obj.Receita.remedio.nome}}</td>
+                        <td>{{obj.Receita.intervalo}} horas</td>
+                        <td>{{obj.Receita.quantidade_dias}} dias</td>
+                        <td>{{obj.Receita.data_inicio}}</td>
+                        <td>{{obj.Receita.dosagem}}</td>
+                            
+                        <td>
+                            {% if obj.Agenda %}
+                                <a class="btn waves-effect indigo darken-3 z-depth-2 " href="{% url 'dosagem_usuario' obj.Receita.id %}" >
+                                    <i class="material-icons right">info</i>
+                                    Ver cronograma
+                                </a>
+                            {% else %}
+                                {%if obj.Receita.data_inicio <= data_atual %}
+                                    <a class="btn waves-effect indigo darken-3 z-depth-2 " href="{% url 'configura_horario_dosagem' obj.Receita.id %}" >
+                                        <i class="material-icons right">info</i>
+                                        Começar um cronograma
+                                    </a>
+                                {%else%}
+                                    <a  onclick="M.toast({html: 'você só pode começar a tomar dia {{obj.Receita.data_inicio}}'})" class="btn waves-effect indigo darken-3 z-depth-2 " >
+                                        <i class="material-icons right">info</i>
+                                        Em espera
+                                    </a>
+                                {%endif%}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {%endfor%}
                 </tbody>
             </table>
        

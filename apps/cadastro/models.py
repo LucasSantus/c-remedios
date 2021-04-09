@@ -64,6 +64,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
         verbose_name="Usuário está ativo",
         default=True, 
     )
+    
     is_staff  = models.BooleanField(
         verbose_name="Usuário é da equipe de desenvolvimento",
         default= False,
@@ -115,7 +116,7 @@ class Receita(models.Model):
         help_text = "total de dias que será consumido o remédio",
         default = 0,
     )
-    data_inicio = models.DateTimeField(
+    data_inicio = models.DateField(
         verbose_name = "Data de Ínicio:",
         auto_now=False,
         blank=True,

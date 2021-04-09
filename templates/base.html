@@ -35,15 +35,16 @@
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
-                    
-                        <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">dashboard</i><span class='truncate'>CRemédios</span></a>
+                        <a href="/" class="brand-logo"><i class="material-icons">dashboard</i><span class='truncate'>CRemédios</span></a>
                    
                         <ul class="right hide-on-med-and-down">
                             <li><a data-target="modal1" class="modal-trigger">Sair</a></li>
                         </ul>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="{% url 'listar_pessoas' %}">Pessoa</a></li>
-                        </ul>
+                        {% if request.user.is_superuser and request.user.is_superuser %}
+                            <ul class="right hide-on-med-and-down">
+                                <li><a href="{% url 'listar_pessoas' %}">Pessoa</a></li>
+                            </ul>
+                        {% endif %}
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_remedios' %}">Remédio</a></li>
                         </ul>
@@ -76,9 +77,10 @@
             </div>
                 <div class="modal-footer">
                     <a class="modal-close waves-effect waves-green btn-flat" style="color:#32BF84">CANCELAR</a>
-                    <button href="{% url 'logout' %}" style="margin-left: 2px; background-color:#32BF84" class="btn btn-secondary modal-close" type="button">CONFIRMAR</button>
-                   
+                    <a href="{% url 'logout' %}" class="btn btn-secondary modal-close" style="margin-left: 2px; background-color:#32BF84">
+                        CONFIRMAR
+                    </a>
+                </div>
             </div>
-        </div>
     </body>
 </html>
