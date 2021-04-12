@@ -26,6 +26,9 @@
         <!-- Import Java Script Personalizado -->
         <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
+        <!-- Import Mask jQuery Personalizado -->
+        <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" defer></script>
+        
         <!-- Import JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
     </head>
@@ -40,14 +43,11 @@
                         <ul class="right hide-on-med-and-down">
                             <li><a data-target="modal1" class="modal-trigger">Sair</a></li>
                         </ul>
-                        {% if request.user.is_superuser and request.user.is_superuser %}
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="{% url 'listar_pessoas' %}">Pessoa</a></li>
-                            </ul>
-                        {% endif %}
+
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_remedios' %}">Remédio</a></li>
                         </ul>
+
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'listar_receitas' %}">Receita</a></li>
                         </ul>

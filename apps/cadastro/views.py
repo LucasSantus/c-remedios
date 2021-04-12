@@ -94,7 +94,7 @@ def cadastrar_receita(request):
 
         if form.is_valid():
             receita = form.save(commit = False)
-            receita.pessoa = objPessoa
+            receita.pessoa = request.user
             receita.save()
             
             messages.success(

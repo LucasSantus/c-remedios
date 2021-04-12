@@ -28,10 +28,17 @@
         <!-- Import Java Script Personalizado -->
         <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
+        <!-- Import Mask jQuery Personalizado -->
+        <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" defer></script>
+        
         <!-- Import JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
     </head>
-
+    <script>
+        $('document').ready(function() {        
+            $("#id_username").mask("000.000.000-00");
+        })
+    </script>
     <body>
         <div class="container">
             <div class="container">
@@ -49,8 +56,6 @@
                                     
                                     {{ form|materializecss }}
                                 </div>
-
-                                
                                     <div class="col s4">
                                         <a href="{% url 'cadastrar_pessoa' %}">
                                             cadastrar
@@ -59,7 +64,6 @@
                                             <span class="text">Logar</span>
                                         </button>
                                     </div>
-                                
                             </form>
                         </div>
                     </div>

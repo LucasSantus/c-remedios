@@ -32,10 +32,10 @@
             </h2>
         </div>
         
+        <div class="container">
             <table class="responsive-table highlight striped z-depth-3">
                 <thead>
                     <tr>
-                        <th>Pessoa</th>
                         <th>Remédio</th>
                         <th>Intervalo</th>
                         <th>Data de Ínicio</th>
@@ -47,38 +47,36 @@
                 <tbody>
                     {% for obj in list_receitas %}
                     <tr>
-                        <td>{{obj.Receita.pessoa.nome}}</td>
                         <td>{{obj.Receita.remedio.nome}}</td>
                         <td>{{obj.Receita.intervalo}} horas</td>
                         <td>{{obj.Receita.quantidade_dias}} dias</td>
                         <td>{{obj.Receita.data_inicio}}</td>
                         <td>{{obj.Receita.dosagem}}</td>
-                            
                         <td>
                             {% if obj.Agenda %}
                                 <a class="btn waves-effect indigo darken-3 z-depth-2 " href="{% url 'dosagem_usuario' obj.Receita.id %}" >
                                     <i class="material-icons right">info</i>
-                                    Ver cronograma
+                                    VISUALIZAR
                                 </a>
                             {% else %}
-                                {%if obj.Receita.data_inicio <= data_atual %}
+                                {% if obj.Receita.data_inicio <= data_atual %}
                                     <a class="btn waves-effect indigo darken-3 z-depth-2 " href="{% url 'configura_horario_dosagem' obj.Receita.id %}" >
                                         <i class="material-icons right">info</i>
-                                        Começar um cronograma
+                                        INICIAR
                                     </a>
-                                {%else%}
+                                {% else %}
                                     <a  onclick="M.toast({html: 'você só pode começar a tomar dia {{obj.Receita.data_inicio}}'})" class="btn waves-effect indigo darken-3 z-depth-2 " >
                                         <i class="material-icons right">info</i>
-                                        Em espera
+                                        ESPERA
                                     </a>
-                                {%endif%}
+                                {% endif %}
                             {% endif %}
                         </td>
                     </tr>
                 {%endfor%}
                 </tbody>
             </table>
-       
+        </div>
     {% else %}
         <div class="container">
             <div class="alert card z-depth-5">

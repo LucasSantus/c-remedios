@@ -21,7 +21,7 @@ $(document).ready(function(){
         },
         format: 'yyyy-mm-dd',
         container: 'body',
-        yearRange: 40,
+        yearRange: 20,
         maxDate: new Date(),
     }); 
 

@@ -7,7 +7,8 @@
 <script>
     $(document).ready(function(){
         $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
-    }); 
+        $("#id_cpf").mask("999.999.999-99");
+}); 
 </script>
 
 {% if form.errors %}
