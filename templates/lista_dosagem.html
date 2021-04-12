@@ -6,35 +6,59 @@
 <main>
     <form method="POST">
         {% csrf_token %}
+    
             <div class="row">
+                <ol>
+                {% for q in listHorario %}
                 <div class="col s3 offset-s5">
-                    {% for q in listHorario %}
-                    {% if q.concluido == False and q.horario <= horario_atual%}
-                    <label>
-                        <input name="tomou_remedio" type="checkbox" value="{{q.id}}" required/>
-                        <span>{{q.horario}}</span>
-                    </label><br>
-                    {%else%}
-                        {%if q.concluido == True%}
-                        <label>
-                            <input type="checkbox" checked="checked" disabled="disabled" />
-                            <span>{{q.horario}}</span>
-                        </label>
-                        
-                        {%else%}
-                        <label>
-                            <input type="checkbox" disabled="disabled" />
-                            <span>{{q.horario}}</span>
-                          </label>
-                        {%endif%}
-                    <br>
-                    {%endif%}
-                    {% endfor %}
+                    <table>
 
-                    <button class="btn waves-effect z-depth-2 " type="submit" name="action">Submit
-                        <i class="material-icons right">app_registration</i>
-                    </button>
+                
+                        <tbody>
+                          <tr>
+                            <td
+                            ><li>
+                                {% if q.concluido == False and q.horario <= horario_atual%}
+                                <label>
+                                    <input name="tomou_remedio" type="checkbox" value="{{q.id}}" required/>
+                                    <span>{{q.horario}}</span>
+                                </label><br>
+                                {%else%}
+                                    {%if q.concluido == True%}
+                                    <label>
+                                        <input type="checkbox" checked="checked" disabled="disabled" />
+                                        <span>{{q.horario}}</span>
+                                    </label>
+                                    
+                                    {%else%}
+                                    <label>
+                                        <input type="checkbox" disabled="disabled" />
+                                        <span>{{q.horario}}</span>
+                                    </label>
+                                    
+                                    {%endif%}
+                                <br>
+                                {%endif%}
+                            </li>    
+                            </td>
+                            <td>
+                                {% if q.concluido == False and q.horario <= horario_atual%}
+                                    <button class="btn waves-effect z-depth-2 " type="submit" name="action">Submit
+                                        <i class="material-icons right">app_registration</i>
+                                    </button>
+                                {%endif%}
+                            </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+
+                        
+
                 </div>
+                {% endfor %}
+            </ol>
+
             </div>
 
     </form>

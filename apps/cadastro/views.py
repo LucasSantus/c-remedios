@@ -101,7 +101,7 @@ def cadastrar_receita(request):
                 request, "Receita registrado com sucesso!"
             )
             
-            return redirect("listar_receitas")
+            return redirect("index")
 
     context = {
         "nome_pagina": "Cadastrar Remédio",
