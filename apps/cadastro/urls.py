@@ -9,7 +9,6 @@ urlpatterns = [
     path("cadastrar-remedio/", cadastrar_remedio, name="cadastrar_remedio"),
     
     #listar
-    path("listar-receita/", listar_receitas, name="listar_receitas"),
     path("listar-pessoas/", listar_pessoas, name="listar_pessoas"),
     path("listar-remedios/", listar_remedios, name="listar_remedios"),
 ]
