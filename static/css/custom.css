@@ -39,11 +39,6 @@
     opacity: 0.7 !important;
 }
 
-.bg-primary{
-    background-color: var(--primary) !important;
-}
-
-
 /* Color background's */
 .bg-primary {
     background-color: var(--primary) !important;
@@ -545,4 +540,8 @@
 
 .rounded-circle {
   border-radius: 50% !important;
+}
+
+.text-muted{
+    color:#6c757d !important;
 }

@@ -30,49 +30,49 @@
     {% endblock %}
 
     <title>
-      {% block title %}
-        Sign UP
-      {% endblock %}
+        {% block title %}
+            CRemédios
+        {% endblock %}
     </title>
   </head>
 
   <body class="bg-primary">
     <main>
-      {% block content %}
-      {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-      <!-- Modal Structure -->
-      <div id="modal-back" class="modal">
-        <div class="modal-content">
-          <h4>Voltar para Login</h4>
-          <p>Você realmente deseja continuar esta ação?</p>
+        <!-- Modal Structure -->
+        <div id="modal-back" class="modal">
+            <div class="modal-content">
+                <h6>Você realmente deseja retornar para a tela de login?</h6>
+                <p class="text-muted">Para continuar, selecione o botão "CONTINUAR" abaixo.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+                <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
+            </div>
         </div>
-        <div class="modal-footer">
-          <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
-          <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
-        </div>
-      </div>
     </main>
 
     <footer class="page-footer transparent">
-      <div class="footer-copyright transparent">
-        <div class="container center" style="width: 70%;">
-          <span class="text-white">© 2020 Sistema de Votação, Todos os direitos reservados.</span>
+        <div class="footer-copyright transparent">
+            <div class="container center" style="width: 70%;">
+                <span class="text-white">© 2020 {% if year %}- {{year}}{% endif %} Sistema de Votação, Todos os direitos reservados.</span>
+            </div>
         </div>
-      </div>
     </footer>
 
-        <!-- Import JQuery -->
-        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <!-- Import JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
 
-        <!-- Import JQuery Mask -->
-        <script src="{% static 'js/jquery-mask/jquery.mask.min.js' %}"></script>
+    <!-- Import JQuery Mask -->
+    <script src="{% static 'js/jquery-mask/jquery.mask.min.js' %}"></script>
 
-        <!-- Import HoldON -->
-        <script src="{% static 'js/hold-on/hold-on.min.js' %}"></script>
+    <!-- Import HoldON -->
+    <script src="{% static 'js/hold-on/hold-on.min.js' %}"></script>
 
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
+    <!-- Import Java Script Materialize -->
+    <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
 
     <!-- Inicialização -->
     <script>

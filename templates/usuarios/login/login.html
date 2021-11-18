@@ -11,9 +11,9 @@
 {% block content %}
     <div class="item-center container">
         <div class="container">
-            <div class="container px-5">
+            <div class="container px-4">
                 <div class="card p-1 z-depth-2">
-                    <span class="card-title center">
+                    <span class="card-title center pt-3">
                         <h5 class="fw-bold">LOGIN</h5>
                     </span>
 
@@ -34,18 +34,21 @@
 
                                 <div class="center mt-3 mb-3">
                                     <button id="btn-login" class="waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
-                                        ENTRAR
+                                        Conectar    
                                     </button>
                                 </div>
 
-                                <div class="center">
-                                    <div class="container">
+                                <div class="row center">
+                                    <div class="col s12">
+                                        <span class="text-muted">Esqueceu a senha?
+                                            <a id="esqueceu" href="{% url 'reset_password' %}">
+                                                Recuperar senha
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="col s12">
                                         <a id="esqueceu" href="{% url 'signup' %}">
-                                            Registrar no sistema
-                                        </a>
-                                        <br>
-                                        <a id="esqueceu" href="{% url 'reset_password' %}">
-                                            Recuperar senha
+                                            Criar uma conta!
                                         </a>
                                     </div>
                                 </div>
