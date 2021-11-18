@@ -1,0 +1,236 @@
+{% extends 'usuarios/base.html' %}
+
+{% load static %}
+
+{% load bootstrap %}
+
+{% block title %}
+    Registrar Usuário | Farm Manager
+{% endblock %}
+
+{% block content %}
+    <div class="item-center">
+        <!-- Outer Row -->
+        <div class="d-flex justify-content-center p-4">
+            <div class="col-xl-8 col-lg-9 col-md-8">
+                <div class="card o-hidden border border-5 shadow-lg">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="d-flex align-items-stretch">
+                                <img src="{% static 'img/sign-up.svg' %}" class="col-lg-6 d-none d-lg-block bg-primary h-100 figure-img p-5 img-fluid rounded" alt="reset-password">
+                                <div class="col-lg-6">
+                                    <div class="pt-3 px-5 pb-3">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900">Criar uma conta!</h1>
+                                            <hr>
+                                        </div>
+                                        <form class="user row" method="POST">
+                                            {% csrf_token %}
+                                            <div class="col-sm-6">
+                                                {{form.nome|bootstrap}}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{form.sobrenome|bootstrap}}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{form.email|bootstrap}}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{form.telefone|bootstrap}}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{form.data_nascimento|bootstrap}}
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="text-center w-100 pb-3">
+                                                    <span class="text-center">
+                                                        A senha deve conter pelo menos 8 caracteres. <br>
+                                                        A senha deve conter pelo menos uma letra maiúscula <br>
+                                                        A senha deve conter pelo menos uma letra minúscula. <br>
+                                                        A senha deve conter caracteres especiais. <br>
+                                                        A senha não pode ser totalmente numérica.
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    {{form.password|bootstrap}}
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    {{form.confirm_password|bootstrap}}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-check form-switch ms-3">
+                                                    <input class="form-check-input" type="checkbox" id="check_register">
+                                                    <label class="form-check-label" for="check_register">Mostrar senha</label>
+                                                </div>
+                                            </div>
+                                            <button id="btn_signup_signup" class="btn bt-primary  btn-block">
+                                                Registrar
+                                            </button>
+                                        </form>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" href="/">Já está registrado no sistema? Login!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 top-2 right-5 p-3" style="z-index: 5; right: 0; bottom: 0; top:0">
+        <div id="toast_sign_up" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <strong class="mr-auto text-danger">Falha no registro!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="text-danger px-3">
+                    O e-mail inserido já está registrado no sistema!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 top-2 right-5 p-3" style="z-index: 5; right: 0; bottom: 0; top:0">
+        <div id="toast_invalid_min" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <strong class="mr-auto text-danger">Falha no registro!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="text-danger px-3">
+                    Quantidade miníma de caracteres da senha: 8
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 top-2 right-5 p-3" style="z-index: 5; right: 0; bottom: 0; top:0">
+        <div id="toast_invalid_max" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <strong class="mr-auto text-danger">Falha no registro!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="text-danger px-3">
+                    Quantidade máxima de caracteres da senha: 16
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 top-2 right-5 p-3" style="z-index: 5; right: 0; bottom: 0; top:0">
+        <div id="toast_invalid_identify" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <strong class="mr-auto text-danger">Falha no registro!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="text-danger px-3">
+                    Os campos senha e confirmação de senha não se identificam!
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <!-- Import JQuery Mask -->
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
+
+    <!-- Inicialização da Página -->
+    <script>
+        /* Inicialização do datepicker */
+        $(document).ready(function(){
+            $("#id_telefone").mask("(00) 00000-0000");
+            $("#id_data_nascimento").mask('00/00/0000');
+
+            $(".form-control").attr("required", false)
+
+            $("#id_password").attr("type", "password");
+            $("#id_confirm_password").attr("type", "password");
+        });
+    </script>
+
+    <!-- Mostrar/Ocultar Senha -->
+    <script>
+        $('#check_register').click(function () {
+            if($(this).is(':checked')){
+                $("#id_password").attr("type", "text");
+                $("#id_confirm_password").attr("type", "text");
+            } 
+            else {
+                $("#id_password").attr("type", "password");
+                $("#id_confirm_password").attr("type", "password");
+            }
+        })
+    </script>
+
+    <!-- Validar a Confirmação de Senha -->
+    <script>
+        $("#id_confirm_password").on('change', function () {
+            var password = $("#id_password").val();
+            var confirm_password = $("#id_confirm_password").val();
+            var password_size = password.length;
+
+            let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,16}$/;
+
+            if (password != "" && confirm_password != "" && password === confirm_password){
+                if(!regex.test(password)){
+                    $("#btn_signup_signup").attr("disabled", true);
+                }
+                if(password_size < 8){
+                    $("#toast_invalid_min").toast('show');
+                }
+                else if(password_size > 16){
+                    $("#toast_invalid_max").toast('show');
+                }
+                else if(regex.test(password)){
+                    $("#btn_signup_signup").attr("disabled", false);
+                }
+            }
+            else{
+                $("#toast_invalid_identify").toast('show');
+                $('#id_password').val('');
+                $('#id_confirm_password').val('');
+                $('#id_password').focus();
+            }
+        });
+    </script>
+
+    <!-- Validação do E-mail -->
+    <script>
+        $("#id_email").change(function () {
+        var form = $(this).closest("form");
+            $.ajax({
+                url: "{% url 'validate_email' %}",
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if(data.is_email){
+                        $("#toast_sign_up").toast('show');
+                        $('#id_email').val("");
+                        $('#id_email').focus();
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

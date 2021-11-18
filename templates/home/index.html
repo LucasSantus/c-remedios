@@ -3,37 +3,19 @@
 {% block content %}
 
 <main>
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <div class="container">
-                    <div class="alert alert-success card z-depth-5">
-                        <div class="card-content">
-                            <li{% if message.tags %} class="{{ message.tags }} text-purple"{% endif %}>{{ message }}</li>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    {% if list_receitas %}
-
     <div class="fixed-action-btn">
-        <a href="{% url 'cadastrar_receita' %}" class="btn-floating btn-large" style="background-color:#32BF84">
+        <a href="{% url 'cadastrar_receita' %}" class="btn-floating btn-large" style="background-color: #ACC077">
             <i class="large material-icons">add</i>
         </a>
     </div>
 
-        <div class="col s12 m6 l10 center">
-            <h2 class="text-theme truncate" >
-                {{nome_pagina}}
-            </h2>
-        </div>
-        
+    <div class="col s12">
+        <span class="breadcrumb black-text">Dashboard</span>  
+    </div>
+
+    {% if list_receitas %}
         <div class="container">
-            <table class="responsive-table highlight striped z-depth-3">
+            <table class="responsive-table">
                 <thead>
                     <tr>
                         <th>Remédio</th>
@@ -79,7 +61,7 @@
         </div>
     {% else %}
         <div class="container">
-            <div class="alert card z-depth-5">
+            <div class="alert card">
                 <div class="card-content">
                     <p>
                         <i class="material-icons">info</i>
