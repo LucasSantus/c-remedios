@@ -2,88 +2,75 @@
 
 {% load static %}
 
-{% load bootstrap %}
+{% load materializecss %}
 
 {% block title %}
-    Login | Farm Manager
+  Login | CRemédios
 {% endblock %}
 
 {% block content %}
-    <div class="container item-center">
-        <!-- Outer Row -->
-        <div class="row justify-content-center p-5">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border border-5 shadow-lg">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
+    <div class="item-center container">
+        <div class="container">
+            <div class="container px-5">
+                <div class="card p-1 z-depth-2">
+                    <span class="card-title center">
+                        <h5 class="fw-bold">LOGIN</h5>
+                    </span>
+
+                    <div class="card-content">
                         <div class="row">
-                            <div class="d-flex align-items-stretch">
-                                <img src="{% static 'img/login.svg' %}" class="col-lg-6 d-none d-lg-block bg-primary h-100 figure-img p-5 img-fluid rounded" alt="reset-password">
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h1 class="h4 text-gray-900">Conectar ao sistema</h1>
-                                            <hr>
-                                        </div>
-                                        <form class="user" method="POST">
-                                            {% csrf_token %}
-                                            {{form|bootstrap}}
-                                            <div class="form-group">
-                                                <div class="form-check form-switch ms-3">
-                                                    <input class="form-check-input" type="checkbox" id="check_login">
-                                                    <label class="form-check-label" for="check_login">Mostrar senha</label>
-                                                </div>
-                                            </div>
-                                            <button id="btn-login" class="btn bt-primary btn-block">
-                                                Login
-                                            </button>
-                                        </form>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="{% url 'signup' %}">Criar uma conta!</a>
-                                        </div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="container">
+                                    {{form|materializecss}}
+                                </div>
+
+                               <div class="container">
+                                    <label>
+                                        <input id="check_login" type="checkbox"/>
+                                        <span>Mostrar Senha</span>
+                                    </label>
+                               </div>
+
+                                <div class="center mt-3 mb-3">
+                                    <button id="btn-login" class="waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                                        ENTRAR
+                                    </button>
+                                </div>
+
+                                <div class="center">
+                                    <div class="container">
+                                        <a id="esqueceu" href="{% url 'signup' %}">
+                                            Registrar no sistema
+                                        </a>
+                                        <br>
+                                        <a id="esqueceu" href="{% url 'reset_password' %}">
+                                            Recuperar senha
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
 
-    <div class="position-fixed bottom-0 top-2 right-5 p-3" style="z-index: 5; right: 0; bottom: 0; top:0">
-        <div id="toast_login" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-            <div class="toast-header">
-                <strong class="mr-auto text-danger">Falha na autenticação!</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <div class="text-danger px-3">
-                    O e-mail inserido não está registrado no sistema!
-                </div>
-            </div>
-        </div>
-    </div>
+{% block css %}
+    <style>
+        #esqueceu{
+            color: #039be5;
+        }
+
+        #esqueceu:hover{
+            color: #81d4fa;
+        }
+    </style>
 {% endblock %}
 
 {% block javascript %}
-    <script>
-        $(document).ready(function(){
-            //
-
-            $(".form-control").attr("required", false)
-            
-            $("#id_username").attr("placeholder", "Insira o e-mail...");
-            $("#id_password").attr("placeholder", "Insira a senha...");
-        });
-    </script>
-
     <!-- Função Ajax - Validar Usuário -->
     <script>
         $("#id_username").change(function () {
@@ -94,8 +81,8 @@
                 dataType: 'json',
                 success: function (data) {
                     if(!data.is_user){
+                        M.toast({html: data.error_message})
                         $("#btn-login").attr("disabled", true);
-                        $("#toast_login").toast('show');
                     }
                     else{
                         $("#btn-login").attr("disabled", false);
@@ -114,6 +101,6 @@
             else {
                 $("#id_password").attr("type", "password");
             }
-        })
+        });
     </script>
 {% endblock %}

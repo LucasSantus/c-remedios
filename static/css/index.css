@@ -1,57 +1,23 @@
-/* BODY */
+/* FOOTER */
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
-/* MAIN */
+
 main {
     flex: 1 0 auto;
 }
 
-/* HEADER */
-.nav-wrapper{
-    background-color: #32BF84;
+/* BARRA ROLAGEM PERSONALIZADA */
+html {
+    scroll-behavior: smooth;
 }
 
-/* FOOTER */
-.page-footer{
-    background-color: transparent;
-}
-
-/* CARD's */
-.container .container .card{
-    padding: 2%;
-}
-
-.container .container .card .container h2 span{
-    font-size: large;
-
-}
-
-.alert .card-content span {
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-right:4px;
-}
-
-.alert .card-content .material-icons {
-    font-size: 1.5em;
-    position: relative;
-    top: 5px;
-    margin-right: 0.5em;
-}
-
-.brand-logo{
-    margin-left: 1%;
-}
-
-/* Texto de ínicio */
-.text-theme{
-    width: 100%;
-    font-size: 60px;
+body::-webkit-scrollbar {
+    width: 10px
 } 
 
-.icones-sociais li {
-    display: inline-block;
+body::-webkit-scrollbar-thumb {   
+    background-color: darkgrey;   
 }

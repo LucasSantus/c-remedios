@@ -63,7 +63,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(verbose_name = "Super usuário", default = False)
     
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['nome', 'sobrenome']
+    REQUIRED_FIELDS = ['nome', 'sobrenome', 'cpf']
 
     objects = UsuarioManager()
 

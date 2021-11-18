@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from cadastro.models import Pessoa, Receita
+from receitas.models import Receita
+from usuarios.models import Usuario
 from .models import Agendamento, Horario_Agendamento
 
 from django.utils import timezone

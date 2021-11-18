@@ -1,5 +1,5 @@
 from django.db import models
-from cadastro.models import Receita
+from receitas.models import Receita
  
 class Agendamento(models.Model):
     nome = models.CharField(
