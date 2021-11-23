@@ -21,7 +21,9 @@ sys.path.append(
 
 # DEFAULT APP'S
 INSTALLED_APPS = [
+    # MATERIALIZE FORM
     'materializecssform',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,12 +127,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_files')
+]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "index"

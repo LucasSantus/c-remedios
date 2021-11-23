@@ -20,16 +20,15 @@ def registrar_remedio(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_remedio.html", context)
+    return render(request, "receitas/remedio/registrar_remedio.html", context)
 
 @login_required
 def listar_remedios(request):
     list_remedios = Remedio.objects.all()
     context = {
-        "nome_pagina": "Listar Remédios",
         "list_remedios": list_remedios,
     }
-    return render(request, "cadastro/listar_remedios.html", context)
+    return render(request, "receitas/remedio/listar_remedios.html", context)
 
 # RECEITA
 @login_required

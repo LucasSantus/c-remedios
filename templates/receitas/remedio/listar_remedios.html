@@ -1,39 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<main>
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <div class="container">
-                    <div class="alert alert-success card z-depth-5">
-                        <div class="card-content">
-                            <li{% if message.tags %} class="{{ message.tags }} text-purple"{% endif %}>{{ message }}</li>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
     {% if list_remedios %}
-
         <div class="fixed-action-btn">
-            <a href="{% url 'cadastrar_remedio' %}" class="btn-floating btn-large" style="background-color:#32BF84">
+            <a href="{% url 'registrar_remedio' %}" class="btn-floating btn-large" style="background-color:#32BF84">
                 <i class="large material-icons">add</i>
             </a>
         </div>
 
         <div class="col s12 m6 l10 center">
-            <h2 class="text-theme truncate" >
-                {{nome_pagina}}
-            </h2>
+            <h3 class="text-theme" >
+                Remédios
+            </h3>
         </div>
         
         <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-5">
+            <table class="responsive-table centered highlight striped z-depth-1">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -50,7 +32,6 @@
                 </tbody>
             </table>
         </div>
-        
     {% else %}
         <div class="container">
             <div class="alert card z-depth-5">
@@ -60,14 +41,12 @@
                         <span>
                             No momento, não existem remédios cadastrados!
                         </span>
-                        <a href="{% url 'cadastrar_remedio' %}" style="float: right;">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
+                        <a href="{% url 'registrar_remedio' %}" style="float: right;">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Registrar</button>
                         </a>
                     </p>
                 </div>
             </div>
         </div>
     {% endif %}
-</main>
-
 {% endblock content %}
