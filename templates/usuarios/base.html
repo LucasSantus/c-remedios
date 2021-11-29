@@ -1,107 +1,125 @@
 {% load static %}
 
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
-    
-    <!-- Import favicon -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" />
-
-    <!-- Import Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Import CSS Materialize-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
-
-    <!-- Import CSS HoldON -->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/hold-on/holdon.min.css' %}">
-
-    <!-- Import CSS Personalizado -->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
-
-    <!-- Import CSS Personalizado -->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-    <!-- Let browser know website is optimized for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
-    {% block css %}
-    {% endblock %}
-
-    <title>
-        {% block title %}
-            CRemédios
-        {% endblock %}
-    </title>
-  </head>
-
-  <body class="bg-primary">
-    <main>
-        {% block content %}
-        {% endblock %}
-
-        <!-- Modal Structure -->
-        <div id="modal-back" class="modal">
-            <div class="modal-content">
-                <h6>Você realmente deseja retornar para a tela de login?</h6>
-                <p class="text-muted">Para continuar, selecione o botão "CONTINUAR" abaixo.</p>
-            </div>
-            <div class="modal-footer">
-                <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
-                <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
-            </div>
-        </div>
-    </main>
-
-    <footer class="page-footer transparent">
-        <div class="footer-copyright transparent">
-            <div class="container center" style="width: 70%;">
-                <span class="text-white">© 2020 {% if year %}- {{year}}{% endif %} Sistema de Votação, Todos os direitos reservados.</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Import JQuery -->
-    <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
-
-    <!-- Import JQuery Mask -->
-    <script src="{% static 'js/jquery-mask/jquery.mask.min.js' %}"></script>
-
-    <!-- Import HoldON -->
-    <script src="{% static 'js/hold-on/hold-on.min.js' %}"></script>
-
-    <!-- Import Java Script Materialize -->
-    <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
-
-    <!-- Inicialização -->
-    <script>
-      $(document).ready(function(){
-        $("#btn_reset_password").attr("disabled", true);
-        $("#btn_signup_signup").attr("disabled", true);
-        $("#btn-login").attr("disabled", true);
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         
-        /* Inicialização do modal */
-        $('.modal').modal();
-      });
-    </script>
+        <!-- Import favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" />
 
-    <!-- Mostrar e Ocultar Senha -->
-    <script>
-        $('#check_login').click(function () {
-          if($(this).is(':checked')){
-              $("#id_new_password1").attr("type", "text");
-              $("#id_new_password2").attr("type", "text");
-          }
-          else {
-              $("#id_new_password1").attr("type", "password");
-              $("#id_new_password2").attr("type", "password");
-          }
-        })
-    </script>
+        <!-- Import Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    {% block javascript %}
-    {% endblock %}
-  </body>
+        <!-- Import CSS Materialize-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
+
+        <!-- Import CSS HoldON -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/hold-on/holdon.min.css' %}">
+
+        <!-- Import CSS Index -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
+
+        <!-- Import CSS Button Colors -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/button-colors.css' %}">
+
+        <!-- Import CSS Colors -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/colors.css' %}">
+
+        <!-- Import CSS Border -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/border.css' %}">
+
+        <!-- Import CSS Font Size -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/font-size.css' %}">
+
+        <!-- Import CSS Margin -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/margin.css' %}">
+
+        <!-- Import CSS Padding -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/padding.css' %}">
+
+        <!-- Import CSS Rounded -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/rounded.css' %}">
+
+
+        <!-- Let browser know website is optimized for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+        {% block css %}
+        {% endblock %}
+
+        <title>
+            {% block title %}
+                CRemédios
+            {% endblock %}
+        </title>
+    </head>
+
+    <body class="bg-primary">
+        <main>
+            {% block content %}
+            {% endblock %}
+
+            <!-- Modal Structure -->
+            <div id="modal-back" class="modal">
+                <div class="modal-content">
+                    <h6>Você realmente deseja retornar para a tela de login?</h6>
+                    <p class="text-muted">Para continuar, selecione o botão "CONTINUAR" abaixo.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+                    <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="page-footer transparent">
+            <div class="footer-copyright transparent">
+                <div class="container center" style="width: 70%;">
+                    <span class="text-white">© 2020 {% if year %}- {{year}}{% endif %} Sistema de Votação, Todos os direitos reservados.</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Import JQuery -->
+        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+
+        <!-- Import JQuery Mask -->
+        <script src="{% static 'js/jquery-mask/jquery.mask.min.js' %}"></script>
+
+        <!-- Import HoldON -->
+        <script src="{% static 'js/hold-on/hold-on.min.js' %}"></script>
+
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
+
+        <!-- Inicialização -->
+        <script>
+        $(document).ready(function(){
+            $("#btn_reset_password").attr("disabled", true);
+            $("#btn_signup_signup").attr("disabled", true);
+            $("#btn-login").attr("disabled", true);
+            
+            /* Inicialização do modal */
+            $('.modal').modal();
+        });
+        </script>
+
+        <!-- Mostrar e Ocultar Senha -->
+        <script>
+            $('#check_login').click(function () {
+            if($(this).is(':checked')){
+                $("#id_new_password1").attr("type", "text");
+                $("#id_new_password2").attr("type", "text");
+            }
+            else {
+                $("#id_new_password1").attr("type", "password");
+                $("#id_new_password2").attr("type", "password");
+            }
+            })
+        </script>
+
+        {% block javascript %}
+        {% endblock %}
+    </body>
 </html>
-

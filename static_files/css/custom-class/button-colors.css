@@ -1,0 +1,30 @@
+
+/* Button Colors */
+:root {
+    /* Colors Default's Project */
+    --primary: #4E937A;
+    --secondary: #757575;
+    --secondary-hover: #bdbdbd;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --body: #e0e0e0;
+    --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Color Button's */
+.bt-primary{
+    background-color: var(--primary) !important;
+    color: var(--light) !important;
+}
+.bt-secondary{
+    background-color: var(--secondary) !important;
+    color: var(--light) !important;
+}
+.bt-primary:hover,
+.bt-secondary:hover{
+    opacity: 0.7 !important;
+}

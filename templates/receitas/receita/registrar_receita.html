@@ -3,35 +3,24 @@
 {% load materializecss %}
 
 {% block content %}
-    {% if form.errors %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <div class="container">
         <form method="POST">
             {% csrf_token %}
             <div class="container">
-                <div class="card z-depth-5">
+                <div class="card z-depth-1 px-5">
                     <div class='container center'>
-                        <h4>
-                            {{nome_pagina}}
-                        </h4>
+                        <h4 class="py-2">{{action}} Receita</h4>
                     </div>
-
                     <div class="container style-form">                 
                         {{ form|materializecss }}
                     </div>
 
-                    <div class="center text-right">
-                        <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
+                    <div class="center text-right pb-3">
+                        <a href="{% url 'index' %}" class="btn bt-secondary text-white" type="button">
                             <span class="text">Cancelar</span>
                         </a>
-                        <button class="btn btn-primary" type="submit">
-                            <span class="text">Cadastrar</span>
+                        <button class="btn bt-primary" type="submit">
+                            <span class="text">{{action}}</span>
                         </button>
                     </div>
                 </div>
@@ -42,8 +31,32 @@
 
 {% block javascript %}
     <script>
+        /* Inicialização do datepicker */
         $(document).ready(function(){
-            $("#id_data_inicio").addClass('datepicker-data').attr("type","text"); 
-        }); 
+            $('.datepicker').datepicker({
+                i18n: {
+                    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+                    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                    weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                    today: 'Hoje',
+                    clear: 'LIMPAR',
+                    cancel: 'SAIR',
+                    done: 'CONTINUAR',
+                    labelMonthNext: 'Próximo mês',
+                    labelMonthPrev: 'Mês anterior',
+                    labelMonthSelect: 'Selecione um mês',
+                    labelYearSelect: 'Selecione um ano',
+                    selectMonths: true,
+                    selectYears: 15,
+                },
+                format: 'yyyy-mm-dd',
+                container: 'body',
+                yearRange: 10,
+                minDate: new Date(),
+            }); 
+            $("#id_data_inicio").addClass('datepicker').attr("type","text");
+        });
     </script>
 {% endblock %}

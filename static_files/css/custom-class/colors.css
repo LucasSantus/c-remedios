@@ -1,0 +1,86 @@
+
+/* Colors */
+:root {
+    /* Colors Default's Project */
+    --primary: #4E937A;
+    --secondary: #757575;
+    --secondary-hover: #bdbdbd;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --body: #e0e0e0;
+    --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Color Background's */
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+.bg-success {
+    background-color: var(--success) !important;
+}
+.bg-info {
+    background-color: var(--info) !important;
+}
+.bg-warning {
+    background-color: var(--warning) !important;
+}
+.bg-danger {
+    background-color: var(--danger) !important;
+}
+.bg-light {
+    background-color: var(--light) !important;
+}
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+.bg-white {
+    background-color: var(--light) !important;
+}
+.bg-body {
+    background-color: var(--body) !important;
+}
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+/* Color Text's */
+.text-primary {
+    color: var(--primary) !important;
+}
+.text-secondary {
+    color: var(--secondary) !important;
+}
+.text-success {
+    color: var(--success) !important;
+}
+.text-info {
+    color: var(--info) !important;
+}
+.text-warning {
+    color: var(--warning) !important;
+}
+.text-danger {
+    color: var(--danger) !important;
+}
+.text-light {
+    color: var(--light) !important;
+}
+.text-dark {
+    color: var(--dark) !important;
+}
+.text-white {
+    color: var(--light) !important;
+}
+.text-body {
+    color: var(--body) !important;
+}
+.text-transparent {
+    color: transparent !important;
+}

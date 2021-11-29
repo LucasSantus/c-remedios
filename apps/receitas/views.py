@@ -45,6 +45,7 @@ def registrar_receita(request):
 
     context = {
         "form": form,
+        "action": "Registrar"
     }
 
-    return render(request, "cadastro/registrar_receita.html", context)
+    return render(request, "receitas/receita/registrar_receita.html", context)
