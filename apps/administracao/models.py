@@ -31,7 +31,7 @@ class Agendamento(models.Model):
         max_length=194,
         null=True,
     )
-       
+
     class Meta:
         verbose_name = "Agendamento"
         verbose_name_plural = "Agendamentos"
@@ -55,7 +55,7 @@ class Horario_Agendamento(models.Model):
         max_length=194,
         null=True,
     )
-       
+        
     class Meta:
         verbose_name = "Horário do Agendamento"
         verbose_name_plural = "Horários dos Agendamentos"

@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from receitas.models import Receita
 from django.contrib.auth.decorators import login_required
-from datetime import date    
+from datetime import date
+from django.utils import timezone
+
 from administracao.models import Agendamento
 import datetime
 
@@ -30,6 +32,7 @@ def base(request):
 
 @login_required
 def index(request):
+    data_atual = timezone.now().date()
     receitas = Receita.objects.filter(usuario = request.user).order_by("-pk")
     listReceitas = []
     for receita in receitas:
@@ -39,14 +42,15 @@ def index(request):
             agendamento = None
             
         obj = {
-            "receita": receita,
-            "agenda": agendamento,
+            "Receita": receita,
+            "Agenda": agendamento,
         }
 
         listReceitas.append(obj)
 
     context = {
-        "receitas" : listReceitas,
+        "list_receitas" : listReceitas,
+        "data_atual":data_atual,
     }
 
     return render(request, "home/index.html", context)

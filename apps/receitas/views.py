@@ -38,7 +38,7 @@ def registrar_receita(request):
         form = ReceitaForm(request.POST)
         if form.is_valid():
             receita = form.save(commit = False)
-            receita.pessoa = request.user
+            receita.usuario = request.user
             receita.save()
             messages.success(request, "Receita registrado com sucesso!")
             return redirect("index")
