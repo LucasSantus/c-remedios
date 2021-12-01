@@ -81,7 +81,6 @@ class UsuarioManager(BaseUserManager):
         return usuario
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
-
     GENERO =[
         ("M", "Masculino"),
         ("F", "Feminino"),
@@ -93,17 +92,16 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     sobrenome = models.CharField(verbose_name = "Sobrenome", max_length = 150)
     email = models.EmailField(verbose_name = "E-mail", max_length = 194, unique = True) 
     cpf = models.CharField(verbose_name = "CPF", max_length = 14, unique = True)
-    dataNascimento = models.DateField(verbose_name = "Data de nascimento", auto_now_add = False, auto_now = False, blank = True,null=True)
-    genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO, blank = True,null=True)
-    telefone = models.CharField(verbose_name = "Telefone", max_length = 15, blank = True,null=True)
-    cep = models.CharField(verbose_name = 'CEP', max_length = 9, blank = True,null=True)
+    dataNascimento = models.DateField(verbose_name = "Data de nascimento", auto_now_add = False, auto_now = False, blank = True, null = True)
+    genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO, blank = True, null = True)
+    telefone = models.CharField(verbose_name = "Telefone", max_length = 15, blank = True, null = True)
+    cep = models.CharField(verbose_name = 'CEP', max_length = 9, blank = True, null = True)
     cidade = models.ForeignKey(Cidade, on_delete = models.CASCADE, related_name = 'cidade_UsuarioFK', null = True)
-    bairro = models.CharField(verbose_name = 'Bairro', max_length = 50, blank = True,null=True)
-    logradouro = models.CharField(verbose_name = 'Logradouro', max_length = 100, blank = True,null=True)
+    bairro = models.CharField(verbose_name = 'Bairro', max_length = 50, blank = True, null = True)
+    logradouro = models.CharField(verbose_name = 'Logradouro', max_length = 100, blank = True, null = True)
     complemento = models.CharField(verbose_name = 'Complemento', max_length = 50, null = True, blank = True)
-    numeroResidencial = models.CharField(verbose_name = 'Número da residência', max_length = 10, blank = True,null=True)
-    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 1)
-    is_agronomo = models.BooleanField(verbose_name = "Usuário agronomo", default = False)
+    numeroResidencial = models.CharField(verbose_name = 'Número da residência', max_length = 10, blank = True, null = True)
+    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 1, blank = True, null = True)
     is_active = models.BooleanField(verbose_name = "Usuário ativo", default = True)
     is_staff = models.BooleanField(verbose_name = "Usuário desenvolvedor", default = False)
     is_superuser = models.BooleanField(verbose_name = "Super usuário", default = False)

@@ -21,9 +21,6 @@ sys.path.append(
 
 # DEFAULT APP'S
 INSTALLED_APPS = [
-    # MATERIALIZE FORM
-    'materializecssform',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,6 +133,8 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "ViewHome"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
     'version': 1,
