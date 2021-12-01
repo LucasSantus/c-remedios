@@ -49,4 +49,4 @@ def index(request):
         "receitas" : listReceitas,
     }
 
-    return render(request, "home/index.html", context)
+    return render(request, "dashboard.html", context)
