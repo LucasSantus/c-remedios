@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from apps.home.validate import RetornaGrupo
 from receitas.models import Receita
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from project.settings import GPMedico,GPPaciente
 from django.utils import timezone
 
 from receitas.models import Agendamento
@@ -30,10 +31,57 @@ def base(request):
         }
     return context
 
+
 @login_required
-def index(request):
-    receitas = Receita.objects.filter(usuario = request.user).order_by("-pk")
+def ViewHome(request):
+    listGroups = [
+        {
+            'Nome':GPMedico,
+            'Url': "ViewDashboardMedico"
+        },
+        {
+            'Nome':GPPaciente,
+            'Url': "ViewDashboardPaciente"
+        },
+    ]
+    if request.user.is_authenticated:
+        for x in listGroups:
+            if RetornaGrupo(request).name == x['Nome']:
+                return redirect(x['Url'])
+
+
+@login_required
+def ViewDashboardMedico(request):
+    print("dashboard medico")
+    # receitas = Receita.objects.filter(medicoPaciente__paciente = request.user).order_by("-pk")
+    # listReceitas = []
+    
+    # for receita in receitas:
+    #     try:
+    #         agendamento = Agendamento.objects.filter(receita = receita)
+    #     except Agendamento.DoesNotExist:
+    #         agendamento = None
+            
+    #     obj = {
+    #         "receita": receita,
+    #         "Agendamento": agendamento,
+    #     }
+
+    #     listReceitas.append(obj)
+
+    context = {
+        "list_receitas": None,
+    }
+
+    return render(request, "home/index.html", context)
+
+
+@login_required
+def ViewDashboardPaciente(request):
+    print("dashboard paciente")
+    receitas = Receita.objects.filter(medicoPaciente__paciente = request.user).order_by("-pk")
     listReceitas = []
+    
     for receita in receitas:
         try:
             agendamento = Agendamento.objects.filter(receita = receita)
@@ -48,7 +96,7 @@ def index(request):
         listReceitas.append(obj)
 
     context = {
-        "list_receitas": listReceitas,
+        "listReceitas": listReceitas,
     }
 
     return render(request, "home/index.html", context)

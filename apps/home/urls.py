@@ -6,7 +6,9 @@ from .validate import *
 
 urlpatterns = [
     # INDEX
-    path("", index, name="index"),
+    path("", ViewHome, name="ViewHome"),
+    path("dashboard/medico", ViewDashboardMedico, name="ViewDashboardMedico"),
+    path("dashboard/paciente", ViewDashboardPaciente, name="ViewDashboardPaciente"),
 
     # VALIDATE
     url('validate/email/', validate_email, name='validate_email'),

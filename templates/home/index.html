@@ -66,7 +66,7 @@
                
         </div> -->
 
-    {% if list_receitas %}
+    {% if listReceitas %}
         <div class="row">
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
@@ -84,14 +84,14 @@
                                 <th>Dosagem</th>
                             </thead>
                             <tbody>
-                                {% for receita in list_receitas %}
-                                <tr>
-                                    <td>{{receita.receita}}</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                </tr>
+                                {% for receita in listReceitas %}
+                                    <tr>
+                                        <td>{{receita.receita}}</td>
+                                        <td>Dakota Rice</td>
+                                        <td>$36,738</td>
+                                        <td>Niger</td>
+                                        <td>Oud-Turnhout</td>
+                                    </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

@@ -242,3 +242,8 @@ AUTOMATED_LOGGING = {
         "max_age": None,
     },
 }
+
+
+## -- Nome dos GRUPOS -- ##
+GPMedico = "Médico"
+GPPaciente = "Paciente"

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from usuarios.models import Usuario
 from django.http import JsonResponse
 
@@ -29,3 +30,14 @@ def validate_email_registered(request):
     if not data['is_email_registered']:
         data['error_message'] = 'Este e-mail não está cadastrado no sistema!'
     return JsonResponse(data)
+
+def RetornaGrupo(request):
+    objUsuario = request.user
+    try:
+        objGrupo = objUsuario.groups.get(pk=objUsuario.idGroup)
+    except:
+        listGroups = objUsuario.groups.all()
+        objGrupo = listGroups[0]
+        objUsuario.idGroup = objGrupo.id
+        objUsuario.save()
+    return objGrupo
