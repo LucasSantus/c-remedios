@@ -10,7 +10,7 @@ class MedicoPaciente(models.Model):
         verbose_name_plural = "Médicos e pacientes"
 
     def __str__(self):
-        return self.medico + "-" + self.paciente
+        return str(self.medico) + "-" + str(self.paciente)
 
 class Remedio(models.Model):    
 

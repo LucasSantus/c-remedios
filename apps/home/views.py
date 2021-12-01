@@ -78,7 +78,6 @@ def ViewDashboardMedico(request):
 
 @login_required
 def ViewDashboardPaciente(request):
-    print("dashboard paciente")
     receitas = Receita.objects.filter(medicoPaciente__paciente = request.user).order_by("-pk")
     listReceitas = []
     

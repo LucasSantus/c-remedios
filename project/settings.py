@@ -135,7 +135,7 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "ViewHome"
 
 LOGGING = {
     'version': 1,
