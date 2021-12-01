@@ -26,7 +26,7 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['email', 'cpf', 'nome', "sobrenome", "telefone", "data_nascimento", "password", "confirm_password"]
+        fields = ['email', 'cpf', 'nome', "sobrenome", "telefone", "dataNascimento", "password", "confirm_password"]
     
         error_messages = {
             "email":{
@@ -53,7 +53,7 @@ class UsuarioForm(forms.ModelForm):
                 "required": "A senha é obrigatória para realizar o registro!",
                 "invalid": "Por favor, insira uma senha válida!",
             },
-            "data_nascimento":{
+            "dataNascimento":{
                 "invalid": "Por favor, insira um formato válido de data de nascimento (DD/MM/AAAA)!",
             },
         }
@@ -64,7 +64,7 @@ class UsuarioForm(forms.ModelForm):
             "nome": forms.TextInput(attrs={'placeholder':'Insira o nome...'}),
             "sobrenome": forms.TextInput(attrs={'placeholder':'Insira o sobrenome...'}),
             "telefone": forms.TextInput(attrs={'placeholder':'Insira o telefone...'}),
-            "data_nascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
+            "dataNascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
             "password": forms.TextInput(attrs={'placeholder':'Insira a senha...'}),
         }
         
@@ -74,6 +74,6 @@ class UsuarioForm(forms.ModelForm):
             "nome": 'Nome: ',
             "sobrenome": 'Sobrenome: ',
             "telefone": 'Telefone: ',
-            "data_nascimento": 'Data de Nascimento: ',
+            "dataNascimento": 'Data de Nascimento: ',
             "password": 'Senha: ',
         }

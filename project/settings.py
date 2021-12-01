@@ -42,8 +42,6 @@ INSTALLED_APPS += [
     'home',
     'usuarios',
     'receitas',
-
-    'administracao',
 ]
 
 AUTH_USER_MODEL = "usuarios.Usuario"
