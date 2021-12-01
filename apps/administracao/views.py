@@ -13,7 +13,7 @@ import datetime
 def dosagem_usuario(request,id_receita):
     horario_inicio_remedio = timezone.now()
     horario_atual = timezone.now()
-    objPessoa = Pessoa.objects.get(pk=request.user.id)
+    objPessoa = Usuario.objects.get(pk=request.user.id)
     primeiro_nome = objPessoa.nome.split(None, 1)[0]
     objReceita = Receita.objects.get(pk=id_receita)
     objAgenda_receita = Agendamento.objects.get(receita=objReceita)
@@ -72,7 +72,7 @@ def configura_horario_dosagem(request,id_receita):
     data_now = timezone.now()
     listHorarios = []
     
-    objPessoa = Pessoa.objects.get(pk=request.user.id)
+    objPessoa = Usuario.objects.get(pk=request.user.id)
     primeiro_nome = objPessoa.nome.split(None, 1)[0]
     objReceita = Receita.objects.get(pk=id_receita)
 

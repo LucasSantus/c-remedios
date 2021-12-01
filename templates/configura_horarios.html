@@ -1,16 +1,21 @@
-{%extends "base_usuario.html"%}
+{%extends "base.html"%}
 {% load materializecss %}
-{%block conteudo%}
 
+
+{% block javascript %}
 <script>
     $(document).ready(function(){
         M.AutoInit();
         var DateField = MaterialDateTimePicker.create($('#id_horario_inicio'));
-            
-        
     }); 
 
 </script> 
+{% endblock %}
+
+
+{%block content%}
+
+
 
 <main>  
     {%if messages%}
@@ -46,5 +51,9 @@
     </div>
 </main>
 
- 
-{%endblock conteudo%}
+
+
+{%endblock content%}
+
+
+

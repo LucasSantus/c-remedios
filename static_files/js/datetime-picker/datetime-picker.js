@@ -41,8 +41,8 @@ var MaterialDateTimePicker = {
                             element.attr('selectedTime', (hr + ":" + min).toString());
                         },
                         onCloseEnd: function(){
-                           element.blur();
-                       }
+                            element.blur();
+                        }
                     });
                     $('button.btn-flat.timepicker-close.waves-effect')[0].remove();
                     
