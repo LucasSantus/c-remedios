@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.utils import timezone
 
-from administracao.models import Agendamento
+from receitas.models import Agendamento
 import datetime
 
 def base(request):

@@ -6,7 +6,8 @@ urlpatterns = [
     # REGISTRAR
     path("receita/registrar/", registrar_receita, name="registrar_receita"),
     path("remedio/registrar/", registrar_remedio, name="registrar_remedio"),
-
+    path('dosagens-usuario/<int:id_receita>/', dosagem_usuario, name="dosagem_usuario"),
+    path('configurar-horarios-dosagens/<int:id_receita>', configura_horario_dosagem, name="configura_horario_dosagem"),
     # EDITAR
     # path("receita/editar/<int:id_receita>/", editar_receita, name="editar_receita"),
     # path("remedio/editar/<int:id_remedio>/", editar_remedio, name="editar_remedio"),
