@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %} 
+{% extends "base.html" %} 
 
 {% load static %}
 
@@ -8,10 +8,10 @@
 
 {% block content %}
     <div class="row d-flex justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Edit Profile</h4>
+                    <h4 class="card-title">Perfil de Usuário</h4>
                 </div>
                 <div class="card-body">
                     <form>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Salvar</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

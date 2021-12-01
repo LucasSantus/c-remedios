@@ -32,7 +32,6 @@ def base(request):
 
 @login_required
 def index(request):
-    data_atual = timezone.now().date()
     receitas = Receita.objects.filter(usuario = request.user).order_by("-pk")
     listReceitas = []
     for receita in receitas:
@@ -42,15 +41,14 @@ def index(request):
             agendamento = None
             
         obj = {
-            "Receita": receita,
-            "Agenda": agendamento,
+            "receita": receita,
+            "Agendamento": agendamento,
         }
 
         listReceitas.append(obj)
 
     context = {
-        "list_receitas" : listReceitas,
-        "data_atual":data_atual,
+        "list_receitas": listReceitas,
     }
 
-    return render(request, "dashboard.html", context)
+    return render(request, "home/index.html", context)
