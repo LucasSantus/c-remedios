@@ -119,6 +119,12 @@ python manage.py makemigrations automated_logging
 
 python manage.py migrate
 
+python manage.py shell
+
+exec(open('scripts/main.py').read())
+
+exit()
+
 python manage.py runserver
 ```
 
