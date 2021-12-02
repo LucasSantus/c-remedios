@@ -1,6 +1,71 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+
+    {%if request.user.idGroup == 1%}
+        {% if listReceitas %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header pb-0">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h4 class="card-title text-muted">Receitas</h4>
+                                </div>
+                                <div class="col-sm-9 d-flex justify-content-end">
+                                    <form class="form-inline">
+                                        <input class="form-control mr-sm-2" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
+                                    </form>
+                                </div>
+                            </div>
+                            <hr >
+                        </div>
+                        <div class="card-body table-full-width table-responsive py-0">
+                            <table class="table table-striped pb-0 mb-0">
+                                <thead>
+                                    <th>Remédio</th>
+                                    <th>Médico</th>
+                                    <th>Intervalo</th>
+                                    <th>Início</th>
+                                    <th>Dosagem</th>
+                                    <th>Informações</th>
+                                </thead>
+                                <tbody class="list">
+                                    {% for receita in listReceitas %}
+                                        <tr>
+                                            <td>{{receita.receita}}</td>
+                                            <td>Dakota Rice</td>
+                                            <td>$36,738</td>
+                                            <td>Niger</td>
+                                            <td>Oud-Turnhout</td>
+                                            <td>
+                                                <a href="#" class="text-center"><i class="material-icons">description</i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+                <div class="card">
+                    <div class="card-body m-0">
+                        <span class="text-muted">No momento, não existem receitas cadastradas!</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}    
+    {%else%}
+        {{listPacientes}}
+        <a href="{% url 'registrar_paciente' %}">cadastrar paciente</a>
+    {%endif%}   
+
+
     <!-- <div class="fixed-action-btn">
         <a href="{% url 'registrar_receita' %}" class="btn-floating btn-large" style="background-color: #ACC077">
             <i class="large material-icons">add</i>
@@ -66,61 +131,7 @@
                
         </div> -->
 
-    {% if listReceitas %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
-                    <div class="card-header pb-0">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h4 class="card-title text-muted">Receitas</h4>
-                            </div>
-                            <div class="col-sm-9 d-flex justify-content-end">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
-                                </form>
-                            </div>
-                        </div>
-                        <hr >
-                    </div>
-                    <div class="card-body table-full-width table-responsive py-0">
-                        <table class="table table-striped pb-0 mb-0">
-                            <thead>
-                                <th>Remédio</th>
-                                <th>Médico</th>
-                                <th>Intervalo</th>
-                                <th>Início</th>
-                                <th>Dosagem</th>
-                                <th>Informações</th>
-                            </thead>
-                            <tbody class="list">
-                                {% for receita in listReceitas %}
-                                    <tr>
-                                        <td>{{receita.receita}}</td>
-                                        <td>Dakota Rice</td>
-                                        <td>$36,738</td>
-                                        <td>Niger</td>
-                                        <td>Oud-Turnhout</td>
-                                        <td>
-                                            <a href="#" class="text-center"><i class="material-icons">description</i></a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
-            <div class="card">
-                <div class="card-body m-0">
-                    <span class="text-muted">No momento, não existem receitas cadastradas!</span>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+
 {% endblock content %}
 
 {% block javascript %}

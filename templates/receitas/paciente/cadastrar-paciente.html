@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <select class="custom-select" name="paciente" required id="id_listPacientes">
+            <option value="" disabled selected>Selecione um paciente</option>
+            {%for paciente in listPacientes%}
+                <option value="{{paciente.id}}">{{paciente.get_short_name}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <button>enviar</button>
+</form>
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#search').hideseek();
+        });
+    </script>
+{% endblock %}

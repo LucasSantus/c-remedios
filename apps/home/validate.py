@@ -35,7 +35,7 @@ def RetornaGrupo(request):
     objUsuario = request.user
     try:
         objGrupo = objUsuario.groups.get(pk=objUsuario.idGroup)
-    except:
+    except Group.DoesNotExist:
         listGroups = objUsuario.groups.all()
         objGrupo = listGroups[0]
         objUsuario.idGroup = objGrupo.id

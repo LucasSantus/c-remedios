@@ -3,7 +3,7 @@ from .models import Remedio
 from .forms import  RemedioForm, ReceitaForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from receitas.models import Receita
+from receitas.models import Receita,MedicoPaciente
 from usuarios.models import Usuario
 from .models import Agendamento, Horario_Agendamento
 from django.utils import timezone
@@ -189,3 +189,31 @@ def configura_horario_dosagem(request,id_receita):
     }
 
     return render(request,"configura_horarios.html",context)
+
+@login_required
+def registrar_paciente(request):
+    listPacientes = Usuario.objects.filter(groups__name="Paciente")
+
+    if request.method == "POST":
+
+        objPaciente = Usuario.objects.get(pk=request.POST.get('paciente',None))
+        try:
+            MedicoPaciente.objects.get(paciente = objPaciente,medico = request.user)
+            messages.info(request, "Ops esse paciente já é seu...")
+            
+        except MedicoPaciente.DoesNotExist:
+            objMedicoPaciente = MedicoPaciente()
+            objMedicoPaciente.paciente = objPaciente
+            objMedicoPaciente.medico = request.user
+            objMedicoPaciente.save()
+            messages.success(request, "Paciente registrado com sucesso!")
+
+        return redirect("ViewHome")
+
+    context = {
+        "listPacientes": listPacientes,
+        "action": "registrar paciente"
+    }
+
+    return render(request, "receitas/paciente/cadastrar-paciente.html", context)
+

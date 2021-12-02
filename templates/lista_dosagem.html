@@ -1,5 +1,5 @@
 {% extends "base.html"%}
-{% load materializecss %}
+ 
 {%block content%}
 
 
@@ -11,13 +11,11 @@
                 <ol>
                 {% for q in listHorario %}
                 <div class="col s3 offset-s5">
-                    <table>
-
-                
+                    <table>                
                         <tbody>
-                          <tr>
-                            <td
-                            ><li>
+                            <tr>
+                            <td>
+                                <li>
                                 {% if q.concluido == False and q.horario <= horario_atual%}
                                 <label>
                                     <input name="tomou_remedio" type="checkbox" value="{{q.id}}" required/>
