@@ -2,8 +2,6 @@
 
 {% load static %}
 
-{% load materializecss %}
-
 {% block title %}
   Login | CRemédios
 {% endblock %}
@@ -22,7 +20,7 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <div class="container">
-                                    {{form|materializecss}}
+                                    {{form}}
                                 </div>
 
                                <div class="container px-3">

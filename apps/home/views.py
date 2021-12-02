@@ -75,7 +75,6 @@ def ViewDashboardMedico(request):
 
     return render(request, "home/index.html", context)
 
-
 @login_required
 def ViewDashboardPaciente(request):
     print("dashboard paciente")

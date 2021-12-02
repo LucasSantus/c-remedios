@@ -1,18 +1,18 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-from django.core.validators import MinLengthValidator
-
+from django.contrib.auth.models import Group
 
 class Estado(models.Model):
-    descricao = models.CharField(verbose_name = 'Nome', max_length = 30)
-    sigla = models.CharField(verbose_name = 'Sigla', max_length = 2)
+    descricao = models.CharField(verbose_name = 'Nome', max_length = 30, unique = True)
+    sigla = models.CharField(verbose_name = 'Sigla', max_length = 2, unique = True)
     dataHorarioCriacao = models.DateTimeField(verbose_name = 'Data e hora de criação', auto_now_add = True)
 
     class Meta:
         verbose_name = "Estado"
         verbose_name_plural = "Estados"
         ordering = ['descricao']
+        app_label = 'usuarios'
     
     def __str__(self):
         return self.descricao
@@ -27,6 +27,7 @@ class Cidade(models.Model):
         verbose_name = "Cidade"
         verbose_name_plural = "Cidades"
         ordering = ['descricao']
+        app_label = 'usuarios'
 
     def __str__(self):
         return str(self.descricao)
@@ -50,15 +51,16 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
         
+        group = Group.objects.get(name="Médico")
 
+        usuario.idGroup = group.id
         usuario.is_active = True
         usuario.is_staff = False
         usuario.is_superuser = False
-        usuario.is_agronomo = False
-
         if password:
             usuario.set_password(password)
         usuario.save()
+        usuario.groups.add(group)
 
         return usuario
 
@@ -72,12 +74,16 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
 
+        group = Group.objects.get(name="Médico")
+
+        usuario.idGroup = group.id
         usuario.is_active = True
         usuario.is_staff = True
         usuario.is_superuser = True
-        usuario.is_agronomo = False
         usuario.set_password(password)
         usuario.save()
+        usuario.groups.add(group)
+
         return usuario
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -96,7 +102,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO, blank = True, null = True)
     telefone = models.CharField(verbose_name = "Telefone", max_length = 15, blank = True, null = True)
     cep = models.CharField(verbose_name = 'CEP', max_length = 9, blank = True, null = True)
-    cidade = models.ForeignKey(Cidade, on_delete = models.CASCADE, related_name = 'cidade_UsuarioFK', null = True)
+    cidade = models.ForeignKey(Cidade, on_delete = models.CASCADE, related_name = 'cidade_UsuarioFK', null = True, blank = True)
     bairro = models.CharField(verbose_name = 'Bairro', max_length = 50, blank = True, null = True)
     logradouro = models.CharField(verbose_name = 'Logradouro', max_length = 100, blank = True, null = True)
     complemento = models.CharField(verbose_name = 'Complemento', max_length = 50, null = True, blank = True)
@@ -109,7 +115,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"    
     REQUIRED_FIELDS = ['nome', 'sobrenome', 'cpf']
     
-
     objects = UsuarioManager()
 
     class Meta:
