@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     # 'automated_logging',
     'debug_toolbar',
+    'bootstrapform',
 ]
 
 # INTERN APP'S
