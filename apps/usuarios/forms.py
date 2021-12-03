@@ -26,7 +26,8 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['email', 'cpf', 'nome', "sobrenome", "telefone", "dataNascimento", "password", "confirm_password"]
+        fields = ('__all__')
+        # fields = ['email', 'cpf', 'nome', "sobrenome", "telefone", "dataNascimento", "password", "confirm_password"]
     
         error_messages = {
             "email":{
@@ -58,15 +59,15 @@ class UsuarioForm(forms.ModelForm):
             },
         }
         
-        widgets = {
-            "email": forms.TextInput(attrs={'placeholder':'Insira o e-mail...'}),
-            "cpf": forms.TextInput(attrs={'placeholder':'Insira o cpf...'}),
-            "nome": forms.TextInput(attrs={'placeholder':'Insira o nome...'}),
-            "sobrenome": forms.TextInput(attrs={'placeholder':'Insira o sobrenome...'}),
-            "telefone": forms.TextInput(attrs={'placeholder':'Insira o telefone...'}),
-            "dataNascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
-            "password": forms.TextInput(attrs={'placeholder':'Insira a senha...'}),
-        }
+        # widgets = {
+        #     "email": forms.TextInput(attrs={'placeholder':'Insira o e-mail...'}),
+        #     "cpf": forms.TextInput(attrs={'placeholder':'Insira o cpf...'}),
+        #     "nome": forms.TextInput(attrs={'placeholder':'Insira o nome...'}),
+        #     "sobrenome": forms.TextInput(attrs={'placeholder':'Insira o sobrenome...'}),
+        #     "telefone": forms.TextInput(attrs={'placeholder':'Insira o telefone...'}),
+        #     "dataNascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
+        #     "password": forms.TextInput(attrs={'placeholder':'Insira a senha...'}),
+        # }
         
         labels = {
             "email": 'E-mail: ',

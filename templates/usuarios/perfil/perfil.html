@@ -11,19 +11,27 @@
 {% block content %}
     <div class="row d-flex justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Perfil de Usuário</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row container justify-content-start">
+                    <div class="col-sm-4">{{form.nome|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.sobrenome|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.email|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.cpf|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.dataNascimento|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.genero|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.telefone|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.cep|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.cidade|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.bairro|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.logradouro|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.complemento|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.numeroResidencial|bootstrap}}</div>
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-info btn-fill">Salvar</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{form|bootstrap}}
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Salvar</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 {% endblock %}

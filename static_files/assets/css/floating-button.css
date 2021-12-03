@@ -1,0 +1,35 @@
+/*  Example Floating Button
+    <a class="scroll-to-top rounded" href="#" style="display: inline; color: blue">
+        <span class="material-icons">add</span>
+    </a>
+*/
+
+.scroll-to-top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #fff;
+    line-height: 46px;
+}
+
+.scroll-to-top:focus, .scroll-to-top:hover {
+    color: white;
+}
+
+.scroll-to-top:hover {
+    opacity: 0.7;
+}
+
+.scroll-to-top .material-icons {
+    font-weight: 550;
+}
+
+.scroll-to-top .material-icons{
+    color: rgb(255, 255, 255); 
+    line-height: 45px; 
+    font-size: 26px;
+}
