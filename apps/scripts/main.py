@@ -11,5 +11,7 @@ RESET = "\033[0;0m"
 BOLD = "\033[;1m"
 REVERSE = "\033[;7m"
 
+# print("Testando ele ")
+
 exec(open('apps/scripts/grupos/grupos.py').read())
 exec(open('apps/scripts/cidades/cidades.py').read())
