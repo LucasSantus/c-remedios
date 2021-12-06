@@ -51,6 +51,7 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
         
+        group = Group.objects.get_or_create(name="Médico")
         group = Group.objects.get(name="Médico")
 
         usuario.idGroup = group.id
@@ -74,8 +75,8 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
 
+        group = Group.objects.get_or_create(name="Médico")
         group = Group.objects.get(name="Médico")
-
         usuario.idGroup = group.id
         usuario.is_active = True
         usuario.is_staff = True
