@@ -69,7 +69,7 @@ Com o terminal aberto, digite no terminal:
 > **Observação:** Foi utilizado o Windows(versão 10), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
  
 ```
-make install-windows
+make windows
 ```
 
 **Linux**
@@ -77,7 +77,7 @@ make install-windows
 > **Observação:** Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 
 ```
-make install-linux
+make linux
 ```
 
 **Iniciando Ambiente Virtual**
