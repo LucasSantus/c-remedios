@@ -3,7 +3,12 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content=""> 
         
         <!-- Import favicon -->
         <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" />
@@ -11,11 +16,11 @@
         <!-- Import Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- Import CSS Materialize-->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
 
-        <!-- Import CSS HoldON -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/hold-on/holdon.min.css' %}">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'assets/css/sign-in.css' %}" rel="stylesheet">
 
         <!-- Import CSS Index -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -41,21 +46,21 @@
         <!-- Import CSS Rounded -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/rounded.css' %}">
 
-
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
+        
         {% block css %}
         {% endblock %}
 
         <title>
             {% block title %}
-                CRemédios
+                C Remédios
             {% endblock %}
         </title>
     </head>
 
-    <body class="bg-primary">
+    <body>
+        <header></header>
         <main>
             {% block content %}
             {% endblock %}
@@ -73,50 +78,55 @@
             </div>
         </main>
 
-        <footer class="page-footer transparent">
-            <div class="footer-copyright transparent">
-                <div class="container center" style="width: 70%;">
-                    <span class="text-white">© 2020 {% if year %}- {{year}}{% endif %} Sistema de Votação, Todos os direitos reservados.</span>
-                </div>
+        <footer>
+            <div class="footer-copyright w-100">
+                <span class="d-flex justify-content-center">© 2020 {% if year %}- {{year}} {% endif %}| C Remédios, Todos os direitos reservados.</span>
             </div>
         </footer>
 
         <!-- Import JQuery -->
         <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
 
+        <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+
         <!-- Import JQuery Mask -->
         <script src="{% static 'js/jquery-mask/jquery.mask.min.js' %}"></script>
 
-        <!-- Import HoldON -->
-        <script src="{% static 'js/hold-on/hold-on.min.js' %}"></script>
+        <!-- Import Demo -->
+        <script src="{% static 'assets/js/demo.js' %}"></script>
 
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
-
-        <!-- Inicialização -->
-        <script>
-        $(document).ready(function(){
-            $("#btn_reset_password").attr("disabled", true);
-            $("#btn_signup_signup").attr("disabled", true);
-            $("#btn-login").attr("disabled", true);
-            
-            /* Inicialização do modal */
-            $('.modal').modal();
-        });
-        </script>
+        <!--  Notifications Plugin    -->
+        <script src="{% static 'assets/js/plugins/bootstrap-notify.js' %}"></script>
 
         <!-- Mostrar e Ocultar Senha -->
-        <script>
+        <script type="text/javascript">
             $('#check_login').click(function () {
-            if($(this).is(':checked')){
-                $("#id_new_password1").attr("type", "text");
-                $("#id_new_password2").attr("type", "text");
-            }
-            else {
-                $("#id_new_password1").attr("type", "password");
-                $("#id_new_password2").attr("type", "password");
-            }
+                if($(this).is(':checked')){
+                    $("#id_new_password1").attr("type", "text");
+                    $("#id_new_password2").attr("type", "text");
+                }
+                else {
+                    $("#id_new_password1").attr("type", "password");
+                    $("#id_new_password2").attr("type", "password");
+                }
             })
+        </script>
+
+        <script type="text/javascript">
+            function notification(tip, title, message) {
+                $.notify({
+                    title: title,
+                    message: message
+                }, {
+                    type: tip,
+                    timer: 1000,
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    }
+                });
+            }
         </script>
 
         {% block javascript %}
