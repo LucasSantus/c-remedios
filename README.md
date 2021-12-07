@@ -1,4 +1,4 @@
-<h1 align="center">CRemédios</h1>
+<h1 align="center">C Remédios</h1>
 
 <p align="center">
 	<a href="#sobre">Sobre</a> &nbsp;|&nbsp;
@@ -40,13 +40,13 @@ Este é um projeto totalmente grátis!
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - [Django Framework](https://www.djangoproject.com/)
-- [Materialize](https://materializecss.com/)
+- [Boostrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 --------------------------------------------------------------------------------------
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-:construction: - As Funcionalidades será construída em breve...
+:construction: - As Funcionalidades serão construída em breve...
 
 --------------------------------------------------------------------------------------
 
@@ -62,69 +62,53 @@ cd c-remedios
 
 #### Preparando o Projeto
 
-#### Windows
+Com o terminal aberto, digite no terminal:
+
+**Windows**
 
 > **Observação:** Foi utilizado o Windows(versão 10), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
-
-**Preparando Ambiente Virtual**
-
+ 
 ```
-python -m venv env
-
-env\Scripts\activate
-
-python -m pip install --upgrade pip
-
-pip install -r requirements.txt
+make install-windows
 ```
 
-#### Linux
+**Linux**
 
 > **Observação:** Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 
-**Instalando Ambiente Virtual**
-
-Caso não tenha um ambiente virtual instalado, digite no terminal:
-
 ```
-sudo apt-get install python3-venv
+make install-linux
 ```
 
-**Preparando Ambiente Virtual**
-
-Com o terminal aberto, digite no terminal:
-
-```
-python3 -m venv env
-
-source env/bin/activate
-
-python -m pip install --upgrade pip
-
-pip install -r requirements.txt
-```
+**Iniciando Ambiente Virtual**
 
 <h3 id="rodando">:zap: Rodando</h3>
 
-**Iniciando**
+Inicie a virtual env:
+
+**Windows**
 
 ```
-python manage.py makemigrations home
+env\Scripts\activate;
+```
 
-python manage.py makemigrations usuarios
+**Linux**
 
-python manage.py makemigrations receitas
+```
+source env/bin/activate
+```
 
-python manage.py makemigrations automated_logging
-
-python manage.py migrate
-
+**Rodar script's**
+```
 python manage.py shell
 
 exec(open('apps/scripts/main.py').read())
 
 exit()
+```
+**Rodando o Projeto**
 
+```
 python manage.py runserver
 ```
 
@@ -146,15 +130,30 @@ http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
-<h3 id="autor">:bust_in_silhouette: Autor</h3>
+<h3 id="autor">:bust_in_silhouette: Autor(es)</h3>
 
-<div align="left"> 
-	<a href="https://github.com/LucasSantus">
-		<img style="border-radius: 50%;" src="https://github.com/LucasSantus.png" width="100px;" alt=""/>
-		<br />
-		Lucas Santus
-	</a>
-</div>
+<table>
+	<tr>
+		<td>
+			<div> 
+				<a href="https://github.com/LucasSantus">
+					<img style="border-radius: 50%;" src="https://github.com/LucasSantus.png" width="100px;" alt=""/>
+					<br />
+					Lucas Santus
+				</a>
+			</div>
+		</td>
+		<td>
+			<div> 
+				<a href="https://github.com/michel110299">
+					<img style="border-radius: 50%;" src="https://github.com/michel110299.png" width="100px;" alt=""/>
+					<br />
+					Michel Lemes
+				</a>
+			</div>
+		</td>
+	</tr>
+</table>
 <br />
 Feito com ❤️ por Lucas Santus!<br />
 Obrigado por visitar e boa codificação!<br />
