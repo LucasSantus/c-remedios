@@ -4,9 +4,17 @@ MANAGE = python manage.py
 help: ## Help comand
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-build: ## Build project
+install-windows: ## Install project windows
+	python -m venv $(ENV); \
+	$(ENV)\Scripts\activate; \
+	build
+
+install-linux: ## Install project linux
 	python3 -m venv $(ENV); \
 	. $(ENV)/bin/activate; \
+	build
+
+build: ## Build project
 	python -m pip install --upgrade pip; \
 	pip install -r requirements.txt; \
 	$(MANAGE) makemigrations home; \
@@ -14,17 +22,7 @@ build: ## Build project
 	$(MANAGE) makemigrations receitas; \
 	$(MANAGE) makemigrations automated_logging; \
 	$(MANAGE) migrate; \
-
-script: ## Run script's
-	ls
-	. $(ENV)/bin/activate; \
-	cd apps/scripts; \
-	python3 main.py; \
-
-script2: ## Run script's
-	. $(ENV)/bin/activate; \
-	python manage.py shell; \
-	open('apps/scripts/main.py').read()
+	$(MANAGE) runserver; \
 
 clean:
 	@find . -name "*.pyc" | xargs rm -rf
