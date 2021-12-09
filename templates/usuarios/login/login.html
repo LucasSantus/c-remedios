@@ -2,78 +2,45 @@
 
 {% load static %}
 
- 
+{% load bootstrap %}
 
 {% block title %}
-Login | CRemédios
+Login | C Remédios
 {% endblock %}
 
 {% block content %}
-    <div class="item-center container">
-        <div class="container">
-            <div class="container px-4">
-                <div class="card p-1 z-depth-2">
-                    <span class="card-title center pt-3">
-                        <h5 class="fw-bolder pt-2">LOGIN</h5>
-                    </span>
+    <div class="d-flex align-items-center h-100">
+        <form class="form-signin text-center">
+            {% csrf_token %}
 
-                    <div class="card-content">
-                        <div class="row">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="container">
-                                    {{form}}
-                                </div>
-
-                               <div class="container px-3">
-                                    <label>
-                                        <input id="check_login" type="checkbox"/>
-                                        <span>Mostrar Senha</span>
-                                    </label>
-                               </div>
-
-                                <div class="center mt-3 mb-3">
-                                    <button id="btn-login" class="btn bt-primary z-depth-1 m-1" type="submit">
-                                        Conectar    
-                                    </button>
-                                </div>
-
-                                <div class="row center">
-                                    <div class="col s12">
-                                        <span class="text-muted">Esqueceu a senha?
-                                            <a id="esqueceu" href="{% url 'reset_password' %}">
-                                                Recuperar senha
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="col s12">
-                                        <a id="esqueceu" href="{% url 'signup' %}">
-                                            Criar uma conta!
-                                        </a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            {{form|bootstrap}}
+            <div class="form-group d-flex justify-content-start">
+                <div class="form-check form-switch ms-3">
+                    <input class="form-check-input" type="checkbox" id="check_login">
+                    <label class="form-check-label" for="check_login">Mostrar senha</label>
                 </div>
             </div>
-        </div>
+            <button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
+            <div class="text-center pt-2">
+                <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
+            </div>  
+            <div class="text-center pt-2">
+                <a class="small" href="{% url 'signup' %}">Criar uma conta!</a>
+            </div>
+        </form>
     </div>
 {% endblock %}
 
-{% block css %}
-    <style>
-        #esqueceu{
-            color: #039be5;
-        }
-
-        #esqueceu:hover{
-            color: #81d4fa;
-        }
-    </style>
-{% endblock %}
-
 {% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $(".form-control").attr("required", false)
+            
+            $("#id_username").attr("placeholder", "Insira o e-mail...");
+            $("#id_password").attr("placeholder", "Insira a senha...");
+        });
+    </script>
+
     <!-- Função Ajax - Validar Usuário -->
     <script>
         $("#id_username").change(function () {
@@ -84,11 +51,7 @@ Login | CRemédios
                 dataType: 'json',
                 success: function (data) {
                     if(!data.is_user){
-                        M.toast({html: data.error_message})
-                        $("#btn-login").attr("disabled", true);
-                    }
-                    else{
-                        $("#btn-login").attr("disabled", false);
+                        notification('danger', 'Atenção... Perigo!!!', 'Não foi possível localizar esse e-mail no banco de dados') //success, info, warning, danger
                     }
                 }
             });
@@ -104,6 +67,6 @@ Login | CRemédios
             else {
                 $("#id_password").attr("type", "password");
             }
-        });
+        })
     </script>
 {% endblock %}

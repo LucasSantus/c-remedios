@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
-
-    {%if request.user.idGroup == 1%}
+    {% if request.user.idGroup == 1 %}
         {% if listReceitas %}
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
+                    <div class="card striped-tabled-with-hover">
                         <div class="card-header pb-0">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -55,7 +52,7 @@
             <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
                 <div class="card">
                     <div class="card-body m-0">
-                        <span class="text-muted">No momento, não existem receitas cadastradas!</span>
+                        <span class="text-muted">No momento, não existem receitas registradas!</span>
                     </div>
                 </div>
             </div>
@@ -139,6 +136,26 @@
             </div>
         </div> -->
 
+    <!-- 
+        {% if obj.Agenda %}
+            <a class="btn waves-effect z-depth-2 " href="{% url 'dosagem_usuario' obj.Receita.id %}" style="background-color:#32BF84">
+                <i class="material-icons right">info</i>
+                VISUALIZAR
+            </a>
+        {% else %}
+            {% if obj.Receita.data_inicio <= data_atual %}
+                <a class="btn waves-effect z-depth-2 " href="{% url 'configura_horario_dosagem' obj.Receita.id %}" style="background-color:#32BF84">
+                    <i class="material-icons right">info</i>
+                    INICIAR
+                </a>
+            {% else %}
+                <a  onclick="M.toast({html: 'você só pode começar a tomar dia {{obj.Receita.data_inicio}}'})" class="btn waves-effect z-depth-2" style="background-color:#32BF84">
+                    <i class="material-icons right">info</i>
+                    ESPERA
+                </a>
+            {% endif %}
+        {% endif %}
+    -->
 
 {% endblock content %}
 

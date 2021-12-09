@@ -36,6 +36,8 @@
         <!-- CSS Files -->
         <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
         <link href="{% static 'assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/css/floating-button.css' %}" rel="stylesheet" />
         
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{% static 'assets/css/demo.css' %}" rel="stylesheet" />
@@ -62,7 +64,7 @@
                     <ul class="nav">
                         <li class="nav-item
                             {% if url_active %} 
-                                {% if url_active == '/' %}active{% endif %}
+                                {% if url_active == '/' or url_active == 'dashboard' %}active{% endif %}
                             {% endif %}
                         ">
                             <a class="nav-link" href="/">
@@ -81,42 +83,45 @@
                                 <p>Perfil</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#myModal1" href="#pablo">
+                                <i class="material-icons">person</i>
+                                <p>Sair</p>
+                            </a>
+                        </li>
                     </ul>
+                    <div class="footer-copyright w-100 pb-2">
+                        <span class="d-flex justify-content-center">© 2021 - C Remédios</span>
+                    </div>                  
                 </div>
             </div>
-            <div class="main-panel">
-                <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg" color-on-scroll="500">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'logout' %}">
-                                        <span class="no-icon">Sair</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
 
+            <div class="main-panel">
                 <!-- End Navbar -->
                 <div class="content">
                     {% block content %}
                     {% endblock %}
                 </div>
-
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <nav>
-                            <p class="copyright text-center">
-                                © 2021 <a href="https://github.com/LucasSantus/c-remedios">CRemédios</a>, Todos os direitos reservados.
-                            </p>
-                        </nav>
-                    </div>
-                </footer>
             </div>
         </div>
+
+        <!-- Mini Modal -->
+        <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body text-center px-4 m-0  ">
+                        <h4>Deseja continuar?</h4>
+                        <p class="text-muted text-justify">Selecione "Logout" abaixo se você estiver pronto para encerrar sua sessão atual.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-link btn-simple text-muted" data-dismiss="modal">Fechar</a>
+                        <a type="button" class="btn btn-link btn-simple text-primary" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
 
         <!--   Core JS Files   -->
         <script src="{% static 'assets/js/core/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
@@ -143,13 +148,6 @@
 
         <script src="{% static 'assets/js/jquery/filter-table.js' %}"></script>
         
-        <!-- <script type="text/javascript">
-            $(document).ready(function() {
-                demo.initDashboardPageCharts();
-                demo.showNotification();
-            });
-        </script> -->
-
         {% block javascript %}
         {% endblock %}
     </body>

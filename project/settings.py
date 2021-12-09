@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     # 'automated_logging',
     'debug_toolbar',
+    'bootstrapform',
 ]
 
 # INTERN APP'S
@@ -131,7 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_files')
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
