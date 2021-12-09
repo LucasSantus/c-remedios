@@ -1,19 +1,8 @@
 <h1 align="center">C Remédios</h1>
 
-<p align="center">
-	<a href="#sobre">Sobre</a> &nbsp;|&nbsp;
-	<a href="#porque">Por Que</a> &nbsp;|&nbsp;
-	<a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
-	<a href="#funcionalidades">Funcionalidades</a> &nbsp;|&nbsp;
-	<a href="#instalando">Instalando</a> &nbsp;|&nbsp;
-	<a href="#rodando">Rodando</a> &nbsp;|&nbsp;
-	<a href="#autor">Autor</a> &nbsp;|&nbsp;
-	<a href="#license">Licença</a>
-</p>
-
-<h6 align="center"> 
+<!-- <h6 align="center"> 
 	Se você quiser visualizar as imagens do aplicativo, clique <a href="github/images/README.md">aqui</a>.
-</h6>
+</h6> -->
 
 <h3 id="sobre">:information_source: Sobre</h3>
 
@@ -25,7 +14,33 @@ _"Criar um Sistema de Remédios onde o mesmo tenha um design simples e belo, com
 
 --------------------------------------------------------------------------------------
 
-<h3 id="porque">:question: Por Que</h3>
+<h3 id="tabela-de-conteudo">:information_source: Tabela de Conteudo</h3>
+
+* [Sobre](#sobre)
+* [Tabela de Conteudo](#tabela-de-conteudo)
+* [Status do Projeto](#status)
+* [Por Que](#por-que)
+* [Tecnologias](#tecnologias)
+* [Funcionalidades](#funcionalidades)
+* [Instalação do Projeto](#instalando)
+    * [Clonando Repositório](#clonando)
+    * [Windows](#rodando-windows)
+    * [Linux](#rodando-linux)
+* [Comandos](#comandos)
+* [Autor](#autor)
+* [Licença](#license)
+
+--------------------------------------------------------------------------------------
+
+<h3 id="status">:information_source: Status do Projeto</h3>
+
+<h4 align="center"> 
+	:construction: Sistema Web em construção... :construction:
+</h4>
+
+--------------------------------------------------------------------------------------
+
+<h3 id="por-que">:question: Por Que</h3>
 
 Este projeto faz parte do meu portfólio pessoal, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
@@ -46,13 +61,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-:construction: - As Funcionalidades serão construída em breve...
+:construction: - As Funcionalidades serão construída em breve... :construction:
 
 --------------------------------------------------------------------------------------
 
 <h3 id="instalando">:computer: Instalando o Projeto</h3>
 
-**Clonando o Repositório**
+<h4 id="clonando">Clonando o Repositório</h4>
 
 ```
 git clone git@github.com:LucasSantus/c-remedios.git
@@ -60,55 +75,73 @@ git clone git@github.com:LucasSantus/c-remedios.git
 cd c-remedios
 ```
 
-#### Preparando o Projeto
+<h4 id="rodando">Rodando o Projeto</h4>
 
-Com o terminal aberto, digite no terminal:
-
-**Windows**
+<h4 id="rodando-windows">
+	<strong>Windows</strong>
+</h4>
 
 > **Observação:** Foi utilizado o Windows(versão 10), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
- 
+
 ```
-make windows
+python -m venv env
+
+env\Scripts\activate
+
+python -m pip install --upgrade pip
+
+pip install -r requirements.txt
+
+python manage.py makemigrations home
+
+python manage.py makemigrations usuarios
+
+python manage.py makemigrations manager
+
+python manage.py migrate
+
+python manage.py shell
+
+exec(open('scripts/grupos.py').read())
+
+exit()
+
+python manage.py runserver
 ```
 
-**Linux**
+<h4 id="rodando-linux">
+	<strong>Linux</strong>
+</h4>
 
 > **Observação:** Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 
-```
-make linux
-```
+**Preparando Ambiente Virtual**
 
-**Iniciando Ambiente Virtual**
-
-<h3 id="rodando">:zap: Rodando</h3>
-
-Inicie a virtual env:
-
-**Windows**
+Com o terminal aberto, digite no terminal:
 
 ```
-env\Scripts\activate;
-```
+python3 -m venv env
 
-**Linux**
-
-```
 source env/bin/activate
-```
 
-**Rodar script's**
-```
+python -m pip install --upgrade pip
+
+pip install -r requirements.txt
+
+python manage.py makemigrations home
+
+python manage.py makemigrations usuarios
+
+python manage.py makemigrations manager
+
+python manage.py migrate
+
 python manage.py shell
 
-exec(open('apps/scripts/main.py').read())
+exec(open('scripts/grupos.py').read())
 
 exit()
-```
-**Rodando o Projeto**
 
-```
 python manage.py runserver
 ```
 
@@ -127,6 +160,15 @@ para visualizar o projeto: http://127.0.0.1:8000/
 Com o projeto rodando, adicione o 'admin/' dps da URL:
 
 http://127.0.0.1:8000/admin/
+
+--------------------------------------------------------------------------------------
+
+
+<h3 id="comandos">:computer: Comandos</h3>
+
+> **Observação:** Caso tenha surgido dúvidas sobre os códigos no processo de instalação, o link abaixo contém explicações dos comandos e scripts para "automátição" do projeto.
+
+Para melhor entendimento dos comandos mostrados acima, clique [aqui]().
 
 --------------------------------------------------------------------------------------
 
