@@ -75,7 +75,7 @@ class Agendamento(models.Model):
 class Horario_Agendamento(models.Model):
     agendamento = models.ForeignKey(Agendamento, on_delete=models.CASCADE, verbose_name = "Agendamento:",related_name = 'agendamento_Horario_AgendamentoFK')
     horario = models.DateTimeField(verbose_name = "Horário:",auto_now = False,blank = True,null = True)
-    concluido = models.BooleanField(verbose_name = "Concluído:",max_length = 194,null = True)
+    concluido = models.BooleanField(verbose_name = "Concluído:", max_length = 194, null = True,default=False)
     data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
     
     class Meta:

@@ -3,7 +3,6 @@ from apps.home.validate import RetornaGrupo
 from receitas.models import MedicoPaciente, Receita
 from django.contrib.auth.decorators import login_required
 from project.settings import GPMedico,GPPaciente
-from django.utils import timezone
 
 from receitas.models import Agendamento
 import datetime
