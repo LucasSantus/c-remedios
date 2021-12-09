@@ -14,7 +14,7 @@ _"Criar um Sistema de Remédios onde o mesmo tenha um design simples e belo, com
 
 --------------------------------------------------------------------------------------
 
-<h3 id="tabela-de-conteudo">:information_source: Tabela de Conteudo</h3>
+<h3 id="tabela-de-conteudo">:ab: Tabela de Conteúdo</h3>
 
 * [Sobre](#sobre)
 * [Tabela de Conteudo](#tabela-de-conteudo)
@@ -32,7 +32,7 @@ _"Criar um Sistema de Remédios onde o mesmo tenha um design simples e belo, com
 
 --------------------------------------------------------------------------------------
 
-<h3 id="status">:information_source: Status do Projeto</h3>
+<h3 id="status">:heavy_exclamation_mark: Status do Projeto</h3>
 
 <h4 align="center"> 
 	:construction: Sistema Web em construção... :construction:
@@ -164,11 +164,11 @@ http://127.0.0.1:8000/admin/
 --------------------------------------------------------------------------------------
 
 
-<h3 id="comandos">:computer: Comandos</h3>
+<h3 id="comandos">:paperclip: Comandos</h3>
 
 > **Observação:** Caso tenha surgido dúvidas sobre os códigos no processo de instalação, o link abaixo contém explicações dos comandos e scripts para "automátição" do projeto.
 
-Para melhor entendimento dos comandos mostrados acima, clique [aqui]().
+Para melhor entendimento sobre os comandos mostrados acima, clique [aqui]().
 
 --------------------------------------------------------------------------------------
 
