@@ -40,6 +40,7 @@ class ReceitaForm(forms.ModelForm):
             },
         }
 
+
 class AgendamentoForm(forms.ModelForm):
     class Meta:
         model = Agendamento

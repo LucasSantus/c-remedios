@@ -37,16 +37,18 @@ def listar_remedios(request):
 
 # RECEITA
 @login_required
-def registrar_receita(request):
+def registrar_receita(request,id_medicoPaciente):
+    objMedicoPaciente = MedicoPaciente.objects.get(pk=id_medicoPaciente)
+    
     form = ReceitaForm()
     if request.method == "POST":
         form = ReceitaForm(request.POST)
         if form.is_valid():
             receita = form.save(commit = False)
-            receita.usuario = request.user
+            receita.medicoPaciente = objMedicoPaciente
             receita.save()
             messages.success(request, "Receita registrado com sucesso!")
-            return redirect("index")
+            return redirect("ViewHome")
 
     context = {
         "form": form,
@@ -57,20 +59,18 @@ def registrar_receita(request):
 
 @login_required    
 def dosagem_usuario(request,id_receita):
-    horario_inicio_remedio = timezone.now()
     horario_atual = timezone.now()
-    objPessoa = Usuario.objects.get(pk=request.user.id)
-    primeiro_nome = objPessoa.nome.split(None, 1)[0]
     objReceita = Receita.objects.get(pk=id_receita)
-    objAgenda_receita = Agendamento.objects.get(receita=objReceita)
+    objAgendaReceita = Agendamento.objects.get(receita=objReceita)
     nome_pagina = objReceita.remedio.nome
-    listHorario = Horario_Agendamento.objects.filter(agendamento=objAgenda_receita)
+    listHorario = Horario_Agendamento.objects.filter(agendamento=objAgendaReceita)
 
     listHorarios_false = []
 
-    for l in listHorario:
-        if l.concluido == False:
-            listHorarios_false.append(l)
+    for horario in listHorario:
+        if not horario.concluido:
+            listHorarios_false.append(horario)
+
     cont = 0 
     for l in listHorarios_false:
         if l.horario <= horario_atual:
@@ -78,7 +78,6 @@ def dosagem_usuario(request,id_receita):
 
     if cont > 1:
 
-        print("deu ruim")
         messages.error(request,"Você não tomou sua ultima dose no horário certo, Por favor selecione uma nova data!") 
 
         for l in listHorarios_false:
@@ -87,27 +86,24 @@ def dosagem_usuario(request,id_receita):
         return redirect("configura_horario_dosagem",id_receita )     
         
     else:
-        print("está certo")
         if request.POST:
             idObjHorario = request.POST.get('tomou_remedio', None)
             if idObjHorario:
-                objHorario = Horario_remedio.objects.get(pk=idObjHorario)
+                objHorario = Horario_Agendamento.objects.get(pk=idObjHorario)
                 objHorario.concluido = True
                 objHorario.save()
-                if objHorario == Horario_remedio.objects.filter(agenda_receita=objAgenda_receita).last():
-                    print("testekak")
-                    objAgenda_receita.concluido = True
-                    objAgenda_receita.save()
-                return redirect("registrar_receita")
-            else:
-                return redirect("registrar_receita")
+                if objHorario == Horario_Agendamento.objects.filter(agenda_receita=objAgendaReceita).last():
+                    objAgendaReceita.concluido = True
+                    objAgendaReceita.save()
+            
+
+            return redirect("registrar_receita")
 
 
     context = {
         "nome_pagina": "Dosagens - "+ nome_pagina,
-        "usuario" : primeiro_nome,
-        "objAgenda_receita" : objAgenda_receita,
-        'listHorario':listHorario,
+        "objAgendaReceita" : objAgendaReceita,
+        'listHorario' : listHorario,
         'horario_atual' : horario_atual,
     }
 
@@ -115,11 +111,7 @@ def dosagem_usuario(request,id_receita):
 
 @login_required
 def configura_horario_dosagem(request,id_receita):
-    data_now = timezone.now()
     listHorarios = []
-    
-    objPessoa = Usuario.objects.get(pk=request.user.id)
-    primeiro_nome = objPessoa.nome.split(None, 1)[0]
     objReceita = Receita.objects.get(pk=id_receita)
 
     try:
@@ -128,38 +120,36 @@ def configura_horario_dosagem(request,id_receita):
         objAgenda_receita = None
 
     totalDoze = int((objReceita.quantidade_dias*24)/objReceita.intervalo)
+
     if not objAgenda_receita:
         if request.POST:
             data_de_inicio = request.POST.get('data_de_inicio', None)  
             if data_de_inicio:       
                 horario_inicio_remedio=datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')    
-                objAgenda_receita = Agendamento()
-                objAgenda_receita.receita = objReceita
-                objAgenda_receita.data_inicio = horario_inicio_remedio 
-                objAgenda_receita.data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
-                objAgenda_receita.save()
-                
-                objHorario = Horario_Agendamento()
-                objHorario.agendamento = objAgenda_receita
-                objHorario.horario = horario_inicio_remedio
-                objHorario.save()
-                
+                Agendamento(receita = objReceita, data_inicio = horario_inicio_remedio,
+                    data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)).save()
+
+                Horario_Agendamento(agendamento=objAgenda_receita,horario=horario_inicio_remedio).save()
+
+                list_obj_horario = []
                 for q in range(totalDoze):
                     horario_inicio_remedio += timezone.timedelta(hours=objReceita.intervalo)
-                    objHorario = Horario_Agendamento()
-                    objHorario.agendamento = objAgenda_receita
-                    objHorario.horario = horario_inicio_remedio
-                    objHorario.save()
-                return redirect("dosagem_usuario",id_receita )  
+                    objHorario = Horario_Agendamento(agendamento = objAgenda_receita, horario = horario_inicio_remedio)
+                    list_obj_horario.append(objHorario)
+                
+                if list_obj_horario:  
+                    Horario_Agendamento.objects.bulk_create(list_obj_horario)
+
+                return redirect("dosagem_usuario",id_receita)  
             else:
                 return redirect("configura_horario_dosagem",id_receita )
     else:
-
         listHorarios = Horario_Agendamento.objects.filter(agendamento=objAgenda_receita)
 
         totalDoze -= len(listHorarios)
         if request.POST:
             data_de_inicio = request.POST.get('data_de_inicio', None)
+            
             if data_de_inicio:        
                 horario_inicio_remedio=datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')    
                 objAgenda_receita.reajuste = True
@@ -167,24 +157,26 @@ def configura_horario_dosagem(request,id_receita):
                 objAgenda_receita.data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
                 objAgenda_receita.save()
                 
-                objHorario = Horario_Agendamento()
-                objHorario.agendamento = objAgenda_receita
-                objHorario.horario = horario_inicio_remedio
-                objHorario.save()
-                
-                for q in range(totalDoze):
+                objHorario = Horario_Agendamento(agendamento = objAgenda_receita, horario = horario_inicio_remedio).save()
+
+                list_obj_horario = []
+                for q in range(totalDoze-1):
                     horario_inicio_remedio += timezone.timedelta(hours=objReceita.intervalo)
-                    objHorario = Horario_Agendamento()
-                    objHorario.agendamento = objAgenda_receita
-                    objHorario.horario = horario_inicio_remedio
-                    objHorario.save()
-                return redirect("dosagem_usuario",id_receita )
+                    objHorario = Horario_Agendamento(agendamento = objAgenda_receita, horario = horario_inicio_remedio)
+                    list_obj_horario.append(objHorario)
+                
+                if list_obj_horario:  
+                    Horario_Agendamento.objects.bulk_create(list_obj_horario)
+
+                messages.success(request, "Ebaa! Horarios Reagendados com sucesso!")
+                return redirect("dosagem_usuario",id_receita)
+                
             else:
+                messages.error(request, "Opps! Algo de errado aconteceu, por favor selecione um horario!")
                 return redirect("configura_horario_dosagem",id_receita )
 
     context = {
         "nome_pagina":"datas disponiveis",
-        "usuario" : primeiro_nome,
         "listHorarios" : listHorarios,
     }
 
@@ -202,10 +194,7 @@ def registrar_paciente(request):
             messages.info(request, "Ops esse paciente já é seu...")
             
         except MedicoPaciente.DoesNotExist:
-            objMedicoPaciente = MedicoPaciente()
-            objMedicoPaciente.paciente = objPaciente
-            objMedicoPaciente.medico = request.user
-            objMedicoPaciente.save()
+            MedicoPaciente(paciente=objPaciente,medico=request.user).save()
             messages.success(request, "Paciente registrado com sucesso!")
 
         return redirect("ViewHome")
