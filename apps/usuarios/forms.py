@@ -105,10 +105,10 @@ class UsuarioForm(forms.ModelForm):
             "email": forms.TextInput(attrs={'placeholder':'Insira o e-mail...'}),
             "cpf": forms.TextInput(attrs={'placeholder':'Insira o cpf...'}),
             "dataNascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
-            "genero": forms.TextInput(attrs={'placeholder':'Insira o genero...'}),
+            # "genero": forms.TextInput(attrs={'placeholder':'Insira o genero...'}),
             "telefone": forms.TextInput(attrs={'placeholder':'Insira o telefone...'}),
             "cep": forms.TextInput(attrs={'placeholder':'Insira o cep...'}),
-            "cidade": forms.TextInput(attrs={'placeholder':'Insira a cidade...'}),
+            # "cidade": forms.TextInput(attrs={'placeholder':'Insira a cidade...'}),
             "bairro": forms.TextInput(attrs={'placeholder':'Insira o bairro...'}),
             "logradouro": forms.TextInput(attrs={'placeholder':'Insira o logradouro...'}),
             "complemento": forms.TextInput(attrs={'placeholder':'Insira o complemento...'}),
@@ -130,7 +130,7 @@ class UsuarioForm(forms.ModelForm):
             "bairro": 'Bairro: ',
             "logradouro": 'Logradouro: ',
             "complemento": 'Complemento: ',
-            "numeroResidencial": 'Número Residencial: ',
+            "numeroResidencial": 'Número: ',
             "password": 'Senha: ',
             "confirm_password": 'Confirmação de Senha: '
         }

@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group
 class Estado(models.Model):
     descricao = models.CharField(verbose_name = 'Nome', max_length = 30, unique = True)
     sigla = models.CharField(verbose_name = 'Sigla', max_length = 2, unique = True)
-    dataHorarioCriacao = models.DateTimeField(verbose_name = 'Data e hora de criação', auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
 
     class Meta:
         verbose_name = "Estado"
@@ -21,7 +21,7 @@ class Cidade(models.Model):
     descricao = models.CharField(verbose_name = 'Nome', max_length = 50)
     codigo_IBGE = models.IntegerField(verbose_name = 'Código do IBGE')
     estado = models.ForeignKey(Estado, on_delete = models.CASCADE, related_name = 'estado_CidadeFK')
-    dataHorarioCriacao = models.DateTimeField(verbose_name = 'Data e hora de criação', auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
 
     class Meta:
         verbose_name = "Cidade"
@@ -51,8 +51,8 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
         
-        group = Group.objects.get_or_create(name="Médico")
-        group = Group.objects.get(name="Médico")
+        group = Group.objects.get_or_create(name="Medico")
+        group = Group.objects.get(name="Medico")
 
         usuario.idGroup = group.id
         usuario.is_active = True
@@ -62,7 +62,6 @@ class UsuarioManager(BaseUserManager):
             usuario.set_password(password)
         usuario.save()
         usuario.groups.add(group)
-
         return usuario
 
     def create_superuser(self, cpf, email, nome, sobrenome, password, **kwargs):
@@ -75,8 +74,9 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
 
-        group = Group.objects.get_or_create(name="Médico")
-        group = Group.objects.get(name="Médico")
+        group = Group.objects.get_or_create(name="Medico")
+        group = Group.objects.get(name="Medico")
+
         usuario.idGroup = group.id
         usuario.is_active = True
         usuario.is_staff = True
@@ -94,24 +94,25 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         ("O", "Outro"),
         ("P", "Prefiro não dizer"),
     ]
-
+ 
     nome = models.CharField(verbose_name = "Nome", max_length = 60)
     sobrenome = models.CharField(verbose_name = "Sobrenome", max_length = 150)
     email = models.EmailField(verbose_name = "E-mail", max_length = 194, unique = True) 
     cpf = models.CharField(verbose_name = "CPF", max_length = 14, unique = True)
-    dataNascimento = models.DateField(verbose_name = "Data de nascimento", auto_now_add = False, auto_now = False, blank = True, null = True)
-    genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO, blank = True, null = True)
-    telefone = models.CharField(verbose_name = "Telefone", max_length = 15, blank = True, null = True)
-    cep = models.CharField(verbose_name = 'CEP', max_length = 9, blank = True, null = True)
+    dataNascimento = models.DateField(verbose_name = "Data de nascimento", auto_now_add = False, auto_now = False, null = True, blank = True)
+    genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO)
+    telefone = models.CharField(verbose_name = "Telefone", max_length = 14)
+    cep = models.CharField(verbose_name = 'CEP', max_length = 9)
     cidade = models.ForeignKey(Cidade, on_delete = models.CASCADE, related_name = 'cidade_UsuarioFK', null = True, blank = True)
-    bairro = models.CharField(verbose_name = 'Bairro', max_length = 50, blank = True, null = True)
-    logradouro = models.CharField(verbose_name = 'Logradouro', max_length = 100, blank = True, null = True)
-    complemento = models.CharField(verbose_name = 'Complemento', max_length = 50, null = True, blank = True)
-    numeroResidencial = models.CharField(verbose_name = 'Número da residência', max_length = 10, blank = True, null = True)
-    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 1, blank = True, null = True)
+    bairro = models.CharField(verbose_name = 'Bairro', max_length = 100)
+    logradouro = models.CharField(verbose_name = 'Logradouro', max_length = 100)
+    complemento = models.CharField(verbose_name = 'Complemento', max_length = 100)
+    numeroResidencial = models.CharField(verbose_name = 'Número da residência', max_length = 10)
+    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 1)
     is_active = models.BooleanField(verbose_name = "Usuário ativo", default = True)
     is_staff = models.BooleanField(verbose_name = "Usuário desenvolvedor", default = False)
     is_superuser = models.BooleanField(verbose_name = "Super usuário", default = False)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
     
     USERNAME_FIELD = "email"    
     REQUIRED_FIELDS = ['nome', 'sobrenome', 'cpf']

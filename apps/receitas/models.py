@@ -3,7 +3,7 @@ from django.db import models
 class MedicoPaciente(models.Model):
     medico = models.ForeignKey("usuarios.Usuario", on_delete = models.CASCADE,verbose_name = "Médico",related_name = 'medico_MedicoPacienteFK')
     paciente = models.ForeignKey("usuarios.Usuario", on_delete = models.CASCADE,verbose_name = "Paciente",related_name = 'paciente_MedicoPacienteFK')   
-    data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
     
     class Meta:
         verbose_name = "Médico e paciente"
@@ -23,7 +23,7 @@ class Remedio(models.Model):
     nome = models.CharField(verbose_name = "Nome", max_length = 100)
     descricao = models.TextField(verbose_name = "Descrição", max_length = 340)
     tipo = models.CharField(verbose_name = 'Tipo remedio', max_length = 1, choices = TIPO)
-    data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
     
     class Meta:
         verbose_name = "Remédio"
@@ -39,7 +39,7 @@ class Receita(models.Model):
     quantidade_dias = models.PositiveIntegerField(verbose_name = "Quantidade de dias", default = 0)
     data_inicio = models.DateField(verbose_name = "Data de Ínicio", auto_now = False, blank = True, null = True)
     dosagem = models.PositiveIntegerField(verbose_name = "Dosagem")
-    data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
 
     class Meta:
         verbose_name = "Receita"
@@ -62,7 +62,7 @@ class Agendamento(models.Model):
     horario_termino = models.DateTimeField(verbose_name = "Horário término:",auto_now=False,blank=True,null=True)
     status = models.CharField(verbose_name = 'statusAgendamento', max_length = 1, choices = STATUS,default="A")
     reajuste = models.BooleanField(verbose_name = "Reajuste:",null=True)
-    data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
 
     class Meta:
         verbose_name = "Agendamento"
@@ -76,7 +76,7 @@ class Horario_Agendamento(models.Model):
     agendamento = models.ForeignKey(Agendamento, on_delete=models.CASCADE, verbose_name = "Agendamento:",related_name = 'agendamento_Horario_AgendamentoFK')
     horario = models.DateTimeField(verbose_name = "Horário:",auto_now = False,blank = True,null = True)
     concluido = models.BooleanField(verbose_name = "Concluído:",max_length = 194,null = True)
-    data_hora_registro = models.DateTimeField("Horário registrado", auto_now_add = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
     
     class Meta:
         verbose_name = "Horário do Agendamento"

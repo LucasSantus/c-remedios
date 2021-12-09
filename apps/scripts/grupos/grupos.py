@@ -10,31 +10,25 @@ REVERSE = "\033[;7m"
 
 """
 python manage.py shell
-exec(open('apps/scripts/Grupos/grupos.py').read())
+exec(open('apps/scripts/grupos/grupos.py').read())
 """
 
-def validate(grupo):
-    try:
-        validar = Group.objects.get(name = grupo)
-        if validar:
-            return False
-        else:
-            return True
-    except:
-        return True
-
 def registrar_grupos():
-    listGrupos = ["Paciente", "Médico"]
+    groups = Group.objects.all()
+    list_groups = ["Paciente", "Medico"]
+    list_obj_groups = []
 
     print(BOLD + "\n-----------------------------------------------" + RESET)
     print(BOLD + "\nFoi iniciado a geração de registros dos grupos!\n" + RESET)
     print(BOLD + "-----------------------------------------------\n" + RESET)
 
-    for nomeGrupo in listGrupos:
-        if validate(nomeGrupo):
-            Group.objects.create(name=nomeGrupo)
-            print(GREEN + "O grupo" + RESET + BOLD + f" {nomeGrupo} " + RESET + GREEN + "foi registrado com sucesso no sistema!" + RESET)
+    for group in list_groups:
+        if not group in groups:
+            obj_group = Group(name = group)
+            list_obj_groups.append(obj_group)
         else:
-            print(RED + "O grupo" + RESET + BOLD + f" {nomeGrupo} " + RESET + RED + "já está registrado no sistema!" + RESET)
+            print(RED + "O grupo" + RESET + BOLD + f" {group} " + RESET + RED + "já está registrado no sistema!" + RESET)
+    if list_obj_groups:
+        Group.objects.bulk_create(list_obj_groups)
 
 registrar_grupos()

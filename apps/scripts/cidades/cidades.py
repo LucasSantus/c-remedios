@@ -19,7 +19,7 @@ REVERSE = "\033[;7m"
 
 start = time.time()
 
-with open("apps/scripts/cidades/Estados.json") as json_file:
+with open("apps/scripts/cidades/estados.json") as json_file:
     list_estados_json = json.load(json_file)
     json_file.close()
 

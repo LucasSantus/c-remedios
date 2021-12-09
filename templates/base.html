@@ -131,12 +131,6 @@
         <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
         <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
         
-        <!--  Google Maps Plugin    -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-        
-        <!--  Chartist Plugin  -->
-        <script src="{% static 'assets/js/plugins/chartist.min.js' %}"></script>
-        
         <!--  Notifications Plugin    -->
         <script src="{% static 'assets/js/plugins/bootstrap-notify.js' %}"></script>
         
@@ -147,6 +141,119 @@
         <script src="{% static 'assets/js/demo.js' %}"></script>
 
         <script src="{% static 'assets/js/jquery/filter-table.js' %}"></script>
+
+        <!--  Notifications Plugin    -->
+        <script src="{% static 'assets/js/plugins/bootstrap-notify.js' %}"></script>
+
+        <script type="text/javascript">
+            function notification(tip, title, message) {
+                $.notify({
+                    title: title,
+                    message: message
+                }, {
+                    type: tip,
+                    timer: 1000,
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    }
+                });
+            }
+        </script>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success'%}
+                    <script>
+                        notification(
+                            'success', 
+                            'Ebaa! Sucesso!', 
+                            '{{message}}'
+                        ); //success, info, warning, danger
+                    </script>
+
+                    <!-- <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/verde.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ebaa! Sucesso! </strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div> -->
+                {% elif message.tags == 'info'%}
+                    <script>
+                        notification(
+                            'info', 
+                            'Informações para você...', 
+                            '{{message}}'
+                        ); //success, info, warning, danger
+                    </script>
+
+                    <!-- <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/azul.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Informações para você...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div> -->
+                {% elif message.tags == 'warning'%} 
+                    <script>
+                        notification(
+                            'warning', 
+                            'Ops! Falhas a vista...', 
+                            '{{message}}'
+                        ); //success, info, warning, danger
+                    </script>
+
+                    <!-- <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/amarelo.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ops! Falhas a vista...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div> -->
+                {% elif message.tags == 'error'%}
+                    <script>
+                        notification(
+                            'danger', 
+                            'Ops! Ocorreu algum erro...', 
+                            '{{message}}'
+                        ); //success, info, warning, danger
+                    </script>
+
+                    <!-- <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/vermelho.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ops! Ocorreu algum erro...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div> -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         
         {% block javascript %}
         {% endblock %}

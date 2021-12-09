@@ -9,179 +9,92 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="card mt-1">
-                <div class="card-body">
-                    <div class="row p-2"> 
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.nome|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.sobrenome|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.email|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.cpf|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.dataNascimento|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.telefone|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.genero|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.cep|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.cidade|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.bairro|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.logradouro|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.complemento|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.numeroResidencial|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.password|bootstrap}}</div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6">{{form.confirm_password|bootstrap}}</div>
+<div class="d-flex justify-content-center">
+    <div class="card w-75">
+        <div class="card-body">
+            <div class="typography-line">
+                <span class="text-muted text-center pb-5"><h1>Criar conta</h1></span>
+            </div>
+            <form method="POST">
+                <div class="row p-4">
+                    {% csrf_token %}
+                    <div class="col-12 col-sm-6">{{form.nome|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.sobrenome|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.cpf|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.dataNascimento|bootstrap}}</div>
+
+                    <div class="col-12 col-sm-6">{{form.email|bootstrap}}</div>
+                    
+                    <div class="col-12 col-sm-6">{{form.telefone|bootstrap}}</div>
+
+                    <div class="col-12 col-sm-6">{{form.genero|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.cep|bootstrap}}</div>
+                    
+                    <div class="col-12 col-sm-6">{{form.bairro|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.logradouro|bootstrap}}</div>
+
+                    <div class="col-12 col-sm-6">{{form.cidade|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.complemento|bootstrap}}</div>
+                    <div class="col-12 col-sm-6">{{form.numeroResidencial|bootstrap}}</div>
+                    <div class="row col-12 p-0 m-0">
+                        <div class="col-12 col-sm-6">{{form.password|bootstrap}}</div>
+                        <div class="col-12 col-sm-6">{{form.confirm_password|bootstrap}}</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check form-switch ms-3">
+                            <input class="form-check-input" type="checkbox" id="check_sign">
+                            <label class="form-check-label" for="check_sign">Mostrar senha</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <div class="w-25">
+                                <button class="btn col-12 btn-primary btn-md" type="submit">Login</button>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
+                        </div>  
+
+                        <div class="pt-2">
+                            <a class="small" href="{% url 'login' %}">Já possuí conta? Logar!</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-
-            <!-- <div class="form-group">
-                <div class="form-check form-switch ms-3">
-                    <input class="form-check-input" type="checkbox" id="check_login">
-                    <label class="form-check-label" for="check_login">Mostrar senha</label>
-                </div>
-            </div>
-
-            <button class="btn btn-md btn-primary" type="submit">Login</button>
-
-            <div class="text-center pt-2">
-                <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
-            </div>  
-            <div class="text-center pt-2">
-                <a class="small" href="{% url 'signup' %}">Criar uma conta!</a> -->
-            </div>
-        </form>
-    </div>
-
-  <!-- <div class="container center mt-6">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m12	l12	xl12">
-          <div class="card p-5">
-            <span class="card-title">
-              <h5 class="fw-bold fs-4">CADASTRAR-SE</h5>
-            </span>
-            <div class="card-content">
-              <div class="row">
-                <form method="POST" class="user" validate="{% url 'validate_email' %}">
-                  {% csrf_token %}
-                  <div class="row center">
-                    <div class="input-field col s12 m6 x6 xl6">
-                      <input type="text" name="nome" maxlength="194" class=" validate" required="" id="id_nome">
-                      <label class="" for="id_nome">Nome Completo:</label>
-                    </div>
-
-                    <div class="input-field col s12 m6 x6 xl6">
-                      <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
-                      <label class="" for="id_email">E-mail:</label>
-                    </div>
-
-                    <div class="input-field col s12 m6 x6 xl6">
-                      <input type="text" name="cpf" maxlength="11" class=" validate" required="" id="id_cpf">
-                      <label class="" for="id_cpf">CPF:</label>
-                    </div>
-
-                    <div class="input-field col s12 m6 x6 xl6">
-                      <input type="text" id="id_dataNascimento" name="dataNascimento" class="datepicker" value="">
-                      <label for="id_dataNascimento" class="">Data de Nascimento:</label>
-                    </div>
-
-                    <div class="input-field col s12">
-                      <input type="password" name="password" maxlength="128" class="validate" required="" id="id_password">
-                      <label class="" for="id_password">Senha:</label>
-                    </div>
-
-                    <span class="helper-text center" data-error="wrong" data-success="right">
-                        A senha deve conter pelo menos 8 caracteres. <br>
-                        A senha deve conter pelo menos uma letra maiúscula e minúscula. <br>
-                        A senha deve conter caracteres especiais. <br>
-                        A senha não pode ser totalmente numérica.
-                    </span>
-
-                    <div class="input-field col s12">
-                      <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
-                      <label for="id_confirm_password">Confirm password:</label> 
-                    </div>
-
-                    <p>
-                      <label>
-                        <input id="check" type="checkbox" />
-                        <span>Mostrar Senha</span>
-                      </label>
-                    </p>
-
-                    <div class="row" style="margin-top: 10px;">
-                      <div class="container center">
-                        <a  href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-4 btn modal-trigger">
-                          <span class="text">VOLTAR</span>
-                        </a>
-
-                        <button  class="waves-effect waves-light bt-primary z-depth-4 btn" type="submit">
-                          <span class="text">SALVAR</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+            </form>
         </div>
-      </div>
     </div>
-  </div> -->
+</div>
 {% endblock %}
 
 {% block javascript %}
-  <!-- Inicialização da Página -->
-  <script>
-    /* Inicialização do datepicker */
-    $(document).ready(function(){
-        $('.datepicker').datepicker({
-            i18n: {
-                months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-                weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                today: 'Hoje',
-                clear: 'LIMPAR',
-                cancel: 'SAIR',
-                done: 'CONTINUAR',
-                labelMonthNext: 'Próximo mês',
-                labelMonthPrev: 'Mês anterior',
-                labelMonthSelect: 'Selecione um mês',
-                labelYearSelect: 'Selecione um ano',
-                selectMonths: true,
-                selectYears: 15,
-            },
-            format: 'yyyy-mm-dd',
-            container: 'body',
-            yearRange: 10,
-            maxDate: new Date(),
-        }); 
+    <!-- Inicialização da Página -->
+    <script>
+        $(document).ready(function(){
+            // JQuery Mask
+            $("#id_cpf").mask("000.000.000-00");
+            $("#id_telefone").mask("(00) 0 0000-0000");
+            $("#id_cep").mask("00000-000");
 
-        $("#id_dataNascimento").addClass('datepicker').attr("type","text"); 
-        $("#id_cpf").mask("999.999.999-99");
-
-        $("#id_password").attr("type", "password");
-        $("#id_confirm_password").attr("type", "password");
-    });
-  </script>
-
-  <!-- Mostrar/Ocultar Senha -->
-  <script>
-    $('#check').click(function () {
-        if($(this).is(':checked')){
-            $("#id_password").attr("type", "text");
-            $("#id_confirm_password").attr("type", "text");
-        }
-        else {
+            // Iniciar como type password 
             $("#id_password").attr("type", "password");
             $("#id_confirm_password").attr("type", "password");
-        }
-    })
-  </script>
+        });
+    </script>
+
+    <!-- Mostrar/Ocultar Senha -->
+    <script>
+        $('#check_sign').click(function () {
+            if($(this).is(':checked')){
+                $("#id_password").attr("type", "text");
+                $("#id_confirm_password").attr("type", "text");
+            }
+            else {
+                $("#id_password").attr("type", "password");
+                $("#id_confirm_password").attr("type", "password");
+            }
+        })
+    </script>
 
     <!-- Validar a Confirmação de Senha -->
     <script>
@@ -193,21 +106,15 @@
             let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,16}$/;
 
             if (password != "" && confirm_password != "" && password === confirm_password){
-                if(!regex.test(password)){
-                    $("#btn_signup_signup").attr("disabled", true);
-                }
                 if(password_size < 8){
-                    M.toast({html: "Quantidade mínima de caracteres: 8"})
+                    notification('danger', 'Ops! Ocorreu algum erro...', 'Quantidade mínima de caracteres: 8') //success, info, warning, danger
                 }
                 else if(password_size > 16){
-                    M.toast({html: "Quantidade máxima de caracteres: 16"})
-                }
-                else if(regex.test(password)){
-                    $("#btn_signup_signup").attr("disabled", false);
+                    notification('danger', 'Ops! Ocorreu algum erro...', 'Quantidade máxima de caracteres: 16') //success, info, warning, danger
                 }
             }
             else{
-                M.toast({html: "Os campos não se identificam!"})
+                notification('danger', 'Ops! Ocorreu algum erro...', 'As senhas não conferem entre si!') //success, info, warning, danger
                 $('#id_password').val('');
                 $('#id_confirm_password').val('');
                 $('#id_password').focus();
@@ -225,7 +132,7 @@
                 dataType: 'json',
                 success: function (data) {
                     if(data.is_email){
-                        M.toast({html: data.error_message})
+                        notification('danger', 'Ops! Ocorreu algum erro...', 'As senhas não conferem entre si!') //success, info, warning, danger
                         $('#id_email').val("");
                         $('#id_email').focus();
                     }
