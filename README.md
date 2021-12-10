@@ -96,13 +96,15 @@ python manage.py makemigrations home
 
 python manage.py makemigrations usuarios
 
-python manage.py makemigrations manager
+python manage.py makemigrations receitas
+
+python manage.py makemigrations automated_logging
 
 python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/grupos.py').read())
+exec(open('scripts/main.py').read())
 
 exit()
 
@@ -132,13 +134,15 @@ python manage.py makemigrations home
 
 python manage.py makemigrations usuarios
 
-python manage.py makemigrations manager
+python manage.py makemigrations receitas
+
+python manage.py makemigrations automated_logging
 
 python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/grupos.py').read())
+exec(open('scripts/main.py').read())
 
 exit()
 
