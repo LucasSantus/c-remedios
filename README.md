@@ -104,7 +104,7 @@ python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/main.py').read())
+exec(open('apps/scripts/main.py').read())
 
 exit()
 
@@ -142,7 +142,7 @@ python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/main.py').read())
+exec(open('apps/scripts/main.py').read())
 
 exit()
 
