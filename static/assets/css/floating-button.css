@@ -5,23 +5,28 @@
 */
 
 .scroll-to-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
-    right: 2rem;
-    bottom: 2rem;
-    display: none;
-    width: 2.75rem;
-    height: 2.75rem;
+    right: 2.25rem;
+    bottom: 2.25rem;
+    width: 3.35rem;
+    height: 3.35rem;
     text-align: center;
     color: #fff;
-    line-height: 46px;
+    background-color: #eb440d;
+    border-radius: 80% !important;
 }
 
-.scroll-to-top:focus, .scroll-to-top:hover {
+.scroll-to-top:focus{
     color: white;
+    background-color: #5c4036;
 }
 
 .scroll-to-top:hover {
-    opacity: 0.7;
+    background-color: #eb5422;
 }
 
 .scroll-to-top .material-icons {

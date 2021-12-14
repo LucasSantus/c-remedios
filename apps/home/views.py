@@ -27,7 +27,9 @@ def base(request):
         context = {
             'year': date.year,
             'url_active': url_active,
-            'idGroup':request.user.idGroup
+            'idGroup':request.user.idGroup,
+            'GPMedico': GPMedico,
+            'GPPaciente': GPPaciente,
         }
     return context
 

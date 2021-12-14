@@ -74,6 +74,9 @@ TEMPLATES = [
                 # LOCALIZAÇÃO VIEW BASE
                 'home.views.base'
             ],
+            'libraries':{
+                'templatetag': 'usuarios.templatetags.usuario_extras',
+            }
         },
     },
 ]
