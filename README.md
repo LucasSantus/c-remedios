@@ -171,7 +171,7 @@ http://127.0.0.1:8000/admin/
 
 > **Observação:** Caso tenha surgido dúvidas sobre os códigos no processo de instalação, o link abaixo contém explicações dos comandos e scripts para "automátição" do projeto.
 
-Para melhor entendimento sobre os comandos mostrados acima, clique [aqui]().
+Para melhor entendimento sobre os comandos mostrados acima, clique [aqui](COMMANDS.md).
 
 --------------------------------------------------------------------------------------
 
