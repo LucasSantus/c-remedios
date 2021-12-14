@@ -249,5 +249,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # }
 
 ## -- NOME GRUPOS -- ##
-GPMedico = "Médico"
+GPMedico = "Medico"
 GPPaciente = "Paciente"

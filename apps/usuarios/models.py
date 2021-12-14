@@ -50,8 +50,7 @@ class UsuarioManager(BaseUserManager):
             sobrenome = sobrenome,
             **kwargs
         )
-        
-        group = Group.objects.get_or_create(name="Medico")
+
         group = Group.objects.get(name="Medico")
 
         usuario.idGroup = group.id
@@ -74,7 +73,6 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
 
-        group = Group.objects.get_or_create(name="Medico")
         group = Group.objects.get(name="Medico")
 
         usuario.idGroup = group.id
