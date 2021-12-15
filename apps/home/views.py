@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from apps.home.validate import RetornaGrupo
 from receitas.models import MedicoPaciente, Receita
 from django.contrib.auth.decorators import login_required
-from project.settings import GPMedico,GPPaciente
+from project.settings import GPMedico, GPPaciente
 
 from receitas.models import Agendamento
 import datetime
@@ -27,7 +27,9 @@ def base(request):
         context = {
             'year': date.year,
             'url_active': url_active,
-            'idGroup':request.user.idGroup
+            'idGroup':request.user.idGroup,
+            'GPMedico': GPMedico,
+            'GPPaciente': GPPaciente,
         }
     return context
 
@@ -35,11 +37,11 @@ def base(request):
 def ViewHome(request):
     listGroups = [
         {
-            'Nome':GPMedico,
+            'Nome': GPMedico,
             'Url': "ViewDashboardMedico"
         },
         {
-            'Nome':GPPaciente,
+            'Nome': GPPaciente,
             'Url': "ViewDashboardPaciente"
         },
     ]

@@ -96,13 +96,15 @@ python manage.py makemigrations home
 
 python manage.py makemigrations usuarios
 
-python manage.py makemigrations manager
+python manage.py makemigrations receitas
+
+python manage.py makemigrations automated_logging
 
 python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/grupos.py').read())
+exec(open('apps/scripts/main.py').read())
 
 exit()
 
@@ -132,13 +134,15 @@ python manage.py makemigrations home
 
 python manage.py makemigrations usuarios
 
-python manage.py makemigrations manager
+python manage.py makemigrations receitas
+
+python manage.py makemigrations automated_logging
 
 python manage.py migrate
 
 python manage.py shell
 
-exec(open('scripts/grupos.py').read())
+exec(open('apps/scripts/main.py').read())
 
 exit()
 
@@ -163,12 +167,11 @@ http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
-
 <h3 id="comandos">:paperclip: Comandos</h3>
 
 > **Observação:** Caso tenha surgido dúvidas sobre os códigos no processo de instalação, o link abaixo contém explicações dos comandos e scripts para "automátição" do projeto.
 
-Para melhor entendimento sobre os comandos mostrados acima, clique [aqui]().
+Para melhor entendimento sobre os comandos mostrados acima, clique [aqui](COMMANDS.md).
 
 --------------------------------------------------------------------------------------
 

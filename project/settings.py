@@ -74,6 +74,9 @@ TEMPLATES = [
                 # LOCALIZAÇÃO VIEW BASE
                 'home.views.base'
             ],
+            'libraries':{
+                'templatetag': 'usuarios.templatetags.usuario_extras',
+            }
         },
     },
 ]
@@ -249,5 +252,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # }
 
 ## -- NOME GRUPOS -- ##
-GPMedico = "Médico"
+GPMedico = "Medico"
 GPPaciente = "Paciente"

@@ -14,8 +14,8 @@ exec(open('apps/scripts/grupos/grupos.py').read())
 """
 
 def registrar_grupos():
-    groups = Group.objects.all()
-    list_groups = ["Paciente", "Medico"]
+    groups = [ obj.name for obj in Group.objects.all() ]
+    list_groups = ['Paciente', 'Medico']
     list_obj_groups = []
 
     print(BOLD + "\n-----------------------------------------------" + RESET)
