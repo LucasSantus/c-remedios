@@ -134,3 +134,101 @@ class UsuarioForm(forms.ModelForm):
             "password": 'Senha: ',
             "confirm_password": 'Confirmação de Senha: '
         }
+
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = [
+            "nome", "sobrenome", "email", "cpf", "dataNascimento", 
+            "genero", "telefone", "cep", "cidade", "bairro", 
+            "logradouro", "complemento", "numeroResidencial",  
+            ]
+    
+        error_messages = {
+            "nome":{
+                "required": "O nome é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um nome válido!",
+            },
+            "sobrenome":{
+                "required": "O sobrenome é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um sobrenome válido!",
+            },
+            "email":{
+                "required": "O e-mail é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um e-mail válido!",
+            },
+            "cpf":{
+                "required": "O cpf é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um cpf válido!",
+            },
+            "dataNascimento":{
+                "invalid": "Por favor, insira um formato válido de data de nascimento (DD/MM/AAAA)!",
+            },
+            "telefone":{
+                "required": "O telefone é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um telefone válido!",
+            },
+            "genero": {
+                "required": "O genero é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira uma gênero válido!",
+            },
+            "telefone": {
+                "required": "O telefone é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira uma telefone válido!",
+            },
+            "cep": {
+                "required": "O cep é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira uma cep válido!",
+            },
+            "cidade": {
+                "required": "A cidade é obrigatória para realizar o registro!",
+                "invalid": "Por favor, insira uma cidade válida!",
+            },
+            "bairro": {
+                "required": "O bairro é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um bairro válido!",
+            },
+            "logradouro": {
+                "required": "O logradouro é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um logradouro válido!",
+            },
+            "complemento": {
+                "required": "O complemento é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um complemento válido!",
+            },
+            "numeroResidencial": {
+                "required": "O número residencial é obrigatório para realizar o registro!",
+                "invalid": "Por favor, insira um número residencial válido!",
+            },
+        }
+
+        widgets = {
+            "nome": forms.TextInput(attrs={'placeholder':'Insira o nome...'}),
+            "sobrenome": forms.TextInput(attrs={'placeholder':'Insira o sobrenome...'}),
+            "email": forms.TextInput(attrs={'placeholder':'Insira o e-mail...'}),
+            "cpf": forms.TextInput(attrs={'placeholder':'Insira o cpf...'}),
+            "dataNascimento": forms.TextInput(attrs={'placeholder':'Insira a data de nascimento...'}),
+            "telefone": forms.TextInput(attrs={'placeholder':'Insira o telefone...'}),
+            "cep": forms.TextInput(attrs={'placeholder':'Insira o cep...'}),
+            "bairro": forms.TextInput(attrs={'placeholder':'Insira o bairro...'}),
+            "logradouro": forms.TextInput(attrs={'placeholder':'Insira o logradouro...'}),
+            "complemento": forms.TextInput(attrs={'placeholder':'Insira o complemento...'}),
+            "numeroResidencial": forms.TextInput(attrs={'placeholder':'Insira o número residencial...'}),
+        }
+
+        labels = {
+            "nome": 'Nome: ',
+            "sobrenome": 'Sobrenome: ',
+            "email": 'E-mail: ',
+            "cpf": 'CPF: ',
+            "dataNascimento": 'Data de Nascimento: ',
+            "telefone": 'Telefone: ',
+            "genero": 'Gênero: ',
+            "cep": 'CEP: ',
+            "cidade": 'Cidade: ',
+            "bairro": 'Bairro: ',
+            "logradouro": 'Logradouro: ',
+            "complemento": 'Complemento: ',
+            "numeroResidencial": 'Número: ',
+        }

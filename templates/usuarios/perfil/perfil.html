@@ -35,3 +35,12 @@
         </div>
     </div>
 {% endblock %}
+
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#id_cidade').select2();
+        });
+    </script>
+{% endblock %}
