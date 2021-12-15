@@ -3,8 +3,9 @@ from .models import Remedio
 from .forms import  RemedioForm, ReceitaForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from receitas.models import Receita,MedicoPaciente
-from usuarios.models import Usuario
+from receitas.models import Receita
+from vinculos.models import ReceitaMedicoPaciente
+from usuarios.models import Usuario, MedicoPaciente
 from .models import Agendamento, Horario_Agendamento
 from django.utils import timezone
 import datetime

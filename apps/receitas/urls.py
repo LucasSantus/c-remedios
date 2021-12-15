@@ -9,6 +9,7 @@ urlpatterns = [
     path('dosagens-usuario/<int:id_receita>/', dosagem_usuario, name="dosagem_usuario"),
     path('configurar-horarios-dosagens/<int:id_receita>', configura_horario_dosagem, name="configura_horario_dosagem"),
     path('paciente/registrar/', registrar_paciente, name="registrar_paciente"),
+    
     # EDITAR
     # path("receita/editar/<int:id_receita>/", editar_receita, name="editar_receita"),
     # path("remedio/editar/<int:id_remedio>/", editar_remedio, name="editar_remedio"),

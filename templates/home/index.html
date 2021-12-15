@@ -5,18 +5,18 @@
 {% block content %}
     {% if request.user|in_group == GPMedico %}
         <!-- Scroll to Top Button-->
-        <a class="scroll-to-top " href="#">
+        <a class="scroll-to-top" href="{% url 'registrar_paciente' %}">
             <span class="material-icons">add</span>
         </a>
 
-        {% if listReceitas %}
+        {% if listPacientes %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card striped-tabled-with-hover">
                         <div class="card-header pb-0">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h4 class="card-title text-muted">Receitas</h4>
+                                    <h4 class="card-title text-muted">Pacientes</h4>
                                 </div>
                                 <div class="col-sm-9 d-flex justify-content-end">
                                     <form class="form-inline">
@@ -29,24 +29,12 @@
                         <div class="card-body table-full-width table-responsive py-0">
                             <table class="table table-striped pb-0 mb-0">
                                 <thead>
-                                    <th>Remédio</th>
-                                    <th>Médico</th>
-                                    <th>Intervalo</th>
-                                    <th>Início</th>
-                                    <th>Dosagem</th>
-                                    <th>Informações</th>
+                                    <th>Paciente</th>
                                 </thead>
                                 <tbody class="list">
-                                    {% for receita in listReceitas %}
+                                    {% for paciente in listPacientes %}
                                         <tr>
-                                            <td>{{receita.receita}}</td>
-                                            <td>Dakota Rice</td>
-                                            <td>$36,738</td>
-                                            <td>Niger</td>
-                                            <td>Oud-Turnhout</td>
-                                            <td>
-                                                <a href="#" class="text-center"><i class="material-icons">description</i></a>
-                                            </td>
+                                            <td>{{paciente.nome}}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -57,7 +45,6 @@
             </div>
         {% else %}
             <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
-                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                 <div class="card">
                     <div class="card-body m-0">
                         <span class="text-muted">No momento, não existem receitas registradas!</span>

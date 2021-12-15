@@ -31,7 +31,7 @@ INSTALLED_APPS = [
 
 # EXTERN APP'S
 INSTALLED_APPS += [
-    # 'automated_logging',
+    'automated_logging',
     'debug_toolbar',
     'bootstrapform',
 ]
@@ -41,6 +41,7 @@ INSTALLED_APPS += [
     'home',
     'usuarios',
     'receitas',
+    'vinculos'
 ]
 
 AUTH_USER_MODEL = "usuarios.Usuario"
@@ -145,111 +146,115 @@ LOGIN_REDIRECT_URL = "ViewHome"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-#             'style': '{',
-#         },
-#         'simple': {
-#             'format': '{levelname} {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'WARNING',
-#             'class': 'logging.FileHandler',
-#             'filename': BASE_DIR / 'warning.log',
-#         },
-#         'db': {
-#             'level': 'INFO',
-#             'class': 'automated_logging.handlers.DatabaseHandler',
-#         },
-#         'console': {
-#             'level': 'INFO',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'simple'
-#         },
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#         }
-#     },
-#     'loggers': {
-#         'automated_logging': {
-#             'level': 'INFO',
-#             'handlers': ['db'],
-#             'propagate': True,
-#         },
-#         'django': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'db'],
-#             'propagate': True,
-#         },
-#         'django.request': {
-#             'handlers': ['mail_admins'],
-#             'level': 'ERROR',
-#             'propagate': False,
-#         },
-#         # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
-#         '': {
-#             'handlers': ['file'], #notice how file variable is called in handler which has been defined above
-#             'level': 'WARNING',
-#             'propagate': True,
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'warning.log',
+        },
+        'db': {
+            'level': 'INFO',
+            'class': 'automated_logging.handlers.DatabaseHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'automated_logging': {
+            'level': 'INFO',
+            'handlers': ['db'],
+            'propagate': True,
+        },
+        'django': {
+            'level': 'INFO',
+            'handlers': ['console', 'db'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
+        '': {
+            'handlers': ['file'], #notice how file variable is called in handler which has been defined above
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    }
+}
 
-# AUTOMATED_LOGGING = {
-#     "globals": {
-#         "exclude": {
-#             "applications": [
-#                 "plain:contenttypes",
-#                 "plain:admin",
-#                 "plain:basehttp",
-#                 "glob:session*",
-#                 "plain:migrations",
-#             ]
-#         }
-#     },
-#     "model": {
-#         "detailed_message": True,
-#         "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
-#         "loglevel": 20,
-#         "mask": [],
-#         "max_age": None,
-#         "performance": True,
-#         "snapshot": True,
-#         "user_mirror": True,
-#     },
-#     "modules": ["request", "unspecified", "model"],
-#     "request": {
-#         "data": {
-#             "content_types": ["application/json"],
-#             "enabled": [],
-#             "ignore": [],
-#             "mask": ["password"],
-#             "query": False,
-#         },
-#         "exclude": {
-#             "applications": [],
-#             "methods": ["GET"],
-#             "status": [200],
-#             "unknown": False,
-#         },
-#         "ip": True,
-#         "loglevel": 20,
-#         "max_age": None,
-#     },
-#     "unspecified": {
-#         "exclude": {"applications": [], "files": [], "unknown": False},
-#         "loglevel": 20,
-#         "max_age": None,
-#     },
-# }
+AUTOMATED_LOGGING = {
+    "globals": {
+        "exclude": {
+            "applications": [
+                "plain:contenttypes",
+                "plain:admin",
+                "plain:basehttp",
+                "glob:session*",
+                "plain:migrations",
+            ]
+        }
+    },
+    "model": {
+        "detailed_message": True,
+        "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
+        "loglevel": 20,
+        "mask": [],
+        "max_age": None,
+        "performance": True,
+        "snapshot": True,
+        "user_mirror": True,
+    },
+    "modules": ["request", "unspecified", "model"],
+    "request": {
+        "data": {
+            "content_types": ["application/json"],
+            "enabled": [],
+            "ignore": [],
+            "mask": ["password"],
+            "query": False,
+        },
+        "exclude": {
+            "applications": [],
+            "methods": ["GET"],
+            "status": [200],
+            "unknown": False,
+        },
+        "ip": True,
+        "loglevel": 20,
+        "max_age": None,
+    },
+    "unspecified": {
+        "exclude": {"applications": [], "files": [], "unknown": False},
+        "loglevel": 20,
+        "max_age": None,
+    },
+}
+
+# Capitalize Name
+def capitalize_name(text):
+    return ' '.join(letter.capitalize() for letter in text.split())
 
 ## -- NOME GRUPOS -- ##
 GPMedico = "Medico"

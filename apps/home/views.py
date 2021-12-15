@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from apps.home.validate import RetornaGrupo
-from receitas.models import MedicoPaciente, Receita
+from receitas.models import Receita
+from usuarios.models import MedicoPaciente
 from django.contrib.auth.decorators import login_required
 from project.settings import GPMedico, GPPaciente
 

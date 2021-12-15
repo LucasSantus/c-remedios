@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.models import Group
+from project.settings import capitalize_name
 
 class Estado(models.Model):
     descricao = models.CharField(verbose_name = 'Nome', max_length = 30, unique = True)
@@ -51,7 +52,7 @@ class UsuarioManager(BaseUserManager):
             **kwargs
         )
 
-        group = Group.objects.get(name="Medico")
+        group = Group.objects.get(name="Paciente")
 
         usuario.idGroup = group.id
         usuario.is_active = True
@@ -122,11 +123,16 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = "Usuários"
         app_label = "usuarios"
 
-    def get_short_name(self):
-        short_nome = self.nome.split()
-        short_sobrenome = self.sobrenome.split()
-        tam = len(short_sobrenome)
-        return str(short_nome[0] + " " + short_sobrenome[tam-1])
+    def save(self, *args, **kwargs):
+        self.nome = capitalize_name(self.nome)
+        self.sobrenome = capitalize_name(self.sobrenome)
+        super(Usuario, self).save(*args, **kwargs)
+
+    # def get_short_name(self):
+    #     short_nome = self.nome.split()
+    #     short_sobrenome = self.sobrenome.split()
+    #     tam = len(short_sobrenome)
+    #     return str(short_nome[0] + " " + short_sobrenome[tam-1])
 
     def get_full_name(self):
         return str(self.nome + " " + self.sobrenome)
@@ -137,3 +143,16 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.get_full_name()
+
+class MedicoPaciente(models.Model):
+    medico = models.ForeignKey(Usuario, on_delete = models.CASCADE, verbose_name = "Médico", related_name = 'medico_MedicoPacienteFK')
+    paciente = models.ForeignKey(Usuario, on_delete = models.CASCADE, verbose_name = "Paciente", related_name = 'paciente_MedicoPacienteFK')   
+    is_active = models.BooleanField(verbose_name = 'Ativo', default = True)
+    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
+    
+    class Meta:
+        verbose_name = "Médico e Paciente"
+        verbose_name_plural = "Médicos e Pacientes"
+
+    def __str__(self):
+        return str(self.medico) + " - " + str(self.paciente)

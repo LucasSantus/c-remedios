@@ -1,19 +1,6 @@
 from django.db import models
 
-class MedicoPaciente(models.Model):
-    medico = models.ForeignKey("usuarios.Usuario", on_delete = models.CASCADE,verbose_name = "Médico",related_name = 'medico_MedicoPacienteFK')
-    paciente = models.ForeignKey("usuarios.Usuario", on_delete = models.CASCADE,verbose_name = "Paciente",related_name = 'paciente_MedicoPacienteFK')   
-    data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
-    
-    class Meta:
-        verbose_name = "Médico e paciente"
-        verbose_name_plural = "Médicos e pacientes"
-
-    def __str__(self):
-        return str(self.medico) + "-" + str(self.paciente)
-
-class Remedio(models.Model):    
-
+class Remedio(models.Model):
     TIPO =[
         ("C", "Comprimido"),
         ("G", "Gota"),
@@ -33,7 +20,6 @@ class Remedio(models.Model):
         return self.nome
 
 class Receita(models.Model):
-    medicoPaciente = models.ForeignKey(MedicoPaciente, on_delete = models.CASCADE, verbose_name = "Usuário", related_name = 'medicoPaciente_ReceitaFK')
     remedio = models.ForeignKey(Remedio, on_delete = models.CASCADE , verbose_name = "Remédio", related_name = 'remedio_ReceitaFK')
     intervalo = models.FloatField(verbose_name = "Intervalo")
     quantidade_dias = models.PositiveIntegerField(verbose_name = "Quantidade de dias", default = 0)
