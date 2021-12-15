@@ -11,14 +11,20 @@ class SignUpView(CreateView):
 
 @login_required
 def perfil(request):
-    form = UsuarioForm(instance = request.user)
+    objUser = request.user
+    form = PerfilForm(instance=objUser)
+    
     if request.method == "POST":
-        form = UsuarioForm(request.POST)
+        form = PerfilForm(request.POST,instance=objUser)
+        print("aqui")
         if form.is_valid():
-            form.save()
+            print("é valido")
+            objUser = form.save()
+
             messages.success(request, "Receita registrado com sucesso!")
             return redirect("perfil")
-            
+        else:
+            print(form.errors.as_data)
     context = {
         "form" : form,
     }

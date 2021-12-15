@@ -100,7 +100,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     cpf = models.CharField(verbose_name = "CPF", max_length = 14, unique = True)
     dataNascimento = models.DateField(verbose_name = "Data de nascimento", auto_now_add = False, auto_now = False, null = True, blank = True)
     genero = models.CharField(verbose_name = 'Genero', max_length = 1, choices = GENERO)
-    telefone = models.CharField(verbose_name = "Telefone", max_length = 14)
+    telefone = models.CharField(verbose_name = "Telefone", max_length = 16)
     cep = models.CharField(verbose_name = 'CEP', max_length = 9)
     cidade = models.ForeignKey(Cidade, on_delete = models.CASCADE, related_name = 'cidade_UsuarioFK', null = True, blank = True)
     bairro = models.CharField(verbose_name = 'Bairro', max_length = 100)

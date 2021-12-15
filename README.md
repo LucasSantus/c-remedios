@@ -98,6 +98,8 @@ python manage.py makemigrations usuarios
 
 python manage.py makemigrations receitas
 
+python manage.py makemigrations vinculos
+
 python manage.py makemigrations automated_logging
 
 python manage.py migrate
@@ -135,6 +137,8 @@ python manage.py makemigrations home
 python manage.py makemigrations usuarios
 
 python manage.py makemigrations receitas
+
+python manage.py makemigrations vinculos
 
 python manage.py makemigrations automated_logging
 

@@ -21,18 +21,6 @@ ou
 ```
   make il
 ```
-
-**Para rodar o projeto.**
-
-```
-  make r-linux
-```
-  
-ou
-  
-```
-  make rl
-```
   
 **Para migrar o banco de dados.**
   
