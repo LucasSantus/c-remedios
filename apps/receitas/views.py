@@ -51,17 +51,18 @@ def listar_receitas(request, id_medico_paciente):
 
 
 @login_required
-def registrar_receita(request, id_medicoPaciente):
-    objMedicoPaciente = MedicoPaciente.objects.get(pk=id_medicoPaciente)
+def registrar_receita(request, id_medico_paciente):
+    medico_paciente = MedicoPaciente.objects.get(pk=id_medico_paciente)
     
     form = ReceitaForm()
     if request.method == "POST":
         form = ReceitaForm(request.POST)
         if form.is_valid():
             receita = form.save(commit = False)
-            receita.medicoPaciente = objMedicoPaciente
+            receita.medico_paciente = medico_paciente
             receita.save()
-            messages.success(request, "Receita registrado com sucesso!")
+
+            messages.success(request, "Receita registrada com sucesso!")
             return redirect("ViewHome")
 
     context = {
