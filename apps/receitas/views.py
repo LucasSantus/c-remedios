@@ -41,10 +41,9 @@ def listar_remedios(request):
 def listar_receitas(request, id_medico_paciente):
     list_receitas = ReceitaMedicoPaciente.objects.select_related('medico_paciente', 'receita').filter(medico_paciente__id = id_medico_paciente)
     
-    print(list_receitas)
-
     context = {
         'list_receitas': list_receitas,
+        'id_medico_paciente': id_medico_paciente
     }
 
     return render(request, "receitas/receita/listar_receitas.html", context)
@@ -67,7 +66,8 @@ def registrar_receita(request, id_medico_paciente):
 
     context = {
         "form": form,
-        "action": "Registrar"
+        "action": "Registrar",
+        "id_medico_paciente": id_medico_paciente,
     }
 
     return render(request, "receitas/receita/registrar_receita.html", context)

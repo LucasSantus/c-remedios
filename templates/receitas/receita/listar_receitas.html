@@ -1,7 +1,63 @@
 {% extends "base.html" %}
 
+{% load usuario_extras %}
+
 {% block content %}
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top" href="{% url 'registrar_receita' id_medico_paciente %}">
+        <span class="material-icons">add</span>
+    </a>
 
-    {{list_receitas}}
+    {% if list_receitas %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card striped-tabled-with-hover">
+                    <div class="card-header pb-0">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="card-title text-muted">Receitas</h4>
+                            </div>
+                            <div class="col-sm-9 d-flex justify-content-end">
+                                <form class="form-inline">
+                                    <input class="form-control mr-sm-2" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body table-full-width table-responsive py-0">
+                        <table class="table table-striped pb-0 mb-0">
+                            <thead>
+                                <th>Paciente</th>
+                            </thead>
+                            <tbody class="list">
+                                {% for item in list_receitas %}
+                                    <tr>
+                                        <td><a href="{% url 'listar_receitas' item.id %}">{{item.receita}}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+            <div class="card">
+                <div class="card-body m-0">
+                    <span class="text-muted">No momento, não existem receitas registradas!</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}    
 
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#search').hideseek();
+        });
+    </script>
 {% endblock %}

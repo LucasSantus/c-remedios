@@ -1,36 +1,38 @@
 {% extends "base.html" %}
 
- 
+{% load bootstrap %}
 
 {% block content %}
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="container">
-                <div class="card z-depth-1 px-5">
-                    <div class='container center'>
-                        <h4 class="py-2">{{action}} Receita</h4>
-                    </div>
-                    <div class="container style-form">                 
-                        {{ form|materializecss }}
-                    </div>
+    <div class="row px-5 pt-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb border bg-white">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+        </nav>
+        <div class="col-md-12 border bg-white py-3">
+            <h3 class="text-muted">{{action}} Receita</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-4">{{form.remedio|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.data_inicio|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.intervalo|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.dosagem|bootstrap}}</div>
+                    <div class="col-sm-4">{{form.quantidade_dias|bootstrap}}</div>
 
-                    <div class="center text-right pb-3">
-                        <a href="{% url 'index' %}" class="btn bt-secondary text-white" type="button">
-                            <span class="text">Cancelar</span>
-                        </a>
-                        <button class="btn bt-primary" type="submit">
-                            <span class="text">{{action}}</span>
-                        </button>
+                    <div class="col-sm-12">
+                        <a href="{% url 'listar_receitas' id_medico_paciente %}" class="btn btn-secondary btn-fill">Cancelar</a>
+                        <button type="submit" class="btn btn-info btn-fill">{{action}}</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock content %}
 
 {% block javascript %}
-    <script>
+    <!-- <script>
         /* Inicialização do datepicker */
         $(document).ready(function(){
             $('.datepicker').datepicker({
@@ -58,5 +60,5 @@
             }); 
             $("#id_data_inicio").addClass('datepicker').attr("type","text");
         });
-    </script>
+    </script> -->
 {% endblock %}

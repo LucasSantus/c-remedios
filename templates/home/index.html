@@ -52,7 +52,7 @@
                 </div>
             </div>
         {% endif %}    
-    {%else%}
+    {% else %}
         {%for paciente in listPacientes%}
             <div class="card bg-light mb-3" style="max-width: 18rem;">
                 <div class="card-header">{{paciente.paciente.nome}}</div>
@@ -64,7 +64,7 @@
         {% endfor%}
         {{listPacientes}}
         <a href="{% url 'registrar_paciente' %}">cadastrar paciente</a>
-    {%endif%}   
+    {% endif %}   
 
 
     <!-- <div class="fixed-action-btn">

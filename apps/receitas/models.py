@@ -32,7 +32,7 @@ class Receita(models.Model):
         verbose_name_plural = "Receitas"
 
     def __str__(self):
-        return f"{self.medicoPaciente.paciente} - {self.remedio.nome}"
+        return f"{self.medico_paciente.paciente} - {self.remedio.nome}"
 
 class Agendamento(models.Model):
 
