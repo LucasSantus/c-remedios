@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario,Estado,Cidade
+from .models import *
 
 class CidadeAdmin(admin.ModelAdmin): 
     # list_filter = ['descricao']
@@ -9,3 +9,4 @@ class CidadeAdmin(admin.ModelAdmin):
 admin.site.register(Usuario)
 admin.site.register(Estado)
 admin.site.register(Cidade, CidadeAdmin)
+admin.site.register(MedicoPaciente)

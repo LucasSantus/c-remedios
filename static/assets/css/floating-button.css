@@ -12,12 +12,12 @@
     position: fixed;
     right: 2.25rem;
     bottom: 2.25rem;
-    width: 3.35rem;
-    height: 3.35rem;
+    width: 3rem;
+    height: 3rem;
     text-align: center;
     color: #fff;
     background-color: #eb440d;
-    /* border-radius: 80% !important; */
+    border-radius: 10% !important;
 }
 
 .scroll-to-top:focus{

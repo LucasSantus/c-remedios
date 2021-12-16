@@ -9,7 +9,7 @@
             <span class="material-icons">add</span>
         </a>
 
-        {% if listPacientes %}
+        {% if list_pacientes %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card striped-tabled-with-hover">
@@ -32,9 +32,9 @@
                                     <th>Paciente</th>
                                 </thead>
                                 <tbody class="list">
-                                    {% for paciente in listPacientes %}
+                                    {% for item in list_pacientes %}
                                         <tr>
-                                            <td>{{paciente.nome}}</td>
+                                            <td><a href="{% url 'listar_receitas' item.id %}">{{item.paciente.get_full_name}}</a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

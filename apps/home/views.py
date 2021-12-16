@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from apps.home.validate import RetornaGrupo
 from receitas.models import Receita
-from usuarios.models import MedicoPaciente
+from vinculos.models import MedicoPaciente
 from django.contrib.auth.decorators import login_required
 from project.settings import GPMedico, GPPaciente
 
@@ -54,10 +54,12 @@ def ViewHome(request):
 
 @login_required
 def ViewDashboardMedico(request):
-    listPacientes = MedicoPaciente.objects.filter(medico = request.user)
+    list_pacientes = MedicoPaciente.objects.filter(medico__id = request.user.id, is_active = True)
 
+    print(list_pacientes)
+    
     context = {
-        "listPacientes": listPacientes,
+        "list_pacientes": list_pacientes,
     }
 
     return render(request, "home/index.html", context)

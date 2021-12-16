@@ -38,7 +38,20 @@ def listar_remedios(request):
 
 # RECEITA
 @login_required
-def registrar_receita(request,id_medicoPaciente):
+def listar_receitas(request, id_medico_paciente):
+    list_receitas = ReceitaMedicoPaciente.objects.select_related('medico_paciente', 'receita').filter(medico_paciente__id = id_medico_paciente)
+    
+    print(list_receitas)
+
+    context = {
+        'list_receitas': list_receitas,
+    }
+
+    return render(request, "receitas/receita/listar_receitas.html", context)
+
+
+@login_required
+def registrar_receita(request, id_medicoPaciente):
     objMedicoPaciente = MedicoPaciente.objects.get(pk=id_medicoPaciente)
     
     form = ReceitaForm()
