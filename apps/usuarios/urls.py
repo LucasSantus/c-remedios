@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from .views import *
+from .ajax import AjaxRetornaCidade
 
 urlpatterns = [
     # SIGN UP
@@ -20,4 +21,7 @@ urlpatterns = [
     path('usuario/password/reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="usuarios/reset_password/reset-password-confirm.html"), name="password_reset_confirm"),
     path('usuario/password/reset/complete/', auth_views.PasswordResetCompleteView.as_view(template_name="usuarios/reset_password/reset-password-complete.html"), name="password_reset_complete"),
     path('usuario/password/reset/', auth_views.PasswordResetView.as_view(template_name="usuarios/reset_password/reset-password.html"), name="reset_password"),
+    #AJAX
+    path("usuario/ajax/retorna-cidade/", AjaxRetornaCidade, name="AjaxRetornaCidade"),
+
 ]

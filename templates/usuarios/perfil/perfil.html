@@ -21,8 +21,20 @@
                     <div class="col-sm-4">{{form.dataNascimento|bootstrap}}</div>
                     <div class="col-sm-4">{{form.genero|bootstrap}}</div>
                     <div class="col-sm-4">{{form.telefone|bootstrap}}</div>
+                    <div class="col-sm-4 ">
+                        <label class="control-label" for="id_estado">Estado: </label>
+                        <select id="id_estado" class="form-control">
+                            <option disabled value="" selected>Selecione um estado</option>
+                            {%for estado in listEstados%}
+                                <option value="{{estado.sigla}}">{{estado}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label" for="id_cidade">Cidade: </label>
+                        <select id="id_cidade" class="form-control"></select>
+                    </div>
                     <div class="col-sm-4">{{form.cep|bootstrap}}</div>
-                    <div class="col-sm-4">{{form.cidade|bootstrap}}</div>
                     <div class="col-sm-4">{{form.bairro|bootstrap}}</div>
                     <div class="col-sm-4">{{form.logradouro|bootstrap}}</div>
                     <div class="col-sm-4">{{form.complemento|bootstrap}}</div>
@@ -36,11 +48,42 @@
     </div>
 {% endblock %}
 
+{% block css%}
+    <style>
+        #id_estado{
+            padding: 8px 12px !important;
+            height: 40px !important;
+        }
+    </style>
+{% endblock%}
 
 {% block javascript %}
     <script>
         $(document).ready(function() {
+            $('#id_estado').select2();
             $('#id_cidade').select2();
+            $("#id_estado").change(function () {
+                var UF = $("#id_estado").val();
+                $.ajax({
+                    url: "{% url 'AjaxRetornaCidade' %}",
+                    data: {"UF":UF},
+                    dataType: 'json',
+                    success: function (cidade) {
+                        $("#id_cidade").removeAttr('disabled','req');
+                        var ObjCidade = $("#id_cidade");
+                        ObjCidade.select();
+                        //Limpa combo de objCidade
+                        ObjCidade.empty();
+                        
+                        ObjCidade.append('<option value=""selected disabled >Selecione uma cidade</option>');
+                        
+                        $.each(cidade, function() {
+                            ObjCidade.append('<option value="'+this.pk+'">'+this.fields.descricao+'</option>');
+                        });
+                        ObjCidade.trigger("chosen:updated");
+                    }
+                });
+            });
         });
     </script>
 {% endblock %}

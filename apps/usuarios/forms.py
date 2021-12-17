@@ -141,7 +141,7 @@ class PerfilForm(forms.ModelForm):
         model = Usuario
         fields = [
             "nome", "sobrenome", "email", "cpf", "dataNascimento", 
-            "genero", "telefone", "cep", "cidade", "bairro", 
+            "genero", "telefone", "cep", "bairro", 
             "logradouro", "complemento", "numeroResidencial",  
             ]
     

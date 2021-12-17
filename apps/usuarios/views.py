@@ -13,6 +13,7 @@ class SignUpView(CreateView):
 def perfil(request):
     objUser = request.user
     form = PerfilForm(instance=objUser)
+    listEstados = Estado.objects.all()
     
     if request.method == "POST":
         form = PerfilForm(request.POST,instance=objUser)
@@ -27,6 +28,8 @@ def perfil(request):
             print(form.errors.as_data)
     context = {
         "form" : form,
+        "listEstados":listEstados,
     }
 
     return render(request, "usuarios/perfil/perfil.html", context)
+
