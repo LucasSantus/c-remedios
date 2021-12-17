@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load usuario_extras %}
+
+{% block content %}
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top" href="{% url 'registrar_paciente' %}">
+        <span class="material-icons">add</span>
+    </a>
+    <div class="row px-3 d-flex justify-content-between">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active"><a>Dashboard</a></li>
+            </ol>
+        </nav>
+
+        <form class="form-inline justify-content-end pb-3">
+            <input class="form-control mr-sm-2" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
+        </form>
+    </div>
+    
+    {% if list_pacientes %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card striped-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <p class="card-category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive py-0">
+                        <table class="table table-striped pb-0 mb-0">
+                            <thead>
+                                <th>Paciente</th>
+                            </thead>
+                            <tbody class="list">
+                                {% for item in list_pacientes %}
+                                    <tr>
+                                        <td><a href="{% url 'listar_receitas' item.id %}">{{item.paciente.get_full_name}}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+            <div class="card">
+                <div class="card-body m-0">
+                    <span class="text-muted">No momento, não existem receitas registradas!</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}    
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#search').hideseek();
+        });
+    </script>
+{% endblock %}

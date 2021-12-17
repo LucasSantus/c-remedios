@@ -20,7 +20,11 @@ main {
 }
 
 .bg-orange{
-    background-color: #f96332;
+    background-color: #f96332 !important;
+}
+
+.bg-transparent{
+    background-color: transparent !important;
 }
 
 .bg-image::after {
@@ -39,3 +43,4 @@ main {
 .size-icon{
     font-size: 5px;
 }
+

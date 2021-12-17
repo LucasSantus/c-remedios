@@ -55,14 +55,10 @@ def ViewHome(request):
 @login_required
 def ViewDashboardMedico(request):
     list_pacientes = MedicoPaciente.objects.filter(medico__id = request.user.id, is_active = True)
-
-    print(list_pacientes)
-    
     context = {
         "list_pacientes": list_pacientes,
     }
-
-    return render(request, "home/index.html", context)
+    return render(request, "home/medico.html", context)
 
 @login_required
 def ViewDashboardPaciente(request):
