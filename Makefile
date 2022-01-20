@@ -16,7 +16,7 @@ update-pip:
 	python -m pip install --upgrade pip; \
 	pip install -r requirements.txt; \
 
-runserver:
+run:
 	$(MANAGE) runserver; \
 
 migrate: ## Migrate Models
@@ -27,8 +27,8 @@ migrate: ## Migrate Models
 	$(MANAGE) makemigrations automated_logging; \
 	$(MANAGE) migrate; \
 
-i-linux: linux update-pip migrate runserver ## Install Project Linux
-i-windows: windows update-pip migrate runserver ## Install Project Linux
+i-linux: linux update-pip migrate run ## Install Project Linux
+i-windows: windows update-pip migrate run ## Install Project Linux
 
 il: i-linux ## Abreviation Install Linux
 iw: i-windows ## Abreviation Install Windows

@@ -1,40 +1,126 @@
-/*  Example Floating Button
-    <a class="scroll-to-top rounded" href="#" style="display: inline; color: blue">
-        <span class="material-icons">add</span>
-    </a>
-*/
+/*
+ * Floating Button v1.0.0 (https://github.com/LucasSantus/floating-button)
+ * Copyright 2021 - Author LucasSantus
+ * GitHub LucasSantus - (https://github.com/LucasSantus)
+ * Documentation Floating Button - (https://oondev.github.io/components/floating-button/)
+ * Licensed under MIT (https://github.com/LucasSantus/floating-button/blob/main/LICENSE)
+ */
 
-.scroll-to-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    right: 2.25rem;
-    bottom: 2.25rem;
-    width: 3rem;
-    height: 3rem;
-    text-align: center;
-    color: #fff;
-    background-color: #eb440d;
-    border-radius: 10% !important;
+:root {
+    --primary: hsl(15, 81%, 56%);
+    --primary-hover: hsl(15, 81%, calc(56% * .85));
+    --primary-focus: hsl(15, 81%, calc(56% * .5));
+    --white: #FFF;
 }
 
-.scroll-to-top:focus{
+/* FLOATING BUTTON */
+.floating-button {
+    position: absolute;
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: 10%;
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: 0.1rem 0.1rem 0.1rem rgb(157, 150, 150);
+}
+
+/* FOCUS FLOATING BUTTON */
+.floating-button:focus {
+    color: var(--primary);
+    background-color: var(--primary-focus);
+    border: 1px solid var(--primary);
+}
+
+/* HOVER FLOATING BUTTON */
+.floating-button:hover {
+    background-color: var(--primary-hover);
     color: white;
-    background-color: #5c4036;
 }
 
-.scroll-to-top:hover {
-    background-color: #eb5422;
-}
-
-.scroll-to-top .material-icons {
+/* ICON FLOATING BUTTON */
+.floating-button .material-icons{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
     font-weight: 550;
+    color: var(--white);
+    font-size: 24px;
 }
 
-.scroll-to-top .material-icons{
-    color: rgb(255, 255, 255); 
-    line-height: 45px; 
-    font-size: 26px;
+/* POSITION FLOATING BUTTON */
+.floating-top-start{
+    position: fixed;
+    top: 2rem !important;
+    left: 2rem !important;
+}
+
+.floating-top-end{
+    position: fixed;
+    top: 2rem !important;
+    right: 2rem !important;
+}
+
+.floating-bottom-start{
+    position: fixed;
+    bottom: 2rem !important;
+    left: 2rem !important;
+}
+
+.floating-bottom-end{
+    position: fixed;
+    bottom: 2rem !important;
+    right: 2rem !important;
+}
+
+/* SIZE FLOATING BUTTON */
+.floating-xs{
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
+.floating-sm{
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.floating-lg{
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+.floating-xl{
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+}
+
+/* ICON SIZE FLOATING BUTTON */
+.floating-icon-xs{
+    font-size: 14px !important;
+}
+
+.floating-icon-sm{
+    font-size: 18px !important;
+}
+
+.floating-icon-lg{
+    font-size: 26px !important;
+}
+
+.floating-icon-xl{
+    font-size: 30px !important;
+}
+
+/* CIRCLE FLOATING BUTTON */
+.floating-circle{
+    border-radius: 50% !important;
+}
+
+/* TEXT FLOATING */
+.floating-button.floating-text{
+    width: auto !important;
+    height: auto !important;
+    padding: 0.6rem !important;
+    border-radius: 25vh !important;
 }

@@ -41,7 +41,6 @@ class Agendamento(models.Model):
         ("C", "Concluido"),
     ]
 
-
     nome = models.CharField(verbose_name = "Nome do Agendamento:",max_length=194)
     receita = models.ForeignKey(Receita, on_delete=models.CASCADE, verbose_name = "Receita:", related_name = 'receita_AgendamentoFK')
     horario_inicio = models.DateTimeField(verbose_name = "Horário inicio:",auto_now=False,blank=True,null=True)

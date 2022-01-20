@@ -9,7 +9,6 @@ main {
     flex: 1 0 auto;
 }
 
-
 .btn{
     cursor: pointer !important;
 }
@@ -44,3 +43,21 @@ main {
     font-size: 5px;
 }
 
+.btn-primary{
+    color:#fff;
+    background-color:#007bff;
+    border-color:#007bff
+}
+.btn-primary:hover{
+    color:#fff;
+    background-color:#0069d9;
+    border-color:#0062cc
+}
+.btn-primary.focus,.btn-primary:focus{
+    box-shadow:0 0 0 3px rgba(0,123,255,.5)
+}
+.btn-primary.disabled,.btn-primary:disabled{
+    background-color:#007bff;
+    border-color:#007bff
+}
+ 

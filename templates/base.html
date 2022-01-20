@@ -7,9 +7,7 @@
         <meta charset="utf-8" />
         <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
         <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.ico' %}">
-
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         
         <!-- Fonts and icons -->
@@ -17,17 +15,18 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-       
-        <!-- CSS Files -->
-        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/css/floating-button.css' %}" rel="stylesheet" />
+                
         <!-- Select 2  -->
         <link rel="stylesheet" href="{% static 'assets/css/Select2/select2.min.css' %}">
         
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{% static 'assets/css/demo.css' %}" rel="stylesheet" />
+
+        <!-- CSS Files -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/css/floating-button.css' %}" rel="stylesheet" />
 
         {% block css %}
         {% endblock %}
@@ -72,7 +71,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal" data-target="#myModal1" href="#pablo">
+                            <a class="nav-link" data-toggle="modal" data-target="#modal_logout" href="#">
                                 <i class="material-icons">person</i>
                                 <p>Sair</p>
                             </a>
@@ -88,8 +87,10 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Pacientes</a>
-
+                        <a class="navbar-brand" href="">
+                            {% block title_page %}
+                            {% endblock %}
+                        </a>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
@@ -102,9 +103,33 @@
                     </div>
                 </nav>
                 <!-- End Navbar -->
-                <div class="content">
+                <div class="content p-3">
+                    <div class="row px-3">
+                        {% block breadcrumb %}
+                        {% endblock %}
+                    </div>
                     {% block content %}
                     {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <div id="modal_logout" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Deseja continuar?</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted container">Selecione "Logout" abaixo se você estiver pronto para encerrar sua sessão atual.</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary ml-3">Logout</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +138,7 @@
         <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-body text-center px-4 m-0  ">
+                    <div class="modal-body text-center px-4 m-0">
                         <h4>Deseja continuar?</h4>
                         <p class="text-muted text-justify">Selecione "Logout" abaixo se você estiver pronto para encerrar sua sessão atual.</p>
                     </div>
