@@ -13,4 +13,4 @@ class ReceitaMedicoPaciente(models.Model):
         app_label = 'vinculos'
 
     def __str__(self):
-        return str(self.medico) + " - " + str(self.paciente)
+        return str(self.medico_paciente) + " - " + str(self.receita)

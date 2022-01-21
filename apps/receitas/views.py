@@ -39,10 +39,24 @@ def listar_remedios(request):
 # RECEITA
 @login_required
 def listar_receitas(request, id_medico_paciente):
-    list_receitas = ReceitaMedicoPaciente.objects.select_related('medico_paciente', 'receita').filter(medico_paciente__id = id_medico_paciente)
+    listReceitaMedicoPaciente = ReceitaMedicoPaciente.objects.select_related('medico_paciente', 'receita').filter(medico_paciente__id = id_medico_paciente)
+    listReceitaAgendamento = []
+    for objReceitaMedicoPaciente in listReceitaMedicoPaciente:
+        
+        try:
+            objAgendamento = Agendamento.objects.get(receita = objReceitaMedicoPaciente.receita)
+        except Agendamento.DoesNotExist:
+            objAgendamento = None
+        
+        obj = {
+            "objReceitaMedicoPaciente":objReceitaMedicoPaciente,
+            "objAgendamento " : objAgendamento
+        }
+        
+        listReceitaAgendamento.append(obj)
     
     context = {
-        'list_receitas': list_receitas,
+        'listReceitaAgendamento': listReceitaAgendamento,
         'id_medico_paciente': id_medico_paciente
     }
 
@@ -57,10 +71,8 @@ def registrar_receita(request, id_medico_paciente):
     if request.method == "POST":
         form = ReceitaForm(request.POST)
         if form.is_valid():
-            receita = form.save(commit = False)
-            receita.medico_paciente = medico_paciente
-            receita.save()
-
+            objReceita = form.save()
+            ReceitaMedicoPaciente(medico_paciente = medico_paciente,receita=objReceita).save()
             messages.success(request, "Receita registrada com sucesso!")
             return redirect("ViewHome")
 
@@ -107,10 +119,12 @@ def dosagem_usuario(request,id_receita):
                 objHorario = Horario_Agendamento.objects.get(pk=idObjHorario)
                 objHorario.concluido = True
                 objHorario.save()
+                if objHorario.agendamento.status == "E":
+                    objHorario.agendamento.status = "A"
+                    objHorario.agendamento.save()
                 if objHorario == Horario_Agendamento.objects.filter(agenda_receita=objAgendaReceita).last():
-                    objAgendaReceita.concluido = True
+                    objAgendaReceita.status = "C"
                     objAgendaReceita.save()
-            
 
             return redirect("registrar_receita")
 
