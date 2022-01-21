@@ -7,18 +7,21 @@
 {% endblock %}
 
 {% block breadcrumb %}
+    <!-- BEGIN: Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white">
             <li class="breadcrumb-item active"><a>Dashboard</a></li>
         </ol>
     </nav>
+    <!-- END: Breadcrumb -->
 {% endblock %}
 
 {% block content %}
-
+    <!-- BEGIN: Floating Button -->
     <a class="floating-button floating-bottom-end floating-lg floating-circle" href="{% url 'registrar_paciente' %}">
         <span class="material-icons">add</span>
     </a>
+    <!-- END: Floating Button -->
 
 <!-- 
     <div class="row px-3 d-flex justify-content-between">

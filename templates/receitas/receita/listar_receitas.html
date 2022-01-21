@@ -2,11 +2,22 @@
 
 {% load usuario_extras %}
 
+{% block breadcrumb %}
+    <!-- BEGIN: Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item active"><a>Dashboard</a></li>
+        </ol>
+    </nav>
+    <!-- END: Breadcrumb -->
+{% endblock %}
+
 {% block content %}
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top" href="{% url 'registrar_receita' id_medico_paciente %}">
+    <!-- BEGIN: Floating Button -->
+    <a class="floating-button floating-bottom-end floating-lg floating-circle" href="{% url 'registrar_receita' id_medico_paciente %}">
         <span class="material-icons">add</span>
     </a>
+    <!-- END: Floating Button -->
 
     {% if list_receitas %}
         <div class="row">
