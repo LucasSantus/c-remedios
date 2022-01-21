@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from apps.home.validate import RetornaGrupo
 from receitas.models import Receita
-from vinculos.models import MedicoPaciente
+from vinculos.models import MedicoPaciente, ReceitaMedicoPaciente
 from django.contrib.auth.decorators import login_required
 from project.settings import GPMedico, GPPaciente
 
@@ -62,24 +62,13 @@ def ViewDashboardMedico(request):
 
 @login_required
 def ViewDashboardPaciente(request):
-    receitas = Receita.objects.filter(medicoPaciente__paciente = request.user).order_by("-pk")
-    listReceitas = []
-    
-    for receita in receitas:
-        try:
-            agendamento = Agendamento.objects.filter(receita = receita)
-        except Agendamento.DoesNotExist:
-            agendamento = None
-            
-        obj = {
-            "receita": receita,
-            "Agendamento": agendamento,
-        }
-
-        listReceitas.append(obj)
+    try:
+        ListReceitaMedicoPaciente = ReceitaMedicoPaciente.objects.filter(medico_paciente__paciente = request.user)
+    except Receita.DoesNotExist:
+        ListReceitaMedicoPaciente = None
 
     context = {
-        "listReceitas": listReceitas,
+        "ListReceitaMedicoPaciente": ListReceitaMedicoPaciente,
     }
 
     return render(request, "home/index.html", context)

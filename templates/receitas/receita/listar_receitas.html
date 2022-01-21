@@ -44,7 +44,7 @@
                             <tbody class="list">
                                 {% for item in listReceitaAgendamento %}
                                     <tr>
-                                        <td><a href="{% url 'listar_receitas' item.objReceitaMedicoPaciente.receita.id %}">{{item.objReceitaMedicoPaciente.receita}}</a></td>
+                                        <td><a href="{% url 'detalhe_receita_paciente' item.objReceitaMedicoPaciente.id %}">{{item.objReceitaMedicoPaciente.receita}}</a></td>
                                         <td>Status:
                                             {% if item.objAgendamento %} 
                                                 {{item.objAgendamento.get_status_display}}

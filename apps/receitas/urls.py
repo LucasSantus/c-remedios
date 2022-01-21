@@ -5,6 +5,8 @@ from .views import *
 urlpatterns = [
     # RECEITA
     path("receita/registrar/<int:id_medico_paciente>", registrar_receita, name="registrar_receita"),
+    path("receita/detalhe/agendamento/<int:id_receitaMedicoPaciente>", detalhe_receita_paciente, name="detalhe_receita_paciente"),
+    
 
     # REMÉDIO
     path("remedio/registrar/", registrar_remedio, name="registrar_remedio"),
