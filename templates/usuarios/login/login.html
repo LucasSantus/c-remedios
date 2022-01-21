@@ -9,13 +9,11 @@ Login | C Remédios
 {% endblock %}
 
 {% block content %}
-    <div class="d-flex align-items-center h-100">
-        <form method="POST" class="form-signin">
+    <div class="d-flex align-items-center h-100 p-2">
+        <form method="POST" class="form-signin border px-5 rounded bg-white">
             {% csrf_token %}
-
-            <div class="typography-line">
-                <span class="text-muted text-center pb-5"><h1>Conectar-se ao sistema</h1></span>
-            </div>
+            
+            <span class="text-muted text-center"><h3>LOG IN</h3></span>
 
             {{form|bootstrap}}
 

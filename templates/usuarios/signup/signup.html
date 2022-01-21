@@ -9,62 +9,65 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center">
-    <div class="card w-75">
-        <div class="card-body">
-            <div class="typography-line">
-                <span class="text-muted text-center pb-5"><h1>Criar conta</h1></span>
+    <div class="d-flex align-items-center h-100 p-2">
+        <form method="POST" class="form-signup border px-5 rounded bg-white">
+            {% csrf_token %}
+            <span class="text-muted text-center"><h3>REGISTRAR</h3></span>
+
+            <div class="col-12">{{form.nome|bootstrap}}</div>
+            <div class="col-12">{{form.sobrenome|bootstrap}}</div>
+            <div class="col-12">{{form.cpf|bootstrap}}</div>
+            <div class="col-12">{{form.dataNascimento|bootstrap}}</div>
+
+            <div class="col-12">{{form.email|bootstrap}}</div>
+            
+            <div class="col-12">{{form.telefone|bootstrap}}</div>
+
+            <div class="col-12">{{form.genero|bootstrap}}</div>
+            <div class="col-12">{{form.cep|bootstrap}}</div>
+            
+            <div class="col-12">{{form.bairro|bootstrap}}</div>
+            <div class="col-12">{{form.logradouro|bootstrap}}</div>
+
+            <div class="col-12">{{form.cidade|bootstrap}}</div>
+            <div class="col-12">{{form.complemento|bootstrap}}</div>
+            <div class="col-12">{{form.numeroResidencial|bootstrap}}</div>
+            <div class="row col-12 p-0 m-0">
+                <div class="col-12">{{form.password|bootstrap}}</div>
+                <div class="col-12">{{form.confirm_password|bootstrap}}</div>
             </div>
-            <form method="POST">
-                <div class="row p-4">
-                    {% csrf_token %}
-                    <div class="col-12 col-sm-6">{{form.nome|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.sobrenome|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.cpf|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.dataNascimento|bootstrap}}</div>
-
-                    <div class="col-12 col-sm-6">{{form.email|bootstrap}}</div>
-                    
-                    <div class="col-12 col-sm-6">{{form.telefone|bootstrap}}</div>
-
-                    <div class="col-12 col-sm-6">{{form.genero|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.cep|bootstrap}}</div>
-                    
-                    <div class="col-12 col-sm-6">{{form.bairro|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.logradouro|bootstrap}}</div>
-
-                    <div class="col-12 col-sm-6">{{form.cidade|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.complemento|bootstrap}}</div>
-                    <div class="col-12 col-sm-6">{{form.numeroResidencial|bootstrap}}</div>
-                    <div class="row col-12 p-0 m-0">
-                        <div class="col-12 col-sm-6">{{form.password|bootstrap}}</div>
-                        <div class="col-12 col-sm-6">{{form.confirm_password|bootstrap}}</div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check form-switch ms-3">
-                            <input class="form-check-input" type="checkbox" id="check_sign">
-                            <label class="form-check-label" for="check_sign">Mostrar senha</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-flex justify-content-center">
-                            <div class="w-25">
-                                <button class="btn col-12 btn-primary btn-md" type="submit">Login</button>
-                            </div>
-                        </div>
-                        <div class="pt-2">
-                            <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
-                        </div>  
-
-                        <div class="pt-2">
-                            <a class="small" href="{% url 'login' %}">Já possuí conta? Logar!</a>
-                        </div>
+            <div class="col-12">
+                <div class="form-check form-switch ms-3">
+                    <input class="form-check-input" type="checkbox" id="check_sign">
+                    <label class="form-check-label" for="check_sign">Mostrar senha</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-center">
+                    <div class="w-25">
+                        <button class="btn col-12 btn-primary btn-md" type="submit">Login</button>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="pt-2">
+                    <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
+                </div>  
+
+                <div class="pt-2">
+                    <a class="small" href="{% url 'login' %}">Já possuí conta? Logar!</a>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
+{% endblock %}
+
+{% block css %}
+    <style>    
+        .form-signup {
+            width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+        } 
+    </style>
 {% endblock %}
 
 {% block javascript %}
