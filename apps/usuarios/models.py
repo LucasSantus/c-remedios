@@ -138,7 +138,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         return str(self.nome + " " + self.sobrenome)
 
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('ViewHome')
         # return reverse('index', args=[str(self.id)]) CASO NECESSITASSE PASSAR ID
 
     def __str__(self):

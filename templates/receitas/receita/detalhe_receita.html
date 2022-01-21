@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load usuario_extras %}
+
+{% block breadcrumb %}
+    <!-- BEGIN: Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item active"><a>Dashboard</a></li>
+        </ol>
+    </nav>
+    <!-- END: Breadcrumb -->
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% if objAgendamento %}
+            {%for horario in listHorarios%}
+                {% if horario.concluido %}
+                    tomei sapoha {{horario}} 
+                {% else %}
+                    Não tomei sapoha {{horario}} 
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            O paciente ainda não iniciou as dosagens!
+        {% endif %}
+
+    </div>
+    
+
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            
+        });
+    </script>
+{% endblock %}

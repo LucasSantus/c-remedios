@@ -235,3 +235,21 @@ def registrar_paciente(request):
 
     return render(request, "receitas/paciente/cadastrar-paciente.html", context)
 
+@login_required
+def detalhe_receita_paciente(request,id_receitaMedicoPaciente):
+    objReceitaMedicoPaciente = ReceitaMedicoPaciente.objects.get(pk=id_receitaMedicoPaciente)
+    listHorarios = []
+    try:
+        objAgendamento = Agendamento.objects.get(receita=objReceitaMedicoPaciente.receita)
+        listHorarios = Horario_Agendamento.objects.filter(agendamento = objAgendamento)
+    except Agendamento.DoesNotExist:
+        objAgendamento = None
+
+    context = {
+        "objAgendamento": objAgendamento,
+        "listHorarios":listHorarios,
+        "action": "registrar paciente"
+    }
+
+    return render(request, "receitas/receita/detalhe_receita.html", context)
+
