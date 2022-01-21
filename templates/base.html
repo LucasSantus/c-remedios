@@ -61,19 +61,23 @@
 
                         <li class="nav-item 
                             {% if url_active %} 
+                                {% if url_active == 'remedio' %}active{% endif %}
+                            {% endif %}
+                        ">
+                            <a class="nav-link" href="#">
+                                <i class="material-icons">health_and_safety</i>
+                                <p>Remédios</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item 
+                            {% if url_active %} 
                                 {% if url_active == 'usuario' %}active{% endif %}
                             {% endif %}
                         ">
                             <a class="nav-link" href="{% url 'perfil' %}">
                                 <i class="material-icons">person</i>
                                 <p>Perfil</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal" data-target="#modal_logout" href="#">
-                                <i class="material-icons">person</i>
-                                <p>Sair</p>
                             </a>
                         </li>
                     </ul>
