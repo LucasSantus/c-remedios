@@ -20,6 +20,7 @@ class Remedio(models.Model):
         return self.nome
 
 class Receita(models.Model):
+
     remedio = models.ForeignKey(Remedio, on_delete = models.CASCADE , verbose_name = "Remédio", related_name = 'remedio_ReceitaFK')
     intervalo = models.FloatField(verbose_name = "Intervalo")
     quantidade_dias = models.PositiveIntegerField(verbose_name = "Quantidade de dias", default = 0)
@@ -32,11 +33,12 @@ class Receita(models.Model):
         verbose_name_plural = "Receitas"
 
     def __str__(self):
-        return f"{self.medico_paciente.paciente} - {self.remedio.nome}"
+        return f"{self.remedio.nome}"
 
 class Agendamento(models.Model):
 
     STATUS =[
+        ("E", "Espera"),
         ("A", "Andamento"),
         ("C", "Concluido"),
     ]
@@ -45,7 +47,7 @@ class Agendamento(models.Model):
     receita = models.ForeignKey(Receita, on_delete=models.CASCADE, verbose_name = "Receita:", related_name = 'receita_AgendamentoFK')
     horario_inicio = models.DateTimeField(verbose_name = "Horário inicio:",auto_now=False,blank=True,null=True)
     horario_termino = models.DateTimeField(verbose_name = "Horário término:",auto_now=False,blank=True,null=True)
-    status = models.CharField(verbose_name = 'statusAgendamento', max_length = 1, choices = STATUS,default="A")
+    status = models.CharField(verbose_name = 'statusAgendamento', max_length = 1, choices = STATUS,default="E")
     reajuste = models.BooleanField(verbose_name = "Reajuste:",null=True)
     data_registrado = models.DateTimeField(verbose_name = "Horário do registro", auto_now_add = True)
 

@@ -19,7 +19,7 @@
     </a>
     <!-- END: Floating Button -->
 
-    {% if list_receitas %}
+    {% if listReceitaAgendamento %}
         <div class="row">
             <div class="col-md-12">
                 <div class="card striped-tabled-with-hover">
@@ -42,9 +42,16 @@
                                 <th>Paciente</th>
                             </thead>
                             <tbody class="list">
-                                {% for item in list_receitas %}
+                                {% for item in listReceitaAgendamento %}
                                     <tr>
-                                        <td><a href="{% url 'listar_receitas' item.id %}">{{item.receita}}</a></td>
+                                        <td><a href="{% url 'listar_receitas' item.objReceitaMedicoPaciente.receita.id %}">{{item.objReceitaMedicoPaciente.receita}}</a></td>
+                                        <td>Status:
+                                            {% if item.objAgendamento %} 
+                                                {{item.objAgendamento.get_status_display}}
+                                            {% else %}
+                                                Espera
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
