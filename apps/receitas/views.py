@@ -154,9 +154,11 @@ def configura_horario_dosagem(request,id_receita):
         if request.POST:
             data_de_inicio = request.POST.get('data_de_inicio', None)  
             if data_de_inicio:       
-                horario_inicio_remedio=datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')    
-                Agendamento(receita = objReceita, data_inicio = horario_inicio_remedio,
-                    data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)).save()
+                horario_inicio_remedio=datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')
+                    
+                objAgenda_receita = Agendamento(receita = objReceita, horario_inicio = horario_inicio_remedio,
+                    horario_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias))
+                objAgenda_receita.save()
 
                 Horario_Agendamento(agendamento=objAgenda_receita,horario=horario_inicio_remedio).save()
 
@@ -182,8 +184,8 @@ def configura_horario_dosagem(request,id_receita):
             if data_de_inicio:        
                 horario_inicio_remedio=datetime.datetime.strptime(data_de_inicio,'%Y-%m-%d %H:%M')    
                 objAgenda_receita.reajuste = True
-                objAgenda_receita.data_inicio = horario_inicio_remedio 
-                objAgenda_receita.data_de_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
+                objAgenda_receita.horario_inicio = horario_inicio_remedio 
+                objAgenda_receita.horario_termino = horario_inicio_remedio + timezone.timedelta(days=objReceita.quantidade_dias)
                 objAgenda_receita.save()
                 
                 objHorario = Horario_Agendamento(agendamento = objAgenda_receita, horario = horario_inicio_remedio).save()

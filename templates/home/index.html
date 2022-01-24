@@ -43,10 +43,15 @@
             </div>
         {% endif %}    
     {% else %}
-        {% if ListReceitaMedicoPaciente %}
-            {%for ReceitaMedicoPaciente in ListReceitaMedicoPaciente%}
+        {% if listReceitaAgendamento %}
+            {%for objReceitaAgendamento in listReceitaAgendamento%}
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">{{ReceitaMedicoPaciente.receita}}</div>
+                    <div class="card-header">{{objReceitaAgendamento.objReceitaMedicoPaciente.receita}}</div>
+                    {% if objReceitaAgendamento.objAgendamento %}
+                        <a href="{% url 'dosagem_usuario' objReceitaAgendamento.objReceitaMedicoPaciente.receita.id %}" >aqui nois tem </a>
+                    {% else %}
+                        <a href="{% url 'configura_horario_dosagem' objReceitaAgendamento.objReceitaMedicoPaciente.receita.id %}" >não tem horarios e nem agendamento</a>
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">Light card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

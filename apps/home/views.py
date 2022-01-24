@@ -62,13 +62,28 @@ def ViewDashboardMedico(request):
 
 @login_required
 def ViewDashboardPaciente(request):
+    listReceitaAgendamento = []
     try:
-        ListReceitaMedicoPaciente = ReceitaMedicoPaciente.objects.filter(medico_paciente__paciente = request.user)
+        listReceitaMedicoPaciente = ReceitaMedicoPaciente.objects.filter(medico_paciente__paciente = request.user)
+        
+        for objReceitaMedicoPaciente in listReceitaMedicoPaciente:
+            try:
+                objAgendamento = Agendamento.objects.get(receita = objReceitaMedicoPaciente.receita)
+            except Agendamento.DoesNotExist:
+                objAgendamento = None
+            obj = {
+                "objReceitaMedicoPaciente":objReceitaMedicoPaciente,
+                "objAgendamento":objAgendamento
+            }
+
+            listReceitaAgendamento.append(obj)
+
     except Receita.DoesNotExist:
-        ListReceitaMedicoPaciente = None
+        listReceitaMedicoPaciente = None
+
 
     context = {
-        "ListReceitaMedicoPaciente": ListReceitaMedicoPaciente,
+        "listReceitaAgendamento": listReceitaAgendamento,
     }
 
     return render(request, "home/index.html", context)
