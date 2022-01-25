@@ -2,31 +2,20 @@
 
 {% load static %}
 
- 
-
 {% block title %}
-  Logout | Sign UP
+  Logout | C Remedios
 {% endblock %}
 
 {% block content %}
+    <div class="d-flex align-items-center h-100 p-2">
+        <div method="POST" class="form-signin border px-4 rounded bg-white">
+            <span class="text-muted text-center"><h3>Logout</h3></span>
 
-  <div class="item-center container center">
-    <div class="container">
-      <div class="container">
-        <div class="card p-3 z-depth-4">
-          <div class="container">
-            <div class="center">
-              <h5>Para o próximo!</h5>
-            </div>
-            <div class="center">
-                <p>Você optou por sair do painel, se preferir fazer o login novamente, basta clicar no botão abaixo para retornar à página de login.</p>
-                <a href="{% url 'login' %}" class="btn bt-primary">
-                    <span class="text">LOGAR</span>
-                </a>
-            </div>
-          </div>
+            <article class="fs-6 text-justify p-2">
+               Você optou por sair do painel, se preferir fazer o login novamente, basta clicar no botão "LOG IN" abaixo para retornar à página de login.
+            </article>
+            
+            <a href="{% url 'login' %}" class="btn btn-md btn-primary btn-block" type="submit">LOG IN</a>
         </div>
-      </div>
     </div>
-  </div>
 {% endblock %}

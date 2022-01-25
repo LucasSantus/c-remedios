@@ -1,0 +1,335 @@
+:root {
+    --primary: #f96332;
+    --primary-hover: #fa4e15;
+    --secondary: #fc7143;
+    --secondary-hover: #fc6837;
+    --white: #FFF;
+    --white-hover: rgb(218, 218, 218);
+    --dark: #000;
+    --text: #6c757d;
+    --date-hover: #e8e8e8;
+    --date-hover: #bdbcbc;
+}
+
+.dtp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dtp > .dtp-content {
+    background-color: var(--white);
+    color: var(--secondary);
+    max-width: 300px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    height: 540px;
+    position: relative;
+    left: 50%;
+    border-radius: 18px;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: .9em;
+    border-radius: 12px 12px 0 0;
+}
+
+.dtp div.dtp-date, .dtp div.dtp-time {
+    background: var(--secondary);
+    text-align: center;
+    color: var(--white);
+    padding: 10px;
+}
+
+.dtp div.dtp-date > div {
+    padding: 0;
+    margin: 0;
+}
+
+.dtp div.dtp-actual-month {
+    font-size: 1.5em;
+}
+
+.dtp div.dtp-actual-num {
+    font-size: 3em;
+    line-height: 0.9;
+}
+
+.dtp div.dtp-actual-maxtime {
+    font-size: 3em;
+    line-height: 0.9;
+}
+
+.dtp div.dtp-actual-year {
+    font-size: 1.5em;
+    color: var(--white);
+}
+
+.dtp div.dtp-actual-year:hover {
+    font-size: 1.5em;
+    color: var(--white-hover);
+}
+
+.dtp div.dtp-picker {   
+    height: 100%;
+    padding: .2rem;
+    text-align: center;
+}
+
+.dtp div.dtp-picker-month, .dtp div.dtp-actual-time {
+    font-weight: 500;
+    text-align: center;
+}
+
+.dtp div.dtp-picker-month {
+    padding-bottom: 4px !important;
+    text-transform: capitalize !important;
+}
+
+.dtp .dtp-close {
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+}
+
+.dtp .dtp-close > a {
+    color: var(--white);
+}
+
+.dtp .dtp-close > a > i {
+    font-size: 18px;
+    line-height: 33px;
+    font-weight: 500;
+}
+
+.dtp .dtp-close > a > i:hover{
+    color: var(--white-hover);
+}
+
+.dtp table.dtp-picker-days {
+    margin: 0;
+    min-height: 251px;
+}
+
+.dtp table.dtp-picker-days, .dtp table.dtp-picker-days tr, .dtp table.dtp-picker-days tr > td {
+    border: none;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+    padding: 7px !important;
+    border-radius: 100% !important;
+    font-weight: bold !important;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected:hover{
+    background-color: var(--primary-hover) !important;
+}
+
+.dtp-select-day{
+    color: var(--text) !important;
+    padding: 7px !important;
+    border-radius: 50% !important;
+    font-weight: 300 !important;
+}
+
+.dtp-select-day:hover{
+    background-color: var(--date-hover) !important;
+    color: var(--text) !important;
+}
+
+.dtp table.dtp-picker-days tr > td {
+    font-weight: 700;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 0.5em 0.3em;
+}
+
+.dtp table.dtp-picker-days tr > td > a, .dtp .dtp-picker-time > a {
+    color: #212121;
+    text-decoration: none;
+    padding: 0.4em 0.5em 0.5em 0.6em;
+    border-radius: 50% !important;
+}
+
+.dtp table.dtp-picker-days tr > th {
+    color: var(--text);
+    text-align: center;
+    font-weight: 500;
+    padding: 0.4em 0.3em;
+}
+
+.dtp .p10 > a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.dtp .p10 > a:hover{
+    color: var(--white-hover);
+}
+
+.dtp .p10 {
+    width: 10%;
+    display: inline-block;
+}
+
+.dtp .p20 {
+    width: 20%;
+    display: inline-block;
+}
+
+.dtp .p60 {
+    width: 60%;
+    display: inline-block;
+}
+
+.dtp .p80 {
+    width: 80%;
+    display: inline-block;
+}
+
+.dtp a.dtp-meridien-am, .dtp a.dtp-meridien-pm {
+    position: relative;
+    top: 10px;
+    color: var(--dark);
+    font-weight: 500;
+    padding: 0.7em 0.5em;
+    border-radius: 50%!important;
+    text-decoration: none;
+    background-color: var(--white-hover);
+    font-size: 1em;
+}
+
+.dtp .dtp-actual-meridien a.selected {
+    background: var(--primary);
+    color: #fff;
+}
+
+.dtp .dtp-picker-time > .dtp-select-hour {
+    cursor: pointer;
+}
+
+.dtp .dtp-picker-time > .dtp-select-minute {
+    cursor: pointer;
+}
+
+.dtp .dtp-buttons {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.dtp.hidden, .dtp .hidden {
+    display: none;
+}
+
+.dtp .invisible {
+    visibility: hidden;
+}
+
+.dtp .left {
+    float: left;
+}
+
+.dtp .right {
+    float: right;
+}
+
+.dtp .clearfix {
+    clear: both;
+}
+
+.dtp .center {
+    text-align: center;
+}
+
+.dtp-picker-year{
+    margin-bottom: 1px;
+}
+
+.dtp-actual-year:hover{
+    cursor: pointer;
+}
+
+.dtp-actual-year.disabled:hover{
+    cursor: inherit;
+}
+
+.year-picker-item{
+    text-align: center;
+    padding-top: 5px;
+    font-size: large;
+    cursor: pointer;
+    margin: 0 auto;
+    color: var(--text) !important;
+}
+
+.year-picker-item:hover{
+    color: var(--secondary) !important;
+}
+
+.year-picker-item.active{
+    color: var(--secondary) !important;
+    font-weight: bold !important;
+}
+
+.year-picker-item.active:hover{
+    color: var(--secondary-hover) !important;
+}
+
+.dtp-picker-year a.dtp-select-year-range{
+    background-color: var(--white) !important;
+    color: var(--text) !important;
+}
+
+.dtp-picker-year a.dtp-select-year-range:hover{
+    color: var(--secondary-hover) !important;
+}
+
+.dtp-select-year-range{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.table > thead > tr > th {
+    vertical-align: bottom !important;
+    border-bottom: none !important;
+}
+
+.dtp-btn-now,
+.dtp-btn-clear,
+.dtp-btn-cancel,
+.dtp-btn-ok{
+    color: var(--text) !important;
+    background-color: var(--white) !important;
+    border-radius: 18px;
+}
+
+.dtp-btn-now:focus,
+.dtp-btn-clear:focus,
+.dtp-btn-cancel:focus,
+.dtp-btn-ok:focus{
+    border: none;
+}
+
+.dtp-btn-now:hover,
+.dtp-btn-clear:hover,
+.dtp-btn-cancel:hover,
+.dtp-btn-ok:hover{
+    color: var(--primary-hover) !important;
+}

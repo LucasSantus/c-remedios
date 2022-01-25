@@ -9,58 +9,36 @@
 {% endblock %}
 
 {% block content %}
-    <div class="d-flex align-items-center h-100 p-2">
+    <div class="d-flex align-items-center h-100 w-100 p-2">
         <form method="POST" class="form-signup border px-5 rounded bg-white">
             {% csrf_token %}
             <span class="text-muted text-center"><h3>REGISTRAR</h3></span>
-
-            <div class="col-12">{{form.nome|bootstrap}}</div>
-            <div class="col-12">{{form.sobrenome|bootstrap}}</div>
-            <div class="col-12">{{form.cpf|bootstrap}}</div>
-            <div class="col-12">{{form.dataNascimento|bootstrap}}</div>
-
-            <div class="col-12">{{form.email|bootstrap}}</div>
-            
-            <div class="col-12">{{form.telefone|bootstrap}}</div>
-
-            <div class="col-12">{{form.genero|bootstrap}}</div>
-            <div class="col-12">{{form.cep|bootstrap}}</div>
-            
-            <div class="col-12">{{form.bairro|bootstrap}}</div>
-            <div class="col-12">{{form.logradouro|bootstrap}}</div>
-
-            <div class="col-12">{{form.cidade|bootstrap}}</div>
-            <div class="col-12">{{form.complemento|bootstrap}}</div>
-            <div class="col-12">{{form.numeroResidencial|bootstrap}}</div>
-            <div class="row col-12 p-0 m-0">
-                <div class="col-12">{{form.password|bootstrap}}</div>
-                <div class="col-12">{{form.confirm_password|bootstrap}}</div>
+                
+            {{form|bootstrap}}
+    
+            <div class="form-check form-switch ms-3">
+                <input class="form-check-input" type="checkbox" id="check_sign">
+                <label class="form-check-label" for="check_sign">Mostrar senha</label>
             </div>
-            <div class="col-12">
-                <div class="form-check form-switch ms-3">
-                    <input class="form-check-input" type="checkbox" id="check_sign">
-                    <label class="form-check-label" for="check_sign">Mostrar senha</label>
-                </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-block btn-primary" type="submit">Registrar</button>
             </div>
-            <div class="col-12">
-                <div class="d-flex justify-content-center">
-                    <div class="w-25">
-                        <button class="btn col-12 btn-primary btn-md" type="submit">Login</button>
-                    </div>
-                </div>
-                <div class="pt-2">
-                    <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
-                </div>  
+            <div class="pt-2">
+                <a class="small" href="{% url 'reset_password' %}">Esqueceu a senha?</a>
+            </div>  
 
-                <div class="pt-2">
-                    <a class="small" href="{% url 'login' %}">Já possuí conta? Logar!</a>
-                </div>
+            <div class="pt-2">
+                <a class="small" href="{% url 'login' %}">Já possuí conta? Logar!</a>
             </div>
         </form>
     </div>
 {% endblock %}
 
 {% block css %}
+    <!-- Import CSS DatePicker & TimePicker -->
+    <link rel="stylesheet" href="{% static 'css/datetimepicker/datetimepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/datetimepicker/styles.css' %}">
+
     <style>    
         .form-signup {
             width: 100%;
@@ -70,14 +48,29 @@
     </style>
 {% endblock %}
 
-{% block javascript %}
+{% block script %}
+    <!-- Import DatePicker & TimePicker -->
+    <script src="{% static 'js/datetimepicker/moment.min.js' %}"></script>
+    <script src="{% static 'js/datetimepicker/datetimepicker.js' %}"></script>
+
     <!-- Inicialização da Página -->
     <script>
         $(document).ready(function(){
+            $(".form-control").attr("required", false);
+
             // JQuery Mask
             $("#id_cpf").mask("000.000.000-00");
             $("#id_telefone").mask("(00) 0 0000-0000");
             $("#id_cep").mask("00000-000");
+
+            $('#id_dataNascimento').bootstrapMaterialDatePicker({
+                weekStart : 0, 
+                format: "DD/MM/YYYY",
+                time: false,
+                lang: 'pt-br',
+                okText: 'Confirmar',
+                cancelText: 'Cancelar',
+            });
 
             // Iniciar como type password 
             $("#id_password").attr("type", "password");
@@ -106,11 +99,11 @@
             var confirm_password = $("#id_confirm_password").val();
             var password_size = password.length;
 
-            let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,16}$/;
+            let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{4,16}$/;
 
             if (password != "" && confirm_password != "" && password === confirm_password){
-                if(password_size < 8){
-                    notification('danger', 'Ops! Ocorreu algum erro...', 'Quantidade mínima de caracteres: 8') //success, info, warning, danger
+                if(password_size < 4){
+                    notification('danger', 'Ops! Ocorreu algum erro...', 'Quantidade mínima de caracteres: 4') //success, info, warning, danger
                 }
                 else if(password_size > 16){
                     notification('danger', 'Ops! Ocorreu algum erro...', 'Quantidade máxima de caracteres: 16') //success, info, warning, danger
