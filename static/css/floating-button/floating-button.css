@@ -15,7 +15,7 @@
 
 /* FLOATING BUTTON */
 .floating-button {
-    position: absolute;
+    position: fixed;
     text-decoration: none;
     color: var(--white);
     background-color: var(--primary);

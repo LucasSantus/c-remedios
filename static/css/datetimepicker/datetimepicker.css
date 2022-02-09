@@ -333,3 +333,13 @@
 .dtp-btn-ok:hover{
     color: var(--primary-hover) !important;
 }
+
+.dtp table.dtp-picker-days tr > td > span.dtp-select-day {
+    color: #BDBDBD !important;
+    cursor: pointer !important;
+}
+
+.dtp table.dtp-picker-days tr > td > span.dtp-select-day:hover{
+    background-color: var(--white) !important;
+    cursor: pointer !important;
+}

@@ -7,13 +7,21 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <!-- BEGIN: Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item active"><a>Dashboard</a></li>
-        </ol>
-    </nav>
-    <!-- END: Breadcrumb -->
+    <div class="row container-fluid d-flex justify-content-between w-100">
+        <!-- BEGIN: Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: transparent;">
+                <li class="breadcrumb-item active"><a>Dashboard</a></li>
+            </ol>
+        </nav>
+        <!-- END: Breadcrumb -->
+
+        <!-- BEGIN: SearchBar -->
+        <form class="form-inline justify-content-end pr-5">
+            <input class="form-control" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
+        </form>
+        <!-- END: SearchBar -->
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -22,27 +30,11 @@
         <span class="material-icons">add</span>
     </a>
     <!-- END: Floating Button -->
-
-<!-- 
-    <div class="row px-3 d-flex justify-content-between">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-white">
-                <li class="breadcrumb-item active"><a>Dashboard</a></li>
-            </ol>
-        </nav>
-
-        <form class="form-inline justify-content-end pb-3">
-            <input class="form-control mr-sm-2" id="search" name="search" placeholder="Pesquisar..." type="text" data-list=".list">
-        </form>
-    </div> -->
     
     {% if list_pacientes %}
-          <div class="row">
-            <div class="col-12">
-                <table class="table table-striped pb-0 mb-0">
-                    <thead>
-                        <th>Paciente</th>
-                    </thead>
+        <div class="d-flex justify-content-center">
+            <div class="container-fluid">
+                <table class="table">
                     <tbody class="list">
                         {% for item in list_pacientes %}
                             <tr>
@@ -50,7 +42,7 @@
                             </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
         </div>
     {% else %}

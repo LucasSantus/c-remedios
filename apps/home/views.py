@@ -54,7 +54,7 @@ def ViewHome(request):
 
 @login_required
 def ViewDashboardMedico(request):
-    list_pacientes = MedicoPaciente.objects.filter(medico__id = request.user.id, is_active = True)
+    list_pacientes = MedicoPaciente.objects.select_related('paciente', 'medico').filter(medico__id = request.user.id, is_active = True)
     context = {
         "list_pacientes": list_pacientes,
     }
@@ -71,14 +71,15 @@ def ViewDashboardPaciente(request):
                 objAgendamento = Agendamento.objects.get(receita = objReceitaMedicoPaciente.receita)
             except Agendamento.DoesNotExist:
                 objAgendamento = None
+            
             obj = {
-                "objReceitaMedicoPaciente":objReceitaMedicoPaciente,
-                "objAgendamento":objAgendamento
+                "objReceitaMedicoPaciente": objReceitaMedicoPaciente,
+                "objAgendamento": objAgendamento
             }
 
             listReceitaAgendamento.append(obj)
 
-    except Receita.DoesNotExist:
+    except ReceitaMedicoPaciente.DoesNotExist:
         listReceitaMedicoPaciente = None
 
 
@@ -86,4 +87,4 @@ def ViewDashboardPaciente(request):
         "listReceitaAgendamento": listReceitaAgendamento,
     }
 
-    return render(request, "home/index.html", context)
+    return render(request, "home/paciente.html", context)
