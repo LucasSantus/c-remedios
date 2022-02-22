@@ -1,0 +1,55 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #edf2f7;
+    color: #718096;
+}
+
+.button:hover{
+    background-color: #e7eaee;
+    color: #718096;
+}
+
+.button.active{
+  background-color: #2347b5;
+}
+
+.button.active:hover{
+  background-color: #3b5bba
+}
+
+@-webkit-keyframes intro-x-animation {
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes intro-x-animation {
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@-webkit-keyframes intro-y-animation {
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes intro-y-animation {
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

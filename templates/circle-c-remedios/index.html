@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <!-- Import CSS Bootstrap -->
+        <link rel="stylesheet" href="bootstrap.css" /> 
+
+        <!-- Import CSS Custom -->
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body class="bg-primary">
+        
+        <div id="intro"></div>
+
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="intro-y container d-flex align-items-center h-100">
+            <div id="generated_buttons" class="d-flex justify-content-center bg-white row p-5" style="border-radius: 30px;">
+                <a class="intro-y button text-white active m-1" data-bs-toggle="modal" data-bs-target="#modal-sm1">1</a>
+            </div>
+        </div>
+
+        <div id="modals"></div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function(){
+                let total = 75
+                for(let contador = 1; contador <= total+1; contador++){
+                    $(`<style rel="stylesheet">
+                        * > .intro-x:nth-child(${contador}) {
+                            z-index: 49;
+                            opacity: 0;
+                            position: relative;
+                            transform: translateX(50px);
+                            -webkit-animation: 0.4s intro-x-animation ease-in-out 0.33333s;
+                                    animation: 0.4s intro-x-animation ease-in-out 0.33333s;
+                            -webkit-animation-fill-mode: forwards;
+                                    animation-fill-mode: forwards;
+                            -webkit-animation-delay: ${contador*0.1}s;
+                                    animation-delay: ${contador*0.1}s;
+                        }
+
+                        * > .-intro-x:nth-child(${contador}) {
+                            z-index: 49;
+                            opacity: 0;
+                            position: relative;
+                            transform: translateX(-50px);
+                            -webkit-animation: 0.4s intro-x-animation ease-in-out 0.33333s;
+                                    animation: 0.4s intro-x-animation ease-in-out 0.33333s;
+                            -webkit-animation-fill-mode: forwards;
+                                    animation-fill-mode: forwards;
+                            -webkit-animation-delay: ${contador*0.1}s;
+                                    animation-delay: ${contador*0.1}s;
+                        }
+
+                        * > .intro-y:nth-child(${contador}) {
+                            z-index: 49;
+                            opacity: 0;
+                            position: relative;
+                            transform: translateY(50px);
+                            -webkit-animation: 0.4s intro-y-animation ease-in-out 0.33333s;
+                                    animation: 0.4s intro-y-animation ease-in-out 0.33333s;
+                            -webkit-animation-fill-mode: forwards;
+                                    animation-fill-mode: forwards;
+                            -webkit-animation-delay: ${contador*0.1}s;
+                                    animation-delay: ${contador*0.1}s;
+                        }
+
+                        * > .-intro-y:nth-child(${contador}) {
+                            z-index: 49;
+                            opacity: 0;
+                            position: relative;
+                            transform: translateY(-50px);
+                            -webkit-animation: 0.4s intro-y-animation ease-in-out 0.33333s;
+                                    animation: 0.4s intro-y-animation ease-in-out 0.33333s;
+                            -webkit-animation-fill-mode: forwards;
+                                    animation-fill-mode: forwards;
+                            -webkit-animation-delay: ${contador*0.1}s;
+                                    animation-delay: ${contador*0.1}s;
+                        }
+                        </style>
+                        `
+                    ).appendTo("#intro");
+                }
+
+                for(let contador = 2; contador <= total; contador++){
+                    $(`
+                        <a class="intro-y button m-1" data-bs-toggle="modal" data-bs-target="#modal-sm${contador}">${contador}</a>
+                    `
+                    ).appendTo("#generated_buttons");
+                }
+
+                for(let contador = 1; contador <= total; contador++){
+                    $(`
+                        <div id="modal-sm${contador}" class="modal" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Modal body text goes here.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes${contador}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                    ).appendTo("#modals");
+                }
+            });
+        </script>
+    </body>
+</html>
